@@ -20,8 +20,9 @@
 }
 
 .lm-DockPanel-overlay {
-  background: rgba(33, 150, 243, 0.1);
-  border: var(--jp-border-width) dashed var(--jp-brand-color1);
+  background: rgba(20, 184, 166, 0.1); /* qBraid: teal overlay */
+  border: 2px dashed var(--jp-brand-color1);
+  border-radius: 8px; /* qBraid: rounded overlay */
   transition-property: top, left, right, bottom;
   transition-duration: 150ms;
   transition-timing-function: ease;

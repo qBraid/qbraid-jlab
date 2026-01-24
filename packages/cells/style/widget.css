@@ -12,15 +12,30 @@
 }
 
 /*-----------------------------------------------------------------------------
-| Cell
+| Cell - qBraid Theme (Card-based design)
 |----------------------------------------------------------------------------*/
 
 .jp-Cell {
-  padding: var(--jp-cell-padding);
-  margin: 0;
-  border: none;
+  padding: 12px 16px; /* qBraid: card padding */
+  margin: 0 8px 12px; /* qBraid: spacing between cells */
+  border: 1px solid #262626; /* qBraid: visible card border */
+  border-radius: 12px; /* qBraid: rounded card */
   outline: none;
-  background: transparent;
+  background: #141414; /* qBraid: card background */
+  position: relative;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.jp-Cell:hover {
+  border-color: #333; /* qBraid: slightly lighter on hover */
+}
+
+/* Active cell gets teal border */
+.jp-Cell.jp-mod-active {
+  border-color: #14b8a6;
+  box-shadow: 0 0 0 1px rgba(20, 184, 166, 0.3);
 }
 
 /*-----------------------------------------------------------------------------
@@ -33,8 +48,6 @@
   flex-direction: row;
   padding: 0;
   margin: 0;
-
-  /* Added to reveal the box-shadow on the input and output collapsers. */
   overflow: visible;
 }
 
@@ -48,9 +61,6 @@
 | Collapser
 |----------------------------------------------------------------------------*/
 
-/* Make the output collapser disappear when there is not output, but do so
- * in a manner that leaves it in the layout and preserves its width.
- */
 .jp-Cell.jp-mod-noOutputs .jp-Cell-outputCollapser {
   border: none !important;
   background: transparent !important;
@@ -64,7 +74,6 @@
 | Output
 |----------------------------------------------------------------------------*/
 
-/* Put a space between input and output when there IS output */
 .jp-Cell:not(.jp-mod-noOutputs) .jp-Cell-outputWrapper {
   margin-top: 5px;
 }
@@ -133,7 +142,7 @@
   overflow: auto;
 }
 
-/* collapseHeadingButton (show always if hiddenCellsButton is _not_ shown) */
+/* collapseHeadingButton */
 .jp-collapseHeadingButton {
   display: flex;
   min-height: var(--jp-cell-collapser-min-height);
@@ -154,18 +163,10 @@
   background-image: var(--jp-icon-caret-right);
 }
 
-/*
- set the container font size to match that of content
- so that the nested collapse buttons have the right size
-*/
 .jp-MarkdownCell .jp-InputPrompt {
   font-size: var(--jp-content-font-size1);
 }
 
-/*
-  Align collapseHeadingButton with cell top header
-  The font sizes are identical to the ones in packages/rendermime/style/base.css
-*/
 .jp-mod-rendered .jp-collapseHeadingButton[data-heading-level='1'] {
   font-size: var(--jp-content-font-size5);
   background-position-y: calc(0.3 * var(--jp-content-font-size5));
@@ -196,7 +197,7 @@
   background-position-y: top;
 }
 
-/* collapseHeadingButton (show only on (hover,active) if hiddenCellsButton is shown) */
+/* collapseHeadingButton (show only on hover if hiddenCellsButton is shown) */
 .jp-Notebook.jp-mod-showHiddenCellsButton .jp-collapseHeadingButton {
   display: none;
 }
@@ -207,8 +208,7 @@
   display: flex;
 }
 
-/* showHiddenCellsButton (only show if jp-mod-showHiddenCellsButton is set, which
-is a consequence of the showHiddenCellsButton option in Notebook Settings)*/
+/* showHiddenCellsButton */
 .jp-Notebook.jp-mod-showHiddenCellsButton .jp-showHiddenCellsButton {
   margin-left: calc(var(--jp-cell-prompt-width) + 2 * var(--jp-code-padding));
   margin-top: var(--jp-code-padding);
@@ -216,6 +216,7 @@ is a consequence of the showHiddenCellsButton option in Notebook Settings)*/
   background-color: var(--jp-border-color3) !important;
   color: var(--jp-content-font-color0) !important;
   display: flex;
+  border-radius: 4px;
 }
 
 .jp-Notebook.jp-mod-showHiddenCellsButton .jp-showHiddenCellsButton:hover {
@@ -229,11 +230,6 @@ is a consequence of the showHiddenCellsButton option in Notebook Settings)*/
 /*-----------------------------------------------------------------------------
 | Printing
 |----------------------------------------------------------------------------*/
-
-/*
-Using block instead of flex to allow the use of the break-inside CSS property for
-cell outputs.
-*/
 
 @media print {
   .jp-Cell-inputWrapper,

@@ -21,6 +21,7 @@
   color: var(--jp-ui-font-color1);
   font-size: var(--jp-ui-font-size1);
   overflow: hidden;
+  border-bottom: 1px solid var(--jp-border-color1); /* qBraid: subtle bottom border */
 }
 
 .lm-MenuBar:hover {
@@ -70,13 +71,16 @@
 }
 
 .lm-MenuBar-item {
-  padding: 0 8px;
+  padding: 0 10px; /* qBraid: slightly more padding */
   border-left: var(--jp-border-width) solid transparent;
   border-right: var(--jp-border-width) solid transparent;
   border-top: var(--jp-border-width) solid transparent;
+  border-radius: 4px; /* qBraid: rounded menu items */
+  margin: 2px 1px; /* qBraid: spacing between items */
   line-height: calc(
-    var(--jp-private-menubar-height) - var(--jp-border-width) * 2
+    var(--jp-private-menubar-height) - var(--jp-border-width) * 2 - 4px
   );
+  transition: background 0.15s ease; /* qBraid: smooth hover */
 }
 
 .lm-MenuBar-content:focus-visible {
@@ -138,23 +142,28 @@
 
 .lm-Menu {
   z-index: 10000;
-  padding: 4px 0;
+  padding: 6px; /* qBraid: more padding */
   background: var(--jp-layout-color0);
   color: var(--jp-ui-font-color0);
   border: var(--jp-border-width) solid var(--jp-border-color1);
+  border-radius: 8px; /* qBraid: rounded dropdown */
   font-size: var(--jp-ui-font-size1);
-  box-shadow: var(--jp-elevation-z6);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* qBraid: deeper shadow */
 }
 
 .lm-Menu-item {
   min-height: var(--jp-private-menu-item-height);
   max-height: var(--jp-private-menu-item-height);
-  padding: 0;
+  padding: 0 4px; /* qBraid: horizontal padding */
   line-height: var(--jp-private-menu-item-height);
+  border-radius: 4px; /* qBraid: rounded items */
+  margin: 1px 0; /* qBraid: spacing */
+  transition: background 0.15s ease;
 }
 
 .lm-Menu-item.lm-mod-active {
   background: var(--jp-layout-color2);
+  color: var(--jp-brand-color1); /* qBraid: accent color on hover */
 }
 
 .lm-Menu-item.lm-mod-disabled {

@@ -23,8 +23,8 @@
 
 .jp-SideBar.lm-TabBar,
 #jp-down-stack .lm-TabBar {
-  color: var(--jp-ui-font-color2);
-  background: var(--jp-layout-color2);
+  color: #737373;
+  background: #0a0a0a; /* qBraid: darkest sidebar icons area */
   font-size: var(--jp-ui-font-size1);
   overflow: visible;
 }
@@ -52,6 +52,29 @@
   position: relative;
 }
 
+/* qBraid: VS Code style active indicator bar */
+.jp-SideBar.jp-mod-left .lm-mod-current::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 4px;
+  bottom: 4px;
+  width: 2px;
+  background: var(--jp-brand-color1);
+  border-radius: 0 2px 2px 0;
+}
+
+.jp-SideBar.jp-mod-right .lm-mod-current::before {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 4px;
+  bottom: 4px;
+  width: 2px;
+  background: var(--jp-brand-color1);
+  border-radius: 2px 0 0 2px;
+}
+
 .jp-SideBar .lm-TabBar-tab:focus-visible {
   /* --accent-fill-focus is computed by the jp toolkit to ensure accessibility */
   outline: 2px solid var(--accent-fill-focus, var(--jp-brand-color1));
@@ -71,7 +94,8 @@
 
 .jp-SideBar .lm-TabBar-tab:not(.lm-mod-current),
 #jp-down-stack .lm-TabBar-tab:not(.lm-mod-current) {
-  background: var(--jp-layout-color2);
+  background: #0a0a0a; /* qBraid: dark sidebar */
+  transition: background 0.15s ease;
 }
 
 .jp-SideBar .lm-TabBar-tabIcon.jp-SideBar-tabIcon {
@@ -199,12 +223,12 @@
 
 /* stylelint-enable selector-max-class */
 
-/* Stack panels */
+/* Stack panels - qBraid dark sidebar */
 
 #jp-left-stack > .lm-Widget,
 #jp-right-stack > .lm-Widget {
   min-width: var(--jp-sidebar-min-width);
-  background-color: var(--jp-layout-color1);
+  background-color: #0d0d0d; /* qBraid: very dark */
 }
 
 #jp-right-stack {

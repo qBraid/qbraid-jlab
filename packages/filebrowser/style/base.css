@@ -24,6 +24,7 @@
   margin: 8px 12px 0;
   box-shadow: none;
   padding: 0;
+  background: #0d0d0d; /* qBraid: match sidebar */
 }
 
 .jp-FileBrowser-toolbar.jp-Toolbar::part(positioning-region) {
@@ -54,6 +55,8 @@
 .jp-BreadCrumbs {
   flex: 0 0 auto;
   margin: 8px 12px;
+  color: #a3a3a3;
+  font-size: 12px;
 }
 
 .jp-BreadCrumbs-item {
@@ -125,7 +128,7 @@
 }
 
 /*-----------------------------------------------------------------------------
-| DirListing
+| DirListing - qBraid VS Code Style
 |----------------------------------------------------------------------------*/
 
 .jp-DirListing {
@@ -134,6 +137,7 @@
   flex-direction: column;
   outline: 0;
   overflow: hidden;
+  background: #0d0d0d; /* qBraid: very dark sidebar */
 
   --jp-dirlisting-padding-width: 12px;
 }
@@ -144,11 +148,18 @@
   flex-direction: row;
   align-items: center;
   overflow: hidden;
-  border-top: var(--jp-border-width) solid var(--jp-border-color2);
-  border-bottom: var(--jp-border-width) solid var(--jp-border-color1);
-  box-shadow: var(--jp-toolbar-box-shadow);
+  border-top: none;
+  border-bottom: 1px solid #1a1a1a;
+  box-shadow: none;
   z-index: 2;
+  background: #0d0d0d;
   user-select: none;
+  padding: 6px 12px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  font-weight: 600;
+  color: #737373;
 }
 
 .jp-DirListing-headerItem {
@@ -265,10 +276,10 @@
 .jp-DirListing-content {
   flex: 1 1 auto;
   margin: 0;
-  padding: 0;
+  padding: 4px 0;
   list-style-type: none;
   overflow: auto;
-  background-color: var(--jp-layout-color1);
+  background-color: #0d0d0d; /* qBraid: match sidebar dark */
   overflow-x: hidden;
 }
 
@@ -291,7 +302,7 @@
 
 .jp-DirListing-item {
   align-items: center;
-  padding: 4px var(--jp-dirlisting-padding-width);
+  padding: 3px 12px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -301,6 +312,13 @@
   width: 100%;
   box-sizing: border-box;
   grid-auto-flow: column;
+  border-radius: 0; /* qBraid: no rounded corners like VS Code */
+  margin: 0;
+  transition: background 0.08s ease;
+  font-size: 13px;
+  line-height: 22px;
+  position: relative;
+  color: #d4d4d4;
 }
 
 .jp-DirListing-checkboxWrapper {
@@ -362,18 +380,21 @@
   opacity: 75%;
 }
 
+/* qBraid: VS Code-style selection - subtle blue highlight */
 .jp-DirListing-item.jp-mod-selected {
-  color: var(--jp-ui-inverse-font-color1);
-  background: var(--jp-brand-color1);
+  color: #fff;
+  background: #264f78 !important; /* VS Code blue selection */
 }
 
 .jp-DirListing-item.jp-mod-dropTarget {
-  background: var(--jp-brand-color3);
+  background: rgba(16, 185, 129, 0.2) !important;
 }
 
 .jp-DirListing-item:hover:not(.jp-mod-selected) {
-  background: var(--jp-layout-color2);
+  background: #1a1a1a;
 }
+
+/* qBraid: Running indicator styles are in the later selector */
 
 .jp-DirListing-itemIcon {
   flex: 0 0 20px;
@@ -429,11 +450,12 @@
 }
 
 .jp-DirListing-item.jp-mod-running .jp-DirListing-itemIcon::before {
-  color: var(--jp-success-color1);
+  color: #10b981 !important;
   content: '\25CF';
   font-size: 8px;
   position: absolute;
   left: -8px;
+  text-shadow: 0 0 8px rgba(16, 185, 129, 0.8);
 }
 
 .jp-DirListing-item.jp-mod-running.jp-mod-selected

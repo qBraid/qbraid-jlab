@@ -21,8 +21,8 @@
   --jp-side-by-side-resized-cell: var(--jp-side-by-side-output-size);
   --jp-private-notebook-dragImage-width: 304px;
   --jp-private-notebook-dragImage-height: 36px;
-  --jp-private-notebook-selected-color: var(--md-blue-400, #42a5f5);
-  --jp-private-notebook-active-color: var(--md-green-400, #66bb6a);
+  --jp-private-notebook-selected-color: #14b8a6; /* qBraid teal */
+  --jp-private-notebook-active-color: #10b981; /* qBraid green */
 }
 
 /*-----------------------------------------------------------------------------
@@ -97,9 +97,10 @@
   color: var(--jp-cell-prompt-not-active-font-color);
 }
 
-/* cell is active */
+/* cell is active - qBraid: collapser styling */
 .jp-Notebook .jp-Cell.jp-mod-active .jp-Collapser {
   background: var(--jp-brand-color1);
+  border-radius: 4px;
 }
 
 /* cell is dirty */
@@ -148,12 +149,12 @@
   z-index: 1;
 }
 
-/* Edit mode */
+/* Edit mode - qBraid: styled active cell */
 
 .jp-Notebook.jp-mod-editMode .jp-Cell.jp-mod-active .jp-InputArea-editor {
-  border: var(--jp-border-width) solid var(--jp-cell-editor-active-border-color);
-  box-shadow: var(--jp-cell-editor-box-shadow);
-  background-color: var(--jp-cell-editor-active-background);
+  border: none;
+  background-color: rgba(20, 184, 166, 0.08);
+  border-radius: 6px;
 }
 
 /*-----------------------------------------------------------------------------

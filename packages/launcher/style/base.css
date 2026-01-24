@@ -103,11 +103,11 @@
   min-height: var(--jp-private-launcher-card-size);
   margin: 8px;
   padding: 0;
-  border: 1px solid var(--jp-border-color2);
-  background: var(--jp-layout-color0);
-  box-shadow: var(--jp-elevation-z2);
-  transition: 0.2s box-shadow;
-  border-radius: var(--jp-border-radius);
+  border: 1px solid var(--jp-border-color1); /* qBraid: subtle border */
+  background: var(--jp-layout-color2); /* qBraid: elevated background */
+  box-shadow: none; /* qBraid: flat design */
+  transition: 0.2s all; /* qBraid: smooth transition */
+  border-radius: 12px; /* qBraid: more rounded */
 }
 
 .jp-LauncherCard:focus:not(:active) {
@@ -118,8 +118,10 @@
 }
 
 .jp-LauncherCard:hover {
-  box-shadow: var(--jp-elevation-z6);
-  background: var(--jp-layout-color1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* qBraid: subtle lift */
+  background: var(--jp-layout-color3);
+  border-color: var(--jp-brand-color1); /* qBraid: green border on hover */
+  transform: translateY(-2px); /* qBraid: lift effect */
 }
 
 .jp-LauncherCard:active {

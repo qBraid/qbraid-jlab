@@ -1,0 +1,149 @@
+/*-----------------------------------------------------------------------------
+| qBraid Design Tokens
+| Centralized design system for JupyterLab qBraid theme
+| Source: qbraid-account globals.css
+|----------------------------------------------------------------------------*/
+
+:root {
+  /* ==========================================================================
+     Core Colors - qBraid Dark Mode
+     ========================================================================== */
+
+  /* Backgrounds */
+  --qbraid-bg-base: #0a0a0a; /* Deepest background */
+  --qbraid-bg-elevated: #111; /* Sidebar, panels */
+  --qbraid-bg-surface: #141414; /* Cards, cells */
+  --qbraid-bg-hover: #1a1a1a; /* Hover states */
+  --qbraid-bg-active: #1f1f1f; /* Active/pressed states */
+  --qbraid-bg-muted: #262626; /* Muted backgrounds */
+
+  /* Borders */
+  --qbraid-border-default: #262626;
+  --qbraid-border-subtle: #1f1f1f;
+  --qbraid-border-strong: #333;
+  --qbraid-border-focus: #3b82f6; /* Blue focus ring */
+
+  /* Text */
+  --qbraid-text-primary: #ededed;
+  --qbraid-text-secondary: #d4d4d4;
+  --qbraid-text-muted: #a3a3a3;
+  --qbraid-text-disabled: #737373;
+  --qbraid-text-inverse: #0a0a0a;
+
+  /* ==========================================================================
+     Brand Colors
+     ========================================================================== */
+
+  /* Primary Brand - Purple */
+  --qbraid-purple-50: #faf5ff;
+  --qbraid-purple-100: #f3e8ff;
+  --qbraid-purple-200: #e9d5ff;
+  --qbraid-purple-300: #d8b4fe;
+  --qbraid-purple-400: #c084fc;
+  --qbraid-purple-500: #a855f7; /* Primary purple */
+  --qbraid-purple-600: #9333ea;
+  --qbraid-purple-700: #7c3aed;
+  --qbraid-purple-800: #6b21a8;
+  --qbraid-purple-900: #581c87;
+
+  /* Secondary Brand - Blue */
+  --qbraid-blue-400: #60a5fa;
+  --qbraid-blue-500: #3b82f6; /* Primary blue */
+  --qbraid-blue-600: #2563eb;
+
+  /* Accent - Teal/Emerald (for active states) */
+  --qbraid-teal-400: #2dd4bf;
+  --qbraid-teal-500: #14b8a6;
+  --qbraid-teal-600: #0d9488;
+  --qbraid-emerald-400: #34d399;
+  --qbraid-emerald-500: #10b981; /* Primary green */
+  --qbraid-emerald-600: #059669;
+
+  /* ==========================================================================
+     Semantic Colors
+     ========================================================================== */
+
+  /* Success */
+  --qbraid-success: #10b981;
+  --qbraid-success-bg: rgba(16, 185, 129, 0.1);
+  --qbraid-success-border: rgba(16, 185, 129, 0.3);
+
+  /* Warning */
+  --qbraid-warning: #f59e0b;
+  --qbraid-warning-bg: rgba(245, 158, 11, 0.1);
+  --qbraid-warning-border: rgba(245, 158, 11, 0.3);
+
+  /* Error */
+  --qbraid-error: #ef4444;
+  --qbraid-error-bg: rgba(239, 68, 68, 0.1);
+  --qbraid-error-border: rgba(239, 68, 68, 0.3);
+
+  /* Info */
+  --qbraid-info: #3b82f6;
+  --qbraid-info-bg: rgba(59, 130, 246, 0.1);
+  --qbraid-info-border: rgba(59, 130, 246, 0.3);
+
+  /* ==========================================================================
+     Gradient
+     ========================================================================== */
+
+  --qbraid-gradient: linear-gradient(
+    135deg,
+    #60a5fa 0%,
+    #a855f7 50%,
+    #c084fc 100%
+  );
+  --qbraid-gradient-subtle: linear-gradient(
+    135deg,
+    rgba(139, 92, 246, 0.08) 0%,
+    rgba(168, 85, 247, 0.05) 50%,
+    rgba(192, 132, 252, 0.03) 100%
+  );
+
+  /* ==========================================================================
+     Spacing & Sizing
+     ========================================================================== */
+
+  --qbraid-radius-sm: 4px;
+  --qbraid-radius-md: 8px;
+  --qbraid-radius-lg: 12px;
+  --qbraid-radius-xl: 16px;
+
+  /* ==========================================================================
+     Shadows
+     ========================================================================== */
+
+  --qbraid-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --qbraid-shadow-md: 0 4px 8px rgba(0, 0, 0, 0.4);
+  --qbraid-shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.5);
+  --qbraid-shadow-xl: 0 16px 32px rgba(0, 0, 0, 0.5);
+
+  /* Focus glow */
+  --qbraid-glow-purple: 0 0 0 3px rgba(139, 92, 246, 0.2);
+  --qbraid-glow-blue: 0 0 0 3px rgba(59, 130, 246, 0.2);
+  --qbraid-glow-emerald: 0 0 0 3px rgba(16, 185, 129, 0.2);
+
+  /* ==========================================================================
+     Transitions
+     ========================================================================== */
+
+  --qbraid-transition-fast: 0.15s ease;
+  --qbraid-transition-normal: 0.2s ease;
+  --qbraid-transition-slow: 0.3s ease;
+  --qbraid-transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ==========================================================================
+     Syntax Highlighting (Code)
+     ========================================================================== */
+
+  --qbraid-syntax-keyword: #c084fc; /* Purple */
+  --qbraid-syntax-string: #4ade80; /* Green */
+  --qbraid-syntax-number: #fbbf24; /* Amber */
+  --qbraid-syntax-function: #60a5fa; /* Blue */
+  --qbraid-syntax-comment: #525252; /* Gray */
+  --qbraid-syntax-operator: #f472b6; /* Pink */
+  --qbraid-syntax-variable: #e5e7eb; /* Light gray */
+  --qbraid-syntax-builtin: #2dd4bf; /* Teal */
+  --qbraid-syntax-tag: #f472b6; /* Pink */
+  --qbraid-syntax-attribute: #60a5fa; /* Blue */
+}
