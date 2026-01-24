@@ -21,13 +21,15 @@
   background: transparent !important; /* qBraid: transparent - parent has black background */
   color: #ffffff !important; /* qBraid: white text */
   font-size: var(--jp-ui-font-size1);
-  overflow: hidden;
+  overflow: visible !important; /* qBraid: ensure menu is visible */
   border-bottom: none; /* qBraid: no border */
   margin-left: 0 !important; /* qBraid: no left margin - flow directly after logo */
   margin-right: 0 !important; /* qBraid: no right margin */
   padding-left: 0 !important; /* qBraid: no left padding */
   padding-right: 0 !important; /* qBraid: no right padding */
   flex-shrink: 0 !important; /* qBraid: don't shrink */
+  display: flex !important; /* qBraid: ensure menu is displayed */
+  visibility: visible !important; /* qBraid: ensure menu is visible */
   order: 1 !important; /* qBraid: ensure menu comes after logo */
 }
 

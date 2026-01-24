@@ -39,17 +39,13 @@
 }
 
 ::-webkit-scrollbar-track:horizontal {
-  border-left: var(--jp-scrollbar-endpad) solid
-    var(--jp-scrollbar-background-color);
-  border-right: var(--jp-scrollbar-endpad) solid
-    var(--jp-scrollbar-background-color);
+  border-left: 0 solid transparent !important; /* qBraid: no padding on left */
+  border-right: 0 solid transparent !important; /* qBraid: no padding on right - touches edge */
 }
 
 ::-webkit-scrollbar-track:vertical {
-  border-top: var(--jp-scrollbar-endpad) solid
-    var(--jp-scrollbar-background-color);
-  border-bottom: var(--jp-scrollbar-endpad) solid
-    var(--jp-scrollbar-background-color);
+  border-top: 0 solid transparent !important; /* qBraid: no padding on top */
+  border-bottom: 0 solid transparent !important; /* qBraid: no padding on bottom - touches edge */
 }
 
 /* for code nodes, use a transparent style of scrollbar */
@@ -72,11 +68,11 @@
 }
 
 .CodeMirror-hscrollbar::-webkit-scrollbar-track:horizontal {
-  border-left: var(--jp-scrollbar-endpad) solid transparent;
-  border-right: var(--jp-scrollbar-endpad) solid transparent;
+  border-left: 0 solid transparent !important; /* qBraid: no padding */
+  border-right: 0 solid transparent !important; /* qBraid: no padding - touches edge */
 }
 
 .CodeMirror-vscrollbar::-webkit-scrollbar-track:vertical {
-  border-top: var(--jp-scrollbar-endpad) solid transparent;
-  border-bottom: var(--jp-scrollbar-endpad) solid transparent;
+  border-top: 0 solid transparent !important; /* qBraid: no padding */
+  border-bottom: 0 solid transparent !important; /* qBraid: no padding - touches edge */
 }

@@ -34,6 +34,8 @@
 .jp-NotebookPanel {
   display: block;
   height: 100%;
+  padding-right: 0 !important; /* qBraid: no right padding - allow scrollbar to flush */
+  margin-right: 0 !important; /* qBraid: no right margin */
 }
 
 .jp-NotebookPanel.jp-Document {

@@ -32,8 +32,10 @@
 }
 
 #jp-main-dock-panel {
-  padding: 8px; /* qBraid: increased spacing for cleaner look */
+  padding: 8px 0 8px 8px !important; /* qBraid: no right padding - allow scrollbar to flush to edge */
+  margin-right: 0 !important;
 }
+
 
 #jp-main-dock-panel[data-mode='single-document'] {
   padding: 0;
@@ -55,8 +57,7 @@
   height: auto !important; /* qBraid: allow panel to grow for logo */
   overflow: visible !important; /* qBraid: prevent logo truncation */
   position: relative;
-  padding-left: 0 !important; /* qBraid: no left padding - move everything to left edge */
-  padding-right: 12px !important; /* qBraid: right padding */
+  padding: 4px 12px 4px 0 !important; /* qBraid: restore top/bottom padding */
   margin-left: 0 !important; /* qBraid: no left margin */
 
   /* relax lumino strict CSS contaiment to allow painting the menu bar item
@@ -79,7 +80,7 @@
 
 /* qBraid: Visual change indicator - Update chars when making CSS changes */
 #jp-top-panel::after {
-  content: 'L4M';
+  content: 'X6Y';
   position: fixed;
   top: 4px;
   right: 8px;

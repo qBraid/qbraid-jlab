@@ -9,7 +9,7 @@
   display: flex !important;
   align-items: center !important;
   gap: 0 !important; /* qBraid: no gap - logo and text should feel integrated */
-  padding: 0 !important; /* qBraid: no padding */
+  padding: 0 0 10px 0 !important; /* qBraid: more bottom padding for better spacing below text */
   margin-right: 0px !important; /* qBraid: no spacing - menu flows directly after */
   margin-left: -18px !important; /* qBraid: perfect negative margin to align logo to left edge */
   position: relative !important;
@@ -37,7 +37,7 @@
   content: '';
   display: inline-block;
   width: 50px !important; /* qBraid: tight width to eliminate whitespace */
-  height: 28px !important; /* qBraid: match menu bar height */
+  height: 24px !important; /* qBraid: reduced height for tighter top padding */
   background-image: url('../../theme-dark-extension/style/qbraid-logo.png') !important;
   background-size: auto 28px !important; /* qBraid: maintain aspect ratio, scale height */
   background-repeat: no-repeat !important;

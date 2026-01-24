@@ -15,8 +15,21 @@
 .lm-TabPanel-stackedPanel {
   background: var(--qbraid-bg-base); /* #0a0a0a - Deepest background */
   border-left: var(--jp-border-width) solid var(--qbraid-border-subtle); /* #1f1f1f - Subtle border */
-  border-right: var(--jp-border-width) solid var(--qbraid-border-subtle); /* #1f1f1f - Subtle border */
+  border-right: none !important; /* qBraid: no right border - allow scrollbar to flush to edge */
   border-bottom: var(--jp-border-width) solid var(--qbraid-border-subtle); /* #1f1f1f - Subtle border */
+  padding-right: 0 !important; /* qBraid: no right padding */
+  margin-right: 0 !important; /* qBraid: no right margin */
+}
+
+/* qBraid: Ensure dock panel content extends to right edge */
+.lm-DockPanel-widget > *,
+.lm-TabPanel-stackedPanel > *,
+.lm-DockPanel-widget .jp-NotebookPanel,
+.lm-DockPanel-widget .jp-MainAreaWidget,
+.lm-DockPanel-widget .jp-Notebook {
+  padding-right: 0 !important;
+  margin-right: 0 !important;
+  border-right: none !important;
 }
 
 .lm-DockPanel-overlay {

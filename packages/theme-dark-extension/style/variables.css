@@ -291,7 +291,7 @@
   /* Scrollbar - qBraid Design System - same size as code cell bars */
   --jp-scrollbar-background-color: var(--qbraid-bg-surface); /* #141414 - Track background */
   --jp-scrollbar-thumb-color: 51, 51, 51; /* #333333 - Thumb color (RGB for rgba) */
-  --jp-scrollbar-endpad: 1px; /* qBraid: reduced for thinner scrollbar */
+  --jp-scrollbar-endpad: 0px; /* qBraid: no padding - scrollbar touches edge */
   --jp-scrollbar-thumb-margin: 0px; /* qBraid: no margin for thinner scrollbar */
   --jp-scrollbar-thumb-radius: var(--qbraid-radius-sm); /* 4px - Small radius */
 
