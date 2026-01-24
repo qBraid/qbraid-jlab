@@ -5,7 +5,7 @@
 
 button.jp-mod-styled {
   font-size: var(--jp-ui-font-size1);
-  color: var(--jp-ui-font-color0);
+  color: var(--qbraid-text-primary); /* #ededed - Primary text */
   border: none;
   box-sizing: border-box;
   text-align: center;
@@ -17,22 +17,34 @@ button.jp-mod-styled {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
+  border-radius: var(--qbraid-radius-md); /* 8px - Medium radius */
+  transition: background-color var(--qbraid-transition-fast);
 }
 
 input.jp-mod-styled {
-  background: var(--jp-input-background);
+  background: var(--qbraid-bg-base); /* #0a0a0a - Deepest background */
   height: 28px;
   box-sizing: border-box;
-  border: var(--jp-border-width) solid var(--jp-border-color1);
-  border-radius: var(--jp-border-radius);
+  border: var(--jp-border-width) solid var(--qbraid-border-default); /* #262626 - Default border */
+  border-radius: var(--qbraid-radius-md); /* 8px - Medium radius */
   padding-left: 7px;
   padding-right: 7px;
   font-size: var(--jp-ui-font-size2);
-  color: var(--jp-ui-font-color0);
+  color: var(--qbraid-text-primary); /* #ededed - Primary text */
   outline: none;
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
+  transition: border-color var(--qbraid-transition-fast), box-shadow var(--qbraid-transition-fast);
+}
+
+input.jp-mod-styled:hover {
+  border-color: var(--qbraid-border-strong); /* #333333 - Stronger border */
+}
+
+input.jp-mod-styled:focus {
+  border-color: var(--qbraid-blue-500); /* #3b82f6 - Blue focus (more subtle) */
+  box-shadow: var(--qbraid-glow-blue); /* Blue focus glow (more subtle) */
 }
 
 input[type='checkbox'].jp-mod-styled {
@@ -40,11 +52,6 @@ input[type='checkbox'].jp-mod-styled {
   -webkit-appearance: checkbox;
   -moz-appearance: checkbox;
   height: auto;
-}
-
-input.jp-mod-styled:focus {
-  border: var(--jp-border-width) solid var(--jp-input-active-border-color);
-  box-shadow: var(--jp-input-box-shadow);
 }
 
 input[type='checkbox'].jp-mod-styled:focus-visible {
@@ -83,15 +90,21 @@ select.jp-mod-styled {
   flex: 1 1 auto;
   width: 100%;
   font-size: var(--jp-ui-font-size2);
-  background: var(--jp-input-background);
-  color: var(--jp-ui-font-color0);
+  background: var(--qbraid-bg-base); /* #0a0a0a - Deepest background */
+  color: var(--qbraid-text-primary); /* #ededed - Primary text */
   padding: 0 25px 0 8px;
-  border: var(--jp-border-width) solid var(--jp-input-border-color);
-  border-radius: var(--jp-border-radius);
+  border: var(--jp-border-width) solid var(--qbraid-border-default); /* #262626 - Default border */
+  border-radius: var(--qbraid-radius-md); /* 8px - Medium radius */
   outline: none;
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
+  transition: border-color var(--qbraid-transition-fast), background-color var(--qbraid-transition-fast);
+}
+
+select.jp-mod-styled:hover {
+  background-color: var(--qbraid-bg-hover); /* #1a1a1a - Hover state */
+  border-color: var(--qbraid-border-strong); /* #333333 - Stronger border */
 }
 
 select.jp-mod-styled:not([multiple]) {

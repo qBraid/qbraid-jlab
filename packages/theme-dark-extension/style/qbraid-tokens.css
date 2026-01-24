@@ -11,7 +11,7 @@
 
   /* Backgrounds */
   --qbraid-bg-base: #0a0a0a; /* Deepest background */
-  --qbraid-bg-elevated: #111; /* Sidebar, panels */
+  --qbraid-bg-elevated: #111111; /* Sidebar, panels */
   --qbraid-bg-surface: #141414; /* Cards, cells */
   --qbraid-bg-hover: #1a1a1a; /* Hover states */
   --qbraid-bg-active: #1f1f1f; /* Active/pressed states */
@@ -20,7 +20,7 @@
   /* Borders */
   --qbraid-border-default: #262626;
   --qbraid-border-subtle: #1f1f1f;
-  --qbraid-border-strong: #333;
+  --qbraid-border-strong: #333333;
   --qbraid-border-focus: #3b82f6; /* Blue focus ring */
 
   /* Text */

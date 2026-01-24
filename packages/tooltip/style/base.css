@@ -4,15 +4,17 @@
 |----------------------------------------------------------------------------*/
 
 .jp-Tooltip {
-  background: var(--jp-layout-color1);
-  border: var(--jp-border-width) solid var(--jp-border-color1);
+  background: var(--qbraid-bg-surface); /* #141414 - Card background */
+  border: var(--jp-border-width) solid var(--qbraid-border-default); /* #262626 - Default border */
   font-size: var(--jp-ui-font-size0);
-  box-shadow: var(--jp-elevation-z6);
+  box-shadow: var(--qbraid-shadow-md); /* Subtle shadow */
   max-width: 750px;
   max-height: 350px;
   z-index: 10001;
-  padding: 4px;
+  padding: 6px 8px; /* qBraid: more padding */
   display: flex;
+  border-radius: var(--qbraid-radius-sm); /* 4px - Small radius */
+  color: var(--qbraid-text-primary); /* #ededed - Primary text */
 }
 
 .jp-Tooltip-content {

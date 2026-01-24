@@ -8,6 +8,26 @@
   position: relative;
   overflow: auto;
   overflow-anchor: none;
+  scrollbar-width: thin !important; /* qBraid: thin scrollbar */
+}
+
+/* qBraid: Force WindowedPanel scrollbar to be 3px */
+.jp-WindowedPanel-outer::-webkit-scrollbar,
+.jp-WindowedPanel-outer::-webkit-scrollbar-corner {
+  width: 3px !important;
+  height: 3px !important;
+  background: var(--jp-scrollbar-background-color) !important;
+}
+
+.jp-WindowedPanel-outer::-webkit-scrollbar-thumb {
+  border: 0px solid transparent !important;
+  background-clip: content-box;
+  background: rgb(var(--jp-scrollbar-thumb-color)) !important;
+  border-radius: var(--jp-scrollbar-thumb-radius) !important;
+}
+
+.jp-WindowedPanel-outer::-webkit-scrollbar-thumb:hover {
+  background: rgb(64, 64, 64) !important;
 }
 
 .jp-WindowedPanel-inner {

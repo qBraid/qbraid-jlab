@@ -5,15 +5,78 @@
 |----------------------------------------------------------------------------*/
 
 #jp-MainLogo {
-  width: calc(var(--jp-private-sidebar-tab-width) + var(--jp-border-width));
+  width: auto !important; /* qBraid: auto width for logo + text */
+  display: flex !important;
+  align-items: center !important;
+  gap: 0 !important; /* qBraid: no gap - logo and text should feel integrated */
+  padding: 0 !important; /* qBraid: no padding */
+  margin-right: 0px !important; /* qBraid: no spacing - menu flows directly after */
+  margin-left: -18px !important; /* qBraid: perfect negative margin to align logo to left edge */
+  position: relative !important;
+  overflow: visible !important; /* qBraid: prevent logo truncation */
+  height: auto !important; /* qBraid: allow logo to display fully */
+  flex-shrink: 0 !important; /* qBraid: prevent logo from shrinking */
+  order: 0 !important; /* qBraid: ensure logo comes first */
+}
+
+/* qBraid: Style the SVG logo container - no red background */
+#jp-MainLogo {
+  background: transparent !important; /* qBraid: no background on logo container */
+}
+
+/* qBraid: Replace Jupyter logo with qBraid logo */
+#jp-MainLogo > svg {
+  width: 0 !important;
+  height: 0 !important;
+  display: none !important;
+  opacity: 0 !important;
+}
+
+/* qBraid: Add qBraid logo as background */
+#jp-MainLogo::before {
+  content: '';
+  display: inline-block;
+  width: 50px !important; /* qBraid: tight width to eliminate whitespace */
+  height: 28px !important; /* qBraid: match menu bar height */
+  background-image: url('../../theme-dark-extension/style/qbraid-logo.png') !important;
+  background-size: auto 28px !important; /* qBraid: maintain aspect ratio, scale height */
+  background-repeat: no-repeat !important;
+  background-position: right center !important; /* qBraid: align to right to crop left whitespace */
+  margin-right: 2px !important; /* qBraid: small positive margin to create tiny gap */
+  margin-left: 0 !important;
+  flex-shrink: 0 !important;
+  overflow: visible !important; /* qBraid: allow logo to extend slightly */
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* qBraid: Remove any red background from logo parent elements */
+#jp-top-panel #jp-MainLogo,
+#jp-top-panel #jp-MainLogo * {
+  background: transparent !important;
+}
+
+/* qBraid: qBraid Lab text after logo */
+#jp-MainLogo::after {
+  content: 'qBraid Lab';
+  color: #ffffff !important; /* qBraid: white text */
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  margin-left: 0 !important; /* qBraid: no margin - small gap from logo margin-right */
+  white-space: nowrap;
+  display: inline-block; /* qBraid: ensure margin works */
 }
 
 #jp-top-bar {
   --jp-private-toolbar-height: var(--jp-private-menu-panel-height);
 
-  flex: 1 1 auto;
-  padding: 0 2px;
+  flex: 0 0 auto !important; /* qBraid: don't grow, just fit content */
+  padding: 0 !important;
   box-shadow: none;
   border: none;
   align-items: center;
+  display: flex;
+  justify-content: flex-start !important; /* qBraid: align to left, flow after logo */
+  gap: 0 !important; /* qBraid: no gap - menu flows directly after logo/text */
+  margin-left: 0 !important; /* qBraid: no left margin */
 }

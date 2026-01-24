@@ -8,20 +8,23 @@
   flex-direction: column;
   min-width: var(--jp-sidebar-min-width);
   color: var(--jp-ui-font-color1);
-  background: var(--jp-layout-color2);
+  background: #1a1a1a !important; /* qBraid: dark grey sidebar background */
   font-size: var(--jp-ui-font-size1);
 }
 
 .jp-SidePanel-header {
   flex: 0 0 auto;
   display: flex;
-  border-bottom: var(--jp-border-width) solid var(--jp-border-color2);
-  font-size: var(--jp-ui-font-size0);
-  font-weight: 600;
-  letter-spacing: 1px;
+  border-bottom: 1px solid var(--qbraid-border-subtle) !important; /* #1f1f1f - Subtle border */
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.5px !important;
   margin: 0;
-  padding: 2px;
+  padding: 12px 16px !important; /* qBraid: more padding */
   text-transform: uppercase;
+  color: #ededed !important; /* qBraid: white text */
+  align-items: center;
+  justify-content: space-between;
 }
 
 .jp-SidePanel-toolbar {
@@ -47,14 +50,17 @@
   margin: 0;
 
   /* padding to allow for focus outline */
-  padding: 2px 8px;
+  padding: 12px 16px !important; /* qBraid: more padding */
   display: flex;
   align-items: center;
-  background: var(--jp-layout-color2);
-  color: var(--jp-ui-font-color3);
-  border-bottom: 1px solid var(--jp-border-color1);
+  background: #1a1a1a !important; /* qBraid: dark grey sidebar background */
+  color: var(--qbraid-text-disabled) !important; /* #737373 - Disabled text */
+  border-bottom: 1px solid var(--qbraid-border-subtle) !important; /* #1f1f1f - Subtle border */
   box-shadow: none;
-  font-size: var(--jp-ui-font-size0);
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
 }
 
 .lm-AccordionPanel .jp-AccordionPanel-title:focus-visible {

@@ -16,12 +16,26 @@
 | MenuBar
 |----------------------------------------------------------------------------*/
 
-.lm-MenuBar {
-  background: var(--jp-layout-color1);
-  color: var(--jp-ui-font-color1);
+.lm-MenuBar,
+#jp-MainMenu {
+  background: transparent !important; /* qBraid: transparent - parent has black background */
+  color: #ffffff !important; /* qBraid: white text */
   font-size: var(--jp-ui-font-size1);
   overflow: hidden;
-  border-bottom: 1px solid var(--jp-border-color1); /* qBraid: subtle bottom border */
+  border-bottom: none; /* qBraid: no border */
+  margin-left: 0 !important; /* qBraid: no left margin - flow directly after logo */
+  margin-right: 0 !important; /* qBraid: no right margin */
+  padding-left: 0 !important; /* qBraid: no left padding */
+  padding-right: 0 !important; /* qBraid: no right padding */
+  flex-shrink: 0 !important; /* qBraid: don't shrink */
+  order: 1 !important; /* qBraid: ensure menu comes after logo */
+}
+
+/* qBraid: Target main menu specifically */
+#jp-top-panel > #jp-MainMenu,
+#jp-top-panel > .lm-MenuBar#jp-MainMenu {
+  margin-left: 4px !important; /* qBraid: minimal gap after logo/text */
+  padding-left: 0 !important;
 }
 
 .lm-MenuBar:hover {
@@ -71,16 +85,26 @@
 }
 
 .lm-MenuBar-item {
-  padding: 0 10px; /* qBraid: slightly more padding */
-  border-left: var(--jp-border-width) solid transparent;
-  border-right: var(--jp-border-width) solid transparent;
-  border-top: var(--jp-border-width) solid transparent;
-  border-radius: 4px; /* qBraid: rounded menu items */
-  margin: 2px 1px; /* qBraid: spacing between items */
+  padding: 0 4px !important; /* qBraid: very tight padding for cohesive feel */
+  border: none; /* qBraid: no borders */
+  border-radius: 0; /* qBraid: no rounded corners */
+  margin: 0 !important; /* qBraid: no margin */
   line-height: calc(
     var(--jp-private-menubar-height) - var(--jp-border-width) * 2 - 4px
   );
-  transition: background 0.15s ease; /* qBraid: smooth hover */
+  transition: background var(--qbraid-transition-fast), color var(--qbraid-transition-fast);
+  color: #ffffff !important; /* qBraid: white text */
+}
+
+.lm-MenuBar-item:hover {
+  background: rgba(255, 255, 255, 0.1) !important; /* qBraid: subtle white hover */
+  color: #ffffff !important; /* qBraid: white text */
+}
+
+.lm-MenuBar-item:active,
+.lm-MenuBar-item[aria-expanded='true'] {
+  background: rgba(255, 255, 255, 0.15) !important; /* qBraid: slightly more visible active */
+  color: #ffffff !important; /* qBraid: white text */
 }
 
 .lm-MenuBar-content:focus-visible {
@@ -102,16 +126,15 @@
 }
 
 .lm-MenuBar-item.lm-mod-active {
-  background: var(--jp-layout-color2);
+  background: rgba(255, 255, 255, 0.1) !important; /* qBraid: subtle white active */
 }
 
 .lm-MenuBar.lm-mod-active .lm-MenuBar-item.lm-mod-active {
   z-index: 10001;
-  background: var(--jp-layout-color0);
-  color: var(--jp-ui-font-color0);
-  border-left: var(--jp-border-width) solid var(--jp-border-color1);
-  border-right: var(--jp-border-width) solid var(--jp-border-color1);
-  box-shadow: var(--jp-elevation-z6);
+  background: rgba(255, 255, 255, 0.15) !important; /* qBraid: slightly more visible active */
+  color: #ffffff !important; /* qBraid: white text */
+  border: none !important; /* qBraid: no borders */
+  box-shadow: none !important; /* qBraid: no shadow */
 }
 
 /* stylelint-disable-next-line selector-max-class */
@@ -143,12 +166,12 @@
 .lm-Menu {
   z-index: 10000;
   padding: 6px; /* qBraid: more padding */
-  background: var(--jp-layout-color0);
-  color: var(--jp-ui-font-color0);
-  border: var(--jp-border-width) solid var(--jp-border-color1);
-  border-radius: 8px; /* qBraid: rounded dropdown */
+  background: #1a1a1a !important; /* qBraid: dark grey surface */
+  color: var(--qbraid-text-primary) !important; /* #ededed - Primary text */
+  border: 1px solid var(--qbraid-border-default) !important; /* #262626 - Default border */
+  border-radius: var(--qbraid-radius-md); /* 8px - Medium radius */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5) !important; /* qBraid: deeper shadow */
   font-size: var(--jp-ui-font-size1);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* qBraid: deeper shadow */
 }
 
 .lm-Menu-item {
@@ -156,14 +179,15 @@
   max-height: var(--jp-private-menu-item-height);
   padding: 0 4px; /* qBraid: horizontal padding */
   line-height: var(--jp-private-menu-item-height);
-  border-radius: 4px; /* qBraid: rounded items */
+  border-radius: var(--qbraid-radius-sm); /* 4px - Small radius */
   margin: 1px 0; /* qBraid: spacing */
-  transition: background 0.15s ease;
+  transition: background var(--qbraid-transition-fast), color var(--qbraid-transition-fast);
+  color: var(--qbraid-text-primary); /* #ededed - Primary text */
 }
 
 .lm-Menu-item.lm-mod-active {
-  background: var(--jp-layout-color2);
-  color: var(--jp-brand-color1); /* qBraid: accent color on hover */
+  background: #262626 !important; /* qBraid: slightly lighter grey on hover */
+  color: var(--qbraid-text-primary) !important; /* #ededed - Primary text */
 }
 
 .lm-Menu-item.lm-mod-disabled {

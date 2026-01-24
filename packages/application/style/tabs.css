@@ -54,12 +54,13 @@
   margin-left: calc(-1 * var(--jp-border-width));
   line-height: var(--jp-private-horizontal-tab-height);
   padding: 0 12px; /* qBraid: more padding */
-  background: var(--jp-layout-color2);
-  border: var(--jp-border-width) solid var(--jp-border-color2);
+  background: var(--qbraid-bg-base); /* #0a0a0a - Deepest background */
+  border: var(--jp-border-width) solid var(--qbraid-border-subtle);
   border-bottom: none;
-  border-radius: 6px 6px 0 0; /* qBraid: rounded top corners */
+  border-radius: var(--qbraid-radius-md) var(--qbraid-radius-md) 0 0; /* 8px rounded top corners */
   position: relative;
-  transition: background 0.15s ease; /* qBraid: smooth transition */
+  transition: background var(--qbraid-transition-fast), color var(--qbraid-transition-fast);
+  color: var(--qbraid-text-muted); /* #a3a3a3 - Muted text */
 }
 
 .lm-DockPanel-tabBar .lm-TabBar-tab:focus-visible,
@@ -80,8 +81,8 @@
 
 .lm-DockPanel-tabBar .lm-TabBar-tab:hover:not(.lm-mod-current),
 .lm-TabPanel-tabBar .lm-TabBar-tab:hover:not(.lm-mod-current) {
-  background: var(--jp-layout-color3); /* qBraid: slightly lighter on hover */
-  color: var(--jp-ui-font-color0);
+  background: var(--qbraid-bg-surface); /* #141414 - Card background on hover */
+  color: var(--qbraid-text-primary); /* #ededed - Primary text */
 }
 
 .lm-DockPanel-tabBar .lm-TabBar-tab:not(.lm-mod-current)::after,
@@ -101,16 +102,28 @@
 
 /* This is a current tab of a tab bar in the dock panel: each tab bar has 1. */
 .lm-DockPanel-tabBar .lm-TabBar-tab.lm-mod-current {
-  background: var(--jp-layout-color1);
-  color: var(--jp-ui-font-color1);
+  background: var(--qbraid-bg-surface); /* #141414 - Card background */
+  color: var(--qbraid-text-primary); /* #ededed - Primary text */
 }
 
 .lm-TabPanel-tabBar .lm-TabBar-tab.lm-mod-current {
-  background: var(--jp-layout-color1);
-  color: var(--jp-ui-font-color1);
+  background: var(--qbraid-bg-surface); /* #141414 - Card background */
+  color: var(--qbraid-text-primary); /* #ededed - Primary text */
 }
 
 /* This is the main application level current tab: only 1 exists. */
+.lm-DockPanel-tabBar .lm-TabBar-tab.lm-mod-current::after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  content: '';
+  height: 1px; /* Thinner - less prominent */
+  background: var(--qbraid-purple-500); /* #a855f7 - Purple accent (more subtle) */
+  border-radius: 2px 2px 0 0;
+  opacity: 0.6; /* More subtle */
+}
+
 .lm-DockPanel-tabBar .lm-TabBar-tab.jp-mod-current::before {
   position: absolute;
   top: calc(-1 * var(--jp-border-width) + 1px);
@@ -118,7 +131,8 @@
   content: '';
   height: var(--jp-private-horizontal-tab-active-top-border);
   width: calc(100% + 2 * var(--jp-border-width));
-  background: var(--jp-brand-color1);
+  background: var(--qbraid-purple-500); /* #a855f7 - Purple accent (more subtle) */
+  opacity: 0.6; /* More subtle */
 }
 
 /* This is the left tab bar current tab: only 1 exists. */

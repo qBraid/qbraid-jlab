@@ -10,16 +10,32 @@
 
 /* use standard opaque scrollbars for most nodes */
 
-::-webkit-scrollbar,
-::-webkit-scrollbar-corner {
+/* qBraid: Force all scrollbars to be 3px - override any other styles */
+*::-webkit-scrollbar,
+*::-webkit-scrollbar-corner {
+  width: 3px !important; /* qBraid: same size as code cell bars */
+  height: 3px !important;
   background: var(--jp-scrollbar-background-color);
 }
 
+/* Fallback for elements without data attribute */
+::-webkit-scrollbar,
+::-webkit-scrollbar-corner {
+  background: var(--jp-scrollbar-background-color);
+  width: 3px !important; /* qBraid: same size as code cell bars */
+  height: 3px !important;
+}
+
 ::-webkit-scrollbar-thumb {
-  background: rgb(var(--jp-scrollbar-thumb-color));
+  background: rgb(var(--jp-scrollbar-thumb-color)); /* #333333 - Thumb color */
   border: var(--jp-scrollbar-thumb-margin) solid transparent;
   background-clip: content-box;
   border-radius: var(--jp-scrollbar-thumb-radius);
+  transition: background var(--qbraid-transition-fast);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(64, 64, 64); /* #404040 - Thumb hover (per design spec) */
 }
 
 ::-webkit-scrollbar-track:horizontal {
@@ -43,6 +59,8 @@
 .CodeMirror-hscrollbar::-webkit-scrollbar-corner,
 .CodeMirror-vscrollbar::-webkit-scrollbar-corner {
   background-color: transparent;
+  width: 3px !important; /* qBraid: match code cell bars */
+  height: 3px !important; /* qBraid: match code cell bars */
 }
 
 .CodeMirror-hscrollbar::-webkit-scrollbar-thumb,

@@ -21,8 +21,8 @@
   --jp-side-by-side-resized-cell: var(--jp-side-by-side-output-size);
   --jp-private-notebook-dragImage-width: 304px;
   --jp-private-notebook-dragImage-height: 36px;
-  --jp-private-notebook-selected-color: #14b8a6; /* qBraid teal */
-  --jp-private-notebook-active-color: #10b981; /* qBraid green */
+  --jp-private-notebook-selected-color: rgba(255, 255, 255, 0.5); /* Off-white accent */
+  --jp-private-notebook-active-color: rgba(255, 255, 255, 0.5); /* Off-white accent */
 }
 
 /*-----------------------------------------------------------------------------
@@ -97,10 +97,12 @@
   color: var(--jp-cell-prompt-not-active-font-color);
 }
 
-/* cell is active - qBraid: collapser styling */
+/* cell is active - qBraid: collapser styling (very thin, transparent) */
 .jp-Notebook .jp-Cell.jp-mod-active .jp-Collapser {
-  background: var(--jp-brand-color1);
-  border-radius: 4px;
+  background: transparent !important; /* qBraid: transparent - accent bar is ::before */
+  opacity: 1 !important;
+  border-radius: 0 !important;
+  width: 2px !important; /* qBraid: very thin */
 }
 
 /* cell is dirty */
@@ -117,17 +119,17 @@
   background: var(--jp-warn-color1);
 }
 
-/* collapser is hovered */
+/* collapser is hovered - qBraid: very subtle hover */
 .jp-Notebook .jp-Cell .jp-Collapser:hover {
-  box-shadow: var(--jp-elevation-z2);
-  background: var(--jp-brand-color1);
-  opacity: var(--jp-cell-collapser-not-active-hover-opacity);
+  box-shadow: none !important;
+  background: rgba(255, 255, 255, 0.1) !important; /* qBraid: very subtle hover */
+  opacity: 1 !important;
 }
 
-/* cell is active and collapser is hovered */
+/* cell is active and collapser is hovered - qBraid: transparent */
 .jp-Notebook .jp-Cell.jp-mod-active .jp-Collapser:hover {
-  background: var(--jp-brand-color0);
-  opacity: 1;
+  background: transparent !important; /* qBraid: transparent - accent bar handles visual */
+  opacity: 1 !important;
 }
 
 /* Command mode */
@@ -144,8 +146,8 @@
 .jp-Notebook.jp-mod-commandMode .jp-Cell.jp-mod-active:focus-visible {
   outline: none;
   border: none;
-  border-radius: 2px;
-  box-shadow: 0 0 0 1px var(--jp-brand-color1);
+  border-radius: var(--qbraid-radius-sm); /* 4px - Small radius */
+  box-shadow: var(--qbraid-glow-blue); /* Blue focus glow (more subtle) */
   z-index: 1;
 }
 

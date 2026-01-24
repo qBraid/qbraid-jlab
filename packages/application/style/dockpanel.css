@@ -13,19 +13,20 @@
 
 .lm-DockPanel-widget,
 .lm-TabPanel-stackedPanel {
-  background: var(--jp-layout-color0);
-  border-left: var(--jp-border-width) solid var(--jp-border-color1);
-  border-right: var(--jp-border-width) solid var(--jp-border-color1);
-  border-bottom: var(--jp-border-width) solid var(--jp-border-color1);
+  background: var(--qbraid-bg-base); /* #0a0a0a - Deepest background */
+  border-left: var(--jp-border-width) solid var(--qbraid-border-subtle); /* #1f1f1f - Subtle border */
+  border-right: var(--jp-border-width) solid var(--qbraid-border-subtle); /* #1f1f1f - Subtle border */
+  border-bottom: var(--jp-border-width) solid var(--qbraid-border-subtle); /* #1f1f1f - Subtle border */
 }
 
 .lm-DockPanel-overlay {
-  background: rgba(20, 184, 166, 0.1); /* qBraid: teal overlay */
-  border: 2px dashed var(--jp-brand-color1);
-  border-radius: 8px; /* qBraid: rounded overlay */
+  background: rgba(168, 85, 247, 0.08); /* qBraid: purple overlay (more subtle) */
+  border: 2px dashed var(--qbraid-purple-500); /* #a855f7 - Purple (more subtle) */
+  border-radius: var(--qbraid-radius-md); /* 8px - Medium radius */
   transition-property: top, left, right, bottom;
-  transition-duration: 150ms;
+  transition-duration: var(--qbraid-transition-fast);
   transition-timing-function: ease;
+  opacity: 0.7; /* More subtle */
 }
 
 .lm-DockPanel-overlay.lm-mod-root-top,

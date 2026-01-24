@@ -15,24 +15,55 @@
 
 .jp-Notebook-ExecutionIndicator {
   position: relative;
-  display: inline-block;
+  display: inline-flex !important; /* qBraid: flex for dot alignment */
+  align-items: center !important;
   z-index: 9997;
   padding-top: 1px;
+  gap: 6px !important; /* qBraid: spacing between circle and text */
+}
+
+/* qBraid: Kernel circle with dot inside */
+.jp-Notebook-ExecutionIndicator > svg,
+.jp-Notebook-ExecutionIndicator > div {
+  position: relative;
+  display: inline-block;
+}
+
+/* qBraid: Dot inside kernel circle */
+.jp-Notebook-ExecutionIndicator::before {
+  content: '' !important;
+  display: inline-block !important;
+  width: 6px !important;
+  height: 6px !important;
+  border-radius: 50% !important;
+  background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%) !important; /* qBraid: purple to magenta gradient */
+  margin-right: 0 !important;
+  position: absolute !important;
+  left: 5px !important; /* Center within circle */
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  z-index: 10 !important;
+  box-shadow: 0 0 4px rgba(168, 85, 247, 0.5) !important; /* qBraid: subtle glow */
 }
 
 .jp-Notebook-ExecutionIndicator-tooltip {
   visibility: hidden;
   height: auto;
-  width: max-content;
-  width: -moz-max-content;
-  background-color: var(--jp-layout-color2);
-  color: var(--jp-ui-font-color1);
-  text-align: justify;
-  border-radius: 6px;
-  padding: 0 5px;
+  min-width: 120px !important; /* qBraid: prevent truncation */
+  width: max-content !important;
+  width: -moz-max-content !important;
+  background-color: #1a1a1a !important; /* qBraid: dark grey background */
+  color: #ededed !important; /* qBraid: white text */
+  text-align: left !important; /* qBraid: left align */
+  border-radius: 6px !important;
+  padding: 8px 12px !important; /* qBraid: more padding */
   position: fixed;
   display: table;
   transition: visibility 0s linear 0.1s;
+  border: 1px solid #333333 !important; /* qBraid: subtle border */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) !important; /* qBraid: shadow */
+  white-space: nowrap !important; /* qBraid: prevent text wrapping */
+  z-index: 10000 !important; /* qBraid: ensure it's on top */
 }
 
 .jp-Notebook-ExecutionIndicator-tooltip.up {
@@ -54,11 +85,13 @@
 }
 
 .jp-Notebook-ExecutionIndicator span {
-  font-size: var(--jp-ui-font-size1);
+  font-size: 12px !important; /* qBraid: readable size */
   font-family: var(--jp-ui-font-family);
-  color: var(--jp-ui-font-color1);
-  line-height: 24px;
+  color: #ededed !important; /* qBraid: white text */
+  line-height: 18px !important; /* qBraid: tighter line height */
   display: block;
+  white-space: nowrap !important; /* qBraid: prevent wrapping */
+  padding: 2px 0 !important; /* qBraid: vertical spacing */
 }
 
 .jp-Notebook-ExecutionIndicator-progress-bar {

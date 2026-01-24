@@ -23,10 +23,11 @@
 
 .jp-SideBar.lm-TabBar,
 #jp-down-stack .lm-TabBar {
-  color: #737373;
-  background: #0a0a0a; /* qBraid: darkest sidebar icons area */
+  color: var(--qbraid-text-disabled); /* #737373 - Disabled text */
+  background: #1a1a1a !important; /* qBraid: dark grey sidebar background */
   font-size: var(--jp-ui-font-size1);
   overflow: visible;
+  padding: 8px 0 !important; /* qBraid: vertical padding */
 }
 
 .jp-SideBar.lm-TabBar {
@@ -52,27 +53,36 @@
   position: relative;
 }
 
-/* qBraid: VS Code style active indicator bar */
-.jp-SideBar.jp-mod-left .lm-mod-current::before {
+/* qBraid: VS Code style active indicator bar - off-white accent */
+.jp-SideBar.lm-TabBar.jp-mod-left .lm-TabBar-tab.lm-mod-current::before {
   content: '';
   position: absolute;
   left: 0;
-  top: 4px;
-  bottom: 4px;
-  width: 2px;
-  background: var(--jp-brand-color1);
+  top: 8px;
+  bottom: 8px;
+  width: 1px; /* Thin accent bar */
+  background: rgba(255, 255, 255, 0.4) !important; /* Off-white accent */
   border-radius: 0 2px 2px 0;
+  transition: width var(--qbraid-transition-fast);
 }
 
-.jp-SideBar.jp-mod-right .lm-mod-current::before {
+.jp-SideBar.lm-TabBar.jp-mod-right .lm-TabBar-tab.lm-mod-current::before {
   content: '';
   position: absolute;
   right: 0;
-  top: 4px;
-  bottom: 4px;
-  width: 2px;
-  background: var(--jp-brand-color1);
+  top: 8px;
+  bottom: 8px;
+  width: 1px; /* Thin accent bar */
+  background: rgba(255, 255, 255, 0.4) !important; /* Off-white accent */
   border-radius: 2px 0 0 2px;
+  transition: width var(--qbraid-transition-fast);
+}
+
+/* Active tab background */
+.jp-SideBar .lm-TabBar-tab.lm-mod-current {
+  background: #262626 !important; /* qBraid: slightly lighter grey for active */
+  color: var(--qbraid-text-primary); /* #ededed - Primary text */
+  opacity: 1 !important; /* qBraid: fully opaque active tab */
 }
 
 .jp-SideBar .lm-TabBar-tab:focus-visible {
@@ -94,8 +104,9 @@
 
 .jp-SideBar .lm-TabBar-tab:not(.lm-mod-current),
 #jp-down-stack .lm-TabBar-tab:not(.lm-mod-current) {
-  background: #0a0a0a; /* qBraid: dark sidebar */
-  transition: background 0.15s ease;
+  background: #1a1a1a !important; /* qBraid: dark grey sidebar background */
+  transition: background var(--qbraid-transition-fast), color var(--qbraid-transition-fast);
+  opacity: 0.7; /* qBraid: slightly muted inactive tabs */
 }
 
 .jp-SideBar .lm-TabBar-tabIcon.jp-SideBar-tabIcon {
@@ -106,6 +117,16 @@
   vertical-align: middle;
   background-repeat: no-repeat;
   background-position: center;
+  opacity: 0.7; /* qBraid: slightly muted icons */
+  transition: opacity var(--qbraid-transition-fast);
+}
+
+.jp-SideBar .lm-TabBar-tab.lm-mod-current .lm-TabBar-tabIcon {
+  opacity: 1 !important; /* qBraid: full opacity for active tab */
+}
+
+.jp-SideBar .lm-TabBar-tab:hover .lm-TabBar-tabIcon {
+  opacity: 1 !important; /* qBraid: full opacity on hover */
 }
 
 .jp-SideBar .lm-TabBar-tabLabel {
@@ -114,7 +135,8 @@
 
 .jp-SideBar .lm-TabBar-tab:hover:not(.lm-mod-current),
 #jp-down-stack .lm-TabBar-tab:hover:not(.lm-mod-current) {
-  background: var(--jp-layout-color1);
+  background: #262626 !important; /* qBraid: slightly lighter grey on hover */
+  color: var(--qbraid-text-primary); /* #ededed - Primary text on hover */
 }
 
 .jp-SideBar.lm-TabBar::after {
@@ -228,15 +250,15 @@
 #jp-left-stack > .lm-Widget,
 #jp-right-stack > .lm-Widget {
   min-width: var(--jp-sidebar-min-width);
-  background-color: #0d0d0d; /* qBraid: very dark */
+  background-color: #1a1a1a !important; /* qBraid: dark grey sidebar background */
 }
 
 #jp-right-stack {
-  border-left: var(--jp-border-width) solid var(--jp-border-color1);
+  border-left: 1px solid var(--qbraid-border-subtle) !important; /* #1f1f1f - Subtle border */
 }
 
 #jp-left-stack {
-  border-right: var(--jp-border-width) solid var(--jp-border-color1);
+  border-right: 1px solid var(--qbraid-border-subtle) !important; /* #1f1f1f - Subtle border */
 }
 
 #jp-down-stack > .lm-TabPanel-stackedPanel {

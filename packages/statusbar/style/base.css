@@ -10,10 +10,11 @@
 .jp-StatusBar-Widget {
   display: flex;
   align-items: center;
-  background: var(--jp-layout-color2);
+  background: #000000 !important; /* qBraid: black status bar to match top bar */
   min-height: var(--jp-statusbar-height);
   justify-content: space-between;
-  padding: 0 10px;
+  padding: 0 16px; /* qBraid: more padding */
+  border-top: 1px solid var(--qbraid-border-subtle); /* #1f1f1f - Subtle border */
 }
 
 .jp-StatusBar-Left {
@@ -35,24 +36,28 @@
 
 .jp-StatusBar-Item {
   max-height: var(--jp-statusbar-height);
-  margin: 0 2px;
+  margin: 0 4px; /* qBraid: more spacing */
   height: var(--jp-statusbar-height);
   white-space: nowrap;
   text-overflow: ellipsis;
-  color: var(--jp-ui-font-color1);
-  padding: 0 6px;
+  color: var(--qbraid-text-muted) !important; /* #a3a3a3 - Muted text */
+  padding: 0 8px; /* qBraid: more padding */
+  border-radius: 4px; /* qBraid: rounded corners */
+  transition: color var(--qbraid-transition-fast), background-color var(--qbraid-transition-fast);
 }
 
 .jp-mod-highlighted:hover {
-  background-color: var(--jp-layout-color3);
+  background-color: rgba(255, 255, 255, 0.1) !important; /* qBraid: subtle white hover */
+  color: var(--qbraid-text-primary) !important; /* #ededed - Primary text */
 }
 
 .jp-mod-clicked {
-  background-color: var(--jp-brand-color1);
+  background-color: rgba(255, 255, 255, 0.15) !important; /* qBraid: subtle white active */
+  color: var(--qbraid-text-primary) !important; /* White text */
 }
 
 .jp-mod-clicked:hover {
-  background-color: var(--jp-brand-color0);
+  background-color: rgba(255, 255, 255, 0.2) !important; /* qBraid: slightly more visible */
 }
 
 .jp-mod-clicked .jp-StatusBar-TextItem {
@@ -69,7 +74,7 @@
   font-size: var(--jp-ui-font-size1);
   font-family: var(--jp-ui-font-family);
   line-height: 24px;
-  color: var(--jp-ui-font-color1);
+  color: inherit; /* Inherit from parent */
 }
 
 .jp-StatusBar-GroupItem {

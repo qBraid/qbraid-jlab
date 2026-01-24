@@ -28,11 +28,11 @@
 }
 
 .jp-LabShell.jp-mod-devMode {
-  border-top: 4px solid red;
+  border-top: none; /* qBraid: no red bar */
 }
 
 #jp-main-dock-panel {
-  padding: 5px;
+  padding: 8px; /* qBraid: increased spacing for cleaner look */
 }
 
 #jp-main-dock-panel[data-mode='single-document'] {
@@ -44,15 +44,55 @@
 }
 
 #jp-top-panel {
-  border-bottom: var(--jp-border-width) solid var(--jp-border-color0);
-  background: var(--jp-layout-color1);
-  display: flex;
+  border-bottom: none; /* qBraid: no border */
+  background: #000000 !important; /* qBraid: solid black background */
+  display: flex !important;
+  flex-direction: row !important; /* qBraid: horizontal layout */
+  align-items: center !important; /* qBraid: center items vertically */
+  justify-content: flex-start !important; /* qBraid: items flow left to right */
+  gap: 0 !important; /* qBraid: no gap between logo and menu */
   min-height: var(--jp-private-menubar-height);
-  overflow: visible;
+  height: auto !important; /* qBraid: allow panel to grow for logo */
+  overflow: visible !important; /* qBraid: prevent logo truncation */
+  position: relative;
+  padding-left: 0 !important; /* qBraid: no left padding - move everything to left edge */
+  padding-right: 12px !important; /* qBraid: right padding */
+  margin-left: 0 !important; /* qBraid: no left margin */
 
   /* relax lumino strict CSS contaiment to allow painting the menu bar item
   over the menu in order to create an illusion of partial border */
-  contain: style size !important;
+  contain: style !important; /* qBraid: removed 'size' to allow logo to overflow */
+}
+
+/* qBraid: Ensure menu bar flows directly after logo */
+#jp-top-panel > #jp-MainLogo + #jp-MainMenu,
+#jp-top-panel > #jp-MainLogo + .lm-MenuBar {
+  margin-left: 4px !important; /* qBraid: minimal gap after logo/text */
+  padding-left: 0 !important;
+}
+
+/* qBraid: Remove all margins/padding from other top panel children */
+#jp-top-panel > *:not(#jp-MainLogo):not(#jp-MainMenu):not(.lm-MenuBar) {
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+}
+
+/* qBraid: Visual change indicator - Update chars when making CSS changes */
+#jp-top-panel::after {
+  content: 'L4M';
+  position: fixed;
+  top: 4px;
+  right: 8px;
+  z-index: 10000;
+  font-family: 'Geist Mono', monospace;
+  font-size: 10px;
+  color: var(--qbraid-text-muted);
+  background: var(--qbraid-bg-surface);
+  padding: 2px 6px;
+  border-radius: 3px;
+  border: 1px solid var(--qbraid-border-default);
+  pointer-events: none;
+  opacity: 0.7;
 }
 
 #jp-menu-panel {

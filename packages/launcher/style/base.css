@@ -103,24 +103,24 @@
   min-height: var(--jp-private-launcher-card-size);
   margin: 8px;
   padding: 0;
-  border: 1px solid var(--jp-border-color1); /* qBraid: subtle border */
-  background: var(--jp-layout-color2); /* qBraid: elevated background */
+  border: 1px solid var(--qbraid-border-default); /* #262626 - Default border */
+  background: var(--qbraid-bg-surface); /* #141414 - Card background */
   box-shadow: none; /* qBraid: flat design */
-  transition: 0.2s all; /* qBraid: smooth transition */
-  border-radius: 12px; /* qBraid: more rounded */
+  transition: all var(--qbraid-transition-normal); /* Smooth transition */
+  border-radius: var(--qbraid-radius-lg); /* 12px - Large radius */
 }
 
 .jp-LauncherCard:focus:not(:active) {
-  border: 1px solid var(--jp-brand-color1);
-  box-shadow: var(--jp-elevation-z6);
+  border: 1px solid var(--qbraid-purple-500); /* #a855f7 - Purple (more subtle) */
+  box-shadow: var(--qbraid-glow-purple); /* Purple focus glow */
   outline: unset; /* if outline is not unset, then depending on which browser you use, the
     border change is either hidden behind the outline or visually combined with it */
 }
 
 .jp-LauncherCard:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* qBraid: subtle lift */
-  background: var(--jp-layout-color3);
-  border-color: var(--jp-brand-color1); /* qBraid: green border on hover */
+  box-shadow: var(--qbraid-shadow-md); /* Subtle shadow */
+  background: var(--qbraid-bg-hover); /* #1a1a1a - Hover state */
+  border-color: var(--qbraid-purple-400); /* #c084fc - Purple (more subtle) */
   transform: translateY(-2px); /* qBraid: lift effect */
 }
 

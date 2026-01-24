@@ -24,7 +24,21 @@
 
 .jp-scrollbar-tiny {
   scrollbar-color: rgba(var(--jp-scrollbar-thumb-color), 0.5) transparent;
-  scrollbar-width: thin;
+  scrollbar-width: thin; /* qBraid: thin scrollbar */
+}
+
+/* qBraid: Override scrollbar-width for all elements to ensure thin scrollbars */
+[data-jp-theme-scrollbars='true'],
+[data-jp-theme-scrollbars='true'] * {
+  scrollbar-width: thin !important;
+}
+
+/* qBraid: Additional override for elements that might not have the data attribute */
+.jp-DirListing-content,
+.jp-Notebook,
+.jp-MainAreaWidget,
+.lm-Widget {
+  scrollbar-width: thin !important;
 }
 
 /* tiny scrollbar */
@@ -32,8 +46,8 @@
 .jp-scrollbar-tiny::-webkit-scrollbar,
 .jp-scrollbar-tiny::-webkit-scrollbar-corner {
   background-color: transparent;
-  height: 4px;
-  width: 4px;
+  height: 3px !important; /* qBraid: match code cell bars */
+  width: 3px !important; /* qBraid: match code cell bars */
 }
 
 .jp-scrollbar-tiny::-webkit-scrollbar-thumb {

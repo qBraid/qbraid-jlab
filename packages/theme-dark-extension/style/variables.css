@@ -26,6 +26,12 @@
 
 @import './qbraid-tokens.css';
 
+/* Override notebook purple variables FIRST - before any other styles */
+:root {
+  --jp-private-notebook-selected-color: rgba(255, 255, 255, 0.5) !important; /* Off-white accent */
+  --jp-private-notebook-active-color: rgba(255, 255, 255, 0.5) !important; /* Off-white accent */
+}
+
 :root {
   /* Elevation & Shadows */
   --jp-shadow-base-lightness: 0;
@@ -47,14 +53,14 @@
   --jp-shortcuts-button-background: var(--jp-brand-color2);
   --jp-shortcuts-button-hover-background: var(--jp-brand-color1);
 
-  /* Borders - Purple-tinted (oklch hue 280) */
+  /* Borders - qBraid Design System */
   --jp-border-width: 1px;
-  --jp-border-color0: #3a3a42;
-  --jp-border-color1: #333338;
-  --jp-border-color2: #2a2a30;
-  --jp-border-color3: #242428;
-  --jp-inverse-border-color: #4a4a52;
-  --jp-border-radius: 8px;
+  --jp-border-color0: var(--qbraid-border-strong); /* #333333 - Emphasized borders */
+  --jp-border-color1: var(--qbraid-border-default); /* #262626 - Default borders */
+  --jp-border-color2: var(--qbraid-border-subtle); /* #1f1f1f - Very subtle dividers */
+  --jp-border-color3: var(--qbraid-border-subtle); /* #1f1f1f - Subtle dividers */
+  --jp-inverse-border-color: var(--qbraid-border-strong); /* #333333 - Inverse borders */
+  --jp-border-radius: var(--qbraid-radius-md); /* 8px - Default border radius */
 
   /* UI Fonts */
   --jp-ui-font-scale-factor: 1.2;
@@ -66,11 +72,11 @@
     roboto, oxygen, ubuntu, cantarell, 'Fira Sans', 'Droid Sans',
     'Helvetica Neue', sans-serif;
 
-  /* UI Font colors */
-  --jp-ui-font-color0: #e8e8e8;
-  --jp-ui-font-color1: #d4d4d4;
-  --jp-ui-font-color2: #a0a0a0;
-  --jp-ui-font-color3: #707070;
+  /* UI Font colors - qBraid Design System */
+  --jp-ui-font-color0: var(--qbraid-text-primary); /* #ededed - Primary text */
+  --jp-ui-font-color1: var(--qbraid-text-secondary); /* #d4d4d4 - Secondary text */
+  --jp-ui-font-color2: var(--qbraid-text-muted); /* #a3a3a3 - Muted text */
+  --jp-ui-font-color3: var(--qbraid-text-disabled); /* #737373 - Disabled text */
 
   /* Inverse font colors */
   --jp-ui-inverse-font-color0: #1a1a1f;
@@ -93,16 +99,16 @@
   --jp-content-heading-margin-bottom: 0.8em;
   --jp-content-heading-font-weight: 500;
 
-  /* Content font colors */
-  --jp-content-font-color0: #e8e8e8;
-  --jp-content-font-color1: #d4d4d4;
-  --jp-content-font-color2: #a0a0a0;
-  --jp-content-font-color3: #707070;
+  /* Content font colors - qBraid Design System */
+  --jp-content-font-color0: var(--qbraid-text-primary); /* #ededed - Primary text */
+  --jp-content-font-color1: var(--qbraid-text-secondary); /* #d4d4d4 - Secondary text */
+  --jp-content-font-color2: var(--qbraid-text-muted); /* #a3a3a3 - Muted text */
+  --jp-content-font-color3: var(--qbraid-text-disabled); /* #737373 - Disabled text */
 
-  /* Links */
-  --jp-content-link-color: #10b981;
-  --jp-content-link-visited-color: #a78bfa;
-  --jp-content-link-hover-color: #34d399;
+  /* Links - qBraid Design System */
+  --jp-content-link-color: var(--qbraid-blue-500); /* #3b82f6 - Blue (more subtle than green) */
+  --jp-content-link-visited-color: var(--qbraid-purple-400); /* #c084fc - Purple */
+  --jp-content-link-hover-color: var(--qbraid-blue-400); /* #60a5fa - Lighter blue */
   --jp-content-font-family: 'Geist', -apple-system, blinkmacsystemfont,
     'Segoe UI', roboto, oxygen, ubuntu, cantarell, 'Fira Sans', 'Droid Sans',
     'Helvetica Neue', sans-serif;
@@ -119,12 +125,12 @@
   --jp-code-cursor-width1: 2px;
   --jp-code-cursor-width2: 4px;
 
-  /* Layout Colors - Purple-tinted dark palette */
-  --jp-layout-color0: #1a1a1f;
-  --jp-layout-color1: #1f1f24;
-  --jp-layout-color2: #242428;
-  --jp-layout-color3: #2a2a30;
-  --jp-layout-color4: #333338;
+  /* Layout Colors - qBraid Dark Mode Palette */
+  --jp-layout-color0: var(--qbraid-bg-base); /* #0a0a0a - Main app background */
+  --jp-layout-color1: var(--qbraid-bg-elevated); /* #111111 - Sidebar background */
+  --jp-layout-color2: var(--qbraid-bg-surface); /* #141414 - Cards, panels, cells */
+  --jp-layout-color3: var(--qbraid-bg-hover); /* #1a1a1a - Hover states */
+  --jp-layout-color4: var(--qbraid-bg-active); /* #1f1f1f - Active/pressed states */
 
   /* Inverse Layout */
   --jp-inverse-layout-color0: #fafafa;
@@ -133,55 +139,55 @@
   --jp-inverse-layout-color3: #d4d4d4;
   --jp-inverse-layout-color4: #a3a3a3;
 
-  /* Brand Colors - Green Primary */
-  --jp-brand-color0: #059669;
-  --jp-brand-color1: #10b981;
-  --jp-brand-color2: #34d399;
-  --jp-brand-color3: #6ee7b7;
-  --jp-brand-color4: #a7f3d0;
+  /* Brand Colors - qBraid Design System */
+  --jp-brand-color0: var(--qbraid-emerald-600); /* #059669 - Darker green */
+  --jp-brand-color1: var(--qbraid-emerald-500); /* #10b981 - Primary green */
+  --jp-brand-color2: var(--qbraid-emerald-400); /* #34d399 - Lighter green */
+  --jp-brand-color3: #6ee7b7; /* Light green */
+  --jp-brand-color4: #a7f3d0; /* Lightest green */
 
-  /* Accent Colors - Purple Secondary */
-  --jp-accent-color0: #7c3aed;
-  --jp-accent-color1: #8b5cf6;
-  --jp-accent-color2: #a78bfa;
-  --jp-accent-color3: #c4b5fd;
+  /* Accent Colors - Purple Secondary (qBraid Brand) */
+  --jp-accent-color0: var(--qbraid-purple-700); /* #7c3aed - Darker purple */
+  --jp-accent-color1: var(--qbraid-purple-500); /* #a855f7 - Primary purple */
+  --jp-accent-color2: var(--qbraid-purple-400); /* #c084fc - Lighter purple */
+  --jp-accent-color3: #c4b5fd; /* Lightest purple */
 
-  /* State Colors */
+  /* State Colors - qBraid Design System */
   --jp-warn-color0: #d97706;
-  --jp-warn-color1: #f59e0b;
+  --jp-warn-color1: var(--qbraid-warning); /* #f59e0b - Warning */
   --jp-warn-color2: #fbbf24;
   --jp-warn-color3: #fcd34d;
   --jp-error-color0: #dc2626;
-  --jp-error-color1: #ef4444;
+  --jp-error-color1: var(--qbraid-error); /* #ef4444 - Error */
   --jp-error-color2: #f87171;
   --jp-error-color3: #fca5a5;
-  --jp-success-color0: #059669;
-  --jp-success-color1: #10b981;
-  --jp-success-color2: #34d399;
+  --jp-success-color0: var(--qbraid-emerald-600); /* #059669 - Darker green */
+  --jp-success-color1: var(--qbraid-success); /* #10b981 - Success */
+  --jp-success-color2: var(--qbraid-emerald-400); /* #34d399 - Lighter green */
   --jp-success-color3: #6ee7b7;
-  --jp-info-color0: #0891b2;
-  --jp-info-color1: #06b6d4;
-  --jp-info-color2: #22d3ee;
+  --jp-info-color0: var(--qbraid-blue-600); /* #2563eb - Darker blue */
+  --jp-info-color1: var(--qbraid-info); /* #3b82f6 - Info */
+  --jp-info-color2: var(--qbraid-blue-400); /* #60a5fa - Lighter blue */
   --jp-info-color3: #67e8f9;
 
-  /* Cell Styles */
+  /* Cell Styles - qBraid Design System */
   --jp-cell-padding: 5px;
-  --jp-cell-collapser-width: 8px;
+  --jp-cell-collapser-width: 2px; /* qBraid: much thinner collapser */
   --jp-cell-collapser-min-height: 20px;
   --jp-cell-collapser-not-active-hover-opacity: 0.6;
-  --jp-cell-editor-background: #242428;
-  --jp-cell-editor-border-color: #333338;
+  --jp-cell-editor-background: #1a1a1a; /* Off-white for dark theme - subtle lighter shade */
+  --jp-cell-editor-border-color: var(--qbraid-border-default); /* #262626 - Default border */
   --jp-cell-editor-box-shadow: none;
-  --jp-cell-editor-active-background: #242428;
-  --jp-cell-editor-active-border-color: rgba(180, 180, 190, 0.5);
+  --jp-cell-editor-active-background: #1f1f1f; /* Slightly lighter for active state */
+  --jp-cell-editor-active-border-color: var(--qbraid-border-strong); /* #333333 - Subtle active border */
   --jp-cell-prompt-width: 64px;
   --jp-cell-prompt-font-family: var(--jp-code-font-family-default);
   --jp-cell-prompt-letter-spacing: 0;
   --jp-cell-prompt-opacity: 1;
   --jp-cell-prompt-not-active-opacity: 0.5;
-  --jp-cell-prompt-not-active-font-color: #707070;
-  --jp-cell-inprompt-font-color: #808080;
-  --jp-cell-outprompt-font-color: #f59e0b;
+  --jp-cell-prompt-not-active-font-color: var(--qbraid-text-disabled); /* #737373 - Muted */
+  --jp-cell-inprompt-font-color: var(--qbraid-text-muted); /* #a3a3a3 - Muted text */
+  --jp-cell-outprompt-font-color: var(--qbraid-warning); /* #f59e0b - Warning color */
 
   /* Notebook Styles */
   --jp-notebook-padding: 10px;
@@ -201,62 +207,62 @@
   --jp-rendermime-table-row-background: var(--jp-layout-color2);
   --jp-rendermime-table-row-hover-background: rgba(16, 185, 129, 0.08);
 
-  /* Dialog Styles */
-  --jp-dialog-background: rgba(0, 0, 0, 0.75);
+  /* Dialog Styles - qBraid Design System */
+  --jp-dialog-background: rgba(0, 0, 0, 0.7); /* qBraid: 70% opacity overlay */
 
   /* Console Styles */
   --jp-console-padding: 10px;
 
-  /* Toolbar Styles */
-  --jp-toolbar-border-color: #2a2a30;
+  /* Toolbar Styles - qBraid Design System */
+  --jp-toolbar-border-color: var(--qbraid-border-default); /* #262626 - Default border */
   --jp-toolbar-micro-height: 8px;
-  --jp-toolbar-background: #242428;
+  --jp-toolbar-background: var(--qbraid-bg-elevated); /* #111111 - Sidebar background */
   --jp-toolbar-box-shadow: none;
   --jp-toolbar-header-margin: 4px 4px 0 4px;
-  --jp-toolbar-active-background: #333338;
+  --jp-toolbar-active-background: var(--qbraid-bg-active); /* #1f1f1f - Active state */
 
   /* Statusbar */
   --jp-statusbar-height: 24px;
 
-  /* Input Fields */
+  /* Input Fields - qBraid Design System */
   --jp-input-box-shadow: none;
-  --jp-input-active-background: #1a1a1f;
-  --jp-input-hover-background: #2a2a30;
-  --jp-input-background: #1a1a1f;
-  --jp-input-border-color: #333338;
-  --jp-input-active-border-color: #10b981;
-  --jp-input-active-box-shadow-color: rgba(16, 185, 129, 0.25);
+  --jp-input-active-background: var(--qbraid-bg-base); /* #0a0a0a - Deepest background */
+  --jp-input-hover-background: var(--qbraid-bg-hover); /* #1a1a1a - Hover state */
+  --jp-input-background: var(--qbraid-bg-base); /* #0a0a0a - Deepest background */
+  --jp-input-border-color: var(--qbraid-border-strong); /* #333333 - Strong border */
+  --jp-input-active-border-color: var(--qbraid-blue-500); /* #3b82f6 - Blue focus (more subtle) */
+  --jp-input-active-box-shadow-color: rgba(59, 130, 246, 0.2); /* Blue focus glow (more subtle) */
 
-  /* Editor Styles */
-  --jp-editor-selected-background: #333338;
+  /* Editor Styles - qBraid Design System */
+  --jp-editor-selected-background: var(--qbraid-bg-active); /* #1f1f1f - Active state */
   --jp-editor-selected-focused-background: rgba(200, 200, 210, 0.12);
-  --jp-editor-cursor-color: #e8e8e8;
+  --jp-editor-cursor-color: var(--qbraid-text-primary); /* #ededed - Primary text */
 
-  /* Code Mirror Syntax Theme */
-  --jp-mirror-editor-keyword-color: #a78bfa;
-  --jp-mirror-editor-atom-color: #60a5fa;
-  --jp-mirror-editor-number-color: #fbbf24;
-  --jp-mirror-editor-def-color: #60a5fa;
-  --jp-mirror-editor-variable-color: #e8e8e8;
-  --jp-mirror-editor-variable-2-color: #38bdf8;
-  --jp-mirror-editor-variable-3-color: #34d399;
-  --jp-mirror-editor-punctuation-color: #9ca3af;
-  --jp-mirror-editor-property-color: #60a5fa;
-  --jp-mirror-editor-operator-color: #f472b6;
-  --jp-mirror-editor-comment-color: #6b7280;
-  --jp-mirror-editor-string-color: #38bdf8;
-  --jp-mirror-editor-string-2-color: #a78bfa;
-  --jp-mirror-editor-meta-color: #f472b6;
-  --jp-mirror-editor-qualifier-color: #9ca3af;
-  --jp-mirror-editor-builtin-color: #34d399;
-  --jp-mirror-editor-bracket-color: #9ca3af;
-  --jp-mirror-editor-tag-color: #f472b6;
-  --jp-mirror-editor-attribute-color: #60a5fa;
-  --jp-mirror-editor-header-color: #a78bfa;
-  --jp-mirror-editor-quote-color: #34d399;
-  --jp-mirror-editor-link-color: #10b981;
-  --jp-mirror-editor-error-color: #ef4444;
-  --jp-mirror-editor-hr-color: #3a3a42;
+  /* Code Mirror Syntax Theme - qBraid Design System */
+  --jp-mirror-editor-keyword-color: var(--qbraid-syntax-keyword); /* #c084fc - Purple */
+  --jp-mirror-editor-atom-color: var(--qbraid-blue-400); /* #60a5fa - Blue */
+  --jp-mirror-editor-number-color: var(--qbraid-syntax-number); /* #fbbf24 - Amber */
+  --jp-mirror-editor-def-color: var(--qbraid-syntax-function); /* #60a5fa - Blue */
+  --jp-mirror-editor-variable-color: var(--qbraid-syntax-variable); /* #e5e7eb - Light gray */
+  --jp-mirror-editor-variable-2-color: var(--qbraid-blue-400); /* #60a5fa - Blue */
+  --jp-mirror-editor-variable-3-color: var(--qbraid-emerald-400); /* #34d399 - Teal */
+  --jp-mirror-editor-punctuation-color: var(--qbraid-text-muted); /* #a3a3a3 - Muted */
+  --jp-mirror-editor-property-color: var(--qbraid-syntax-function); /* #60a5fa - Blue */
+  --jp-mirror-editor-operator-color: var(--qbraid-syntax-operator); /* #f472b6 - Pink */
+  --jp-mirror-editor-comment-color: var(--qbraid-syntax-comment); /* #525252 - Gray */
+  --jp-mirror-editor-string-color: var(--qbraid-syntax-string); /* #4ade80 - Green */
+  --jp-mirror-editor-string-2-color: var(--qbraid-purple-400); /* #c084fc - Purple */
+  --jp-mirror-editor-meta-color: var(--qbraid-syntax-operator); /* #f472b6 - Pink */
+  --jp-mirror-editor-qualifier-color: var(--qbraid-text-muted); /* #a3a3a3 - Muted */
+  --jp-mirror-editor-builtin-color: var(--qbraid-syntax-builtin); /* #2dd4bf - Teal */
+  --jp-mirror-editor-bracket-color: var(--qbraid-text-muted); /* #a3a3a3 - Muted */
+  --jp-mirror-editor-tag-color: var(--qbraid-syntax-tag); /* #f472b6 - Pink */
+  --jp-mirror-editor-attribute-color: var(--qbraid-syntax-attribute); /* #60a5fa - Blue */
+  --jp-mirror-editor-header-color: var(--qbraid-purple-400); /* #c084fc - Purple */
+  --jp-mirror-editor-quote-color: var(--qbraid-emerald-400); /* #34d399 - Teal */
+  --jp-mirror-editor-link-color: var(--qbraid-blue-500); /* #3b82f6 - Blue (more subtle) */
+  --jp-mirror-editor-error-color: var(--qbraid-error); /* #ef4444 - Red */
+  --jp-mirror-editor-hr-color: var(--qbraid-border-default); /* #262626 - Default border */
 
   /* RTC Collaborator Colors */
   --jp-collaborator-color1: #f97316;
@@ -282,29 +288,32 @@
   --jp-search-unselected-match-background-color: rgba(251, 191, 36, 0.3);
   --jp-search-unselected-match-color: #e8e8e8;
 
-  /* Scrollbar */
-  --jp-scrollbar-background-color: transparent;
-  --jp-scrollbar-thumb-color: 58, 58, 66;
-  --jp-scrollbar-endpad: 3px;
-  --jp-scrollbar-thumb-margin: 3.5px;
-  --jp-scrollbar-thumb-radius: 4px;
+  /* Scrollbar - qBraid Design System - same size as code cell bars */
+  --jp-scrollbar-background-color: var(--qbraid-bg-surface); /* #141414 - Track background */
+  --jp-scrollbar-thumb-color: 51, 51, 51; /* #333333 - Thumb color (RGB for rgba) */
+  --jp-scrollbar-endpad: 1px; /* qBraid: reduced for thinner scrollbar */
+  --jp-scrollbar-thumb-margin: 0px; /* qBraid: no margin for thinner scrollbar */
+  --jp-scrollbar-thumb-radius: var(--qbraid-radius-sm); /* 4px - Small radius */
 
-  /* Icon Colors */
-  --jp-icon-contrast-color0: #a78bfa;
-  --jp-icon-contrast-color1: #10b981;
-  --jp-icon-contrast-color2: #f472b6;
-  --jp-icon-contrast-color3: #60a5fa;
+  /* qBraid: Force file browser scrollbar to be 3px - high specificity override */
+  --qbraid-filebrowser-scrollbar-width: 3px;
 
-  /* Button Colors */
-  --jp-accept-color-normal: #10b981;
-  --jp-accept-color-hover: #059669;
-  --jp-accept-color-active: #047857;
-  --jp-warn-color-normal: #ef4444;
-  --jp-warn-color-hover: #dc2626;
-  --jp-warn-color-active: #b91c1c;
-  --jp-reject-color-normal: #525252;
-  --jp-reject-color-hover: #404040;
-  --jp-reject-color-active: #333;
+  /* Icon Colors - qBraid Design System */
+  --jp-icon-contrast-color0: var(--qbraid-purple-400); /* #c084fc - Purple */
+  --jp-icon-contrast-color1: var(--qbraid-purple-400); /* #c084fc - Purple (more subtle) */
+  --jp-icon-contrast-color2: var(--qbraid-syntax-operator); /* #f472b6 - Pink */
+  --jp-icon-contrast-color3: var(--qbraid-blue-400); /* #60a5fa - Blue */
+
+  /* Button Colors - qBraid Design System */
+  --jp-accept-color-normal: var(--qbraid-purple-500); /* #a855f7 - Purple (more subtle) */
+  --jp-accept-color-hover: var(--qbraid-emerald-600); /* #059669 - Darker green */
+  --jp-accept-color-active: #047857; /* Darkest green */
+  --jp-warn-color-normal: var(--qbraid-error); /* #ef4444 - Error/Red */
+  --jp-warn-color-hover: #dc2626; /* Darker red */
+  --jp-warn-color-active: #b91c1c; /* Darkest red */
+  --jp-reject-color-normal: var(--qbraid-text-disabled); /* #737373 - Muted */
+  --jp-reject-color-hover: #404040; /* Darker gray */
+  --jp-reject-color-active: var(--qbraid-border-strong); /* #333333 - Strong border */
 
   /* File/Activity Icons */
   --jp-jupyter-icon-color: #f97316;
@@ -313,11 +322,11 @@
   --jp-console-icon-background-color: #3b82f6;
   --jp-console-icon-color: white;
   --jp-terminal-icon-background-color: #333338;
-  --jp-terminal-icon-color: #10b981;
+  --jp-terminal-icon-color: var(--qbraid-blue-500); /* #3b82f6 - Blue (more subtle) */
   --jp-text-editor-icon-color: #a0a0a0;
   --jp-inspector-icon-color: #a0a0a0;
   --jp-switch-color: #525252;
-  --jp-switch-true-position-color: #10b981;
+  --jp-switch-true-position-color: var(--qbraid-purple-500); /* #a855f7 - Purple (more subtle) */
 }
 
 /* Completer Styles */
@@ -334,10 +343,10 @@
   --jp-completer-type-background9: #eab308;
   --jp-completer-type-background10: #14b8a6;
 
-  background: #242428 !important;
-  border: 1px solid #3a3a42 !important;
-  border-radius: 8px !important;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4) !important;
+  background: #1a1a1a !important; /* qBraid: dark grey surface */
+  border: 1px solid var(--qbraid-border-default) !important; /* #262626 - Default border */
+  border-radius: var(--qbraid-radius-md) !important; /* 8px - Medium radius */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5) !important; /* qBraid: deep shadow */
 }
 
 /*=============================================================================
@@ -382,24 +391,24 @@
 
 /* Dropdown menus */
 .lm-Menu {
-  background: #242428 !important;
-  border: 1px solid #3a3a42 !important;
-  border-radius: 8px !important;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5) !important;
+  background: #1a1a1a !important; /* qBraid: dark grey surface */
+  border: 1px solid var(--qbraid-border-default) !important; /* #262626 - Default border */
+  border-radius: var(--qbraid-radius-md) !important; /* 8px - Medium radius */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5) !important; /* qBraid: deep shadow */
   padding: 6px !important;
 }
 
 .lm-Menu-item {
   padding: 8px 32px 8px 12px !important;
   border-radius: 6px !important;
-  color: #a0a0a0 !important;
+  color: var(--qbraid-text-primary) !important; /* #ededed - Primary text */
   font-size: 13px !important;
 }
 
 .lm-Menu-item:hover,
 .lm-Menu-item.lm-mod-active {
-  background: #333338 !important;
-  color: #e8e8e8 !important;
+  background: #262626 !important; /* qBraid: slightly lighter grey */
+  color: var(--qbraid-text-primary) !important; /* #ededed - Primary text */
 }
 
 .lm-Menu-item.lm-mod-disabled {
@@ -415,48 +424,9 @@
 }
 
 /* ============================================
-   Sidebar Navigation (Icon Bar)
-   Width: 48px, lighter background for visibility
+   Sidebar Navigation (Icon Bar) - qBraid Theme
+   Styles are now in packages/application/style/sidepanel.css
    ============================================ */
-
-.jp-SideBar.lm-TabBar {
-  background: #2a2a30 !important;
-  border-right: 1px solid #3a3a42 !important;
-  width: 48px !important;
-}
-
-.jp-SideBar .lm-TabBar-tab {
-  background: transparent !important;
-  padding: 12px 0 !important;
-  min-width: 48px !important;
-  min-height: 40px !important;
-}
-
-.jp-SideBar .lm-TabBar-tab:not(.lm-mod-current) {
-  opacity: 0.7;
-}
-
-.jp-SideBar .lm-TabBar-tab.lm-mod-current {
-  opacity: 1;
-  background: #3a3a42 !important;
-}
-
-.jp-SideBar .lm-TabBar-tab:hover {
-  opacity: 1;
-  background: #3a3a42 !important;
-}
-
-/* Active tab indicator - off-white accent on left */
-.jp-SideBar.jp-mod-left .lm-mod-current::before {
-  background: rgba(220, 220, 230, 0.8) !important;
-  width: 3px !important;
-  border-radius: 0 !important;
-}
-
-.jp-SideBar.jp-mod-right .lm-mod-current::before {
-  background: rgba(220, 220, 230, 0.8) !important;
-  width: 3px !important;
-}
 
 /* ============================================
    File Browser Panel
@@ -464,18 +434,23 @@
    ============================================ */
 
 .jp-SidePanel {
-  background: #242428 !important;
+  background: #1a1a1a !important; /* qBraid: dark grey sidebar background */
 }
 
 .jp-SidePanel-header {
-  background: #242428 !important;
-  border-bottom: 1px solid #333338 !important;
+  background: #1a1a1a !important; /* qBraid: dark grey sidebar background */
+  border-bottom: 1px solid var(--qbraid-border-subtle) !important; /* #1f1f1f - Subtle border */
+  color: #ededed !important; /* qBraid: white text */
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  padding: 12px 16px !important;
 }
 
 /* File Browser Toolbar */
 .jp-FileBrowser-toolbar.jp-Toolbar {
-  background: #242428 !important;
-  border-bottom: 1px solid #333338 !important;
+  background: #1a1a1a !important; /* qBraid: dark grey sidebar background */
+  border-bottom: 1px solid var(--qbraid-border-subtle) !important; /* #1f1f1f - Subtle border */
   padding: 8px !important;
   min-height: 40px !important;
 }
@@ -512,67 +487,68 @@
 
 /* Breadcrumbs */
 .jp-BreadCrumbs {
-  background: #242428 !important;
+  background: #1a1a1a !important; /* qBraid: dark grey sidebar background */
   padding: 8px 12px !important;
   font-size: 13px !important;
-  color: #707070 !important;
-  border-bottom: 1px solid #333338 !important;
+  color: var(--qbraid-text-muted) !important; /* #a3a3a3 - Muted text */
+  border-bottom: 1px solid var(--qbraid-border-subtle) !important; /* #1f1f1f - Subtle border */
 }
 
 .jp-BreadCrumbs-item:hover {
-  color: #e8e8e8 !important;
+  color: var(--qbraid-text-primary) !important; /* #ededed - Primary text */
 }
 
 /* Column headers */
 .jp-DirListing-header {
-  background: #242428 !important;
-  border-bottom: 1px solid #333338 !important;
-  color: #707070 !important;
-  font-size: 12px !important;
-  font-weight: 500 !important;
+  background: #1a1a1a !important; /* qBraid: dark grey sidebar background */
+  border-bottom: 1px solid var(--qbraid-border-subtle) !important; /* #1f1f1f - Subtle border */
+  color: var(--qbraid-text-disabled) !important; /* #737373 - Disabled text */
+  font-size: 11px !important;
+  font-weight: 600 !important;
   text-transform: uppercase !important;
-  letter-spacing: 0.3px !important;
+  letter-spacing: 0.8px !important;
 }
 
 /* File listing */
 .jp-DirListing {
-  background: #242428 !important;
+  background: #1a1a1a !important; /* qBraid: dark grey sidebar background */
 }
 
 .jp-DirListing-content {
-  background: #242428 !important;
+  background: #1a1a1a !important; /* qBraid: dark grey sidebar background */
   padding: 4px !important;
 }
 
 /* File/Folder items */
 .jp-DirListing-item {
-  color: #e8e8e8 !important;
+  color: var(--qbraid-text-secondary) !important; /* #d4d4d4 - Secondary text */
   padding: 6px 12px !important;
   line-height: 22px !important;
   font-size: 13px !important;
-  border-radius: 6px !important;
-  margin: 1px 4px !important;
+  border-radius: 0 !important; /* qBraid: no rounded corners */
+  margin: 0 !important; /* qBraid: no margin */
+  transition: background var(--qbraid-transition-fast);
 }
 
 /* Selected item - subtle highlight */
 .jp-DirListing-item.jp-mod-selected {
-  background: #333338 !important;
-  color: #e8e8e8 !important;
+  background: #262626 !important; /* qBraid: slightly lighter grey for selected */
+  color: var(--qbraid-text-primary) !important; /* #ededed - Primary text */
 }
 
 /* Focused selected item */
 .jp-DirListing:focus .jp-DirListing-item.jp-mod-selected {
-  background: #3a3a42 !important;
+  background: #262626 !important; /* qBraid: same as selected */
 }
 
 /* Hover state */
 .jp-DirListing-item:hover:not(.jp-mod-selected) {
-  background: rgba(255, 255, 255, 0.05) !important;
+  background: #262626 !important; /* qBraid: slightly lighter grey on hover */
 }
 
 /* Running indicator */
 .jp-DirListing-item.jp-mod-running .jp-DirListing-itemIcon::before {
-  color: #10b981 !important;
+  color: var(--qbraid-blue-500) !important; /* #3b82f6 - Blue (more subtle) */
 }
 
 /* Modified date column */
@@ -583,19 +559,19 @@
 
 /* Accordion panels in sidebar */
 .lm-AccordionPanel .jp-AccordionPanel-title {
-  background: #242428 !important;
-  border-bottom: 1px solid #333338 !important;
-  color: #707070 !important;
+  background: #1a1a1a !important; /* qBraid: dark grey sidebar background */
+  border-bottom: 1px solid var(--qbraid-border-subtle) !important; /* #1f1f1f - Subtle border */
+  color: var(--qbraid-text-disabled) !important; /* #737373 - Disabled text */
   font-size: 11px !important;
-  font-weight: 500 !important;
+  font-weight: 600 !important;
   text-transform: uppercase !important;
-  letter-spacing: 0.3px !important;
-  padding: 10px 12px !important;
+  letter-spacing: 0.5px !important;
+  padding: 12px 16px !important; /* qBraid: more padding */
 }
 
 .lm-AccordionPanel .jp-AccordionPanel-title:hover {
-  background: #2a2a30 !important;
-  color: #a0a0a0 !important;
+  background: #262626 !important; /* qBraid: slightly lighter grey on hover */
+  color: var(--qbraid-text-muted) !important; /* #a3a3a3 - Muted text */
 }
 
 /* ============================================
@@ -604,35 +580,36 @@
 
 .lm-DockPanel-tabBar,
 .lm-TabPanel-tabBar {
-  background: #242428 !important;
-  border-bottom: 1px solid #333338 !important;
+  background: #0a0a0a !important; /* qBraid: deepest background */
+  border-bottom: 1px solid var(--qbraid-border-subtle) !important; /* #1f1f1f - Subtle border */
   min-height: 36px !important;
 }
 
 .lm-DockPanel-tabBar .lm-TabBar-tab,
 .lm-TabPanel-tabBar .lm-TabBar-tab {
-  background: #242428 !important;
+  background: #0a0a0a !important; /* qBraid: deepest background */
   border: none !important;
   border-radius: 0 !important;
-  color: #a0a0a0 !important;
+  color: var(--qbraid-text-muted) !important; /* #a3a3a3 - Muted text */
   padding: 8px 16px !important;
   margin: 0 !important;
-  border-right: 1px solid #333338 !important;
+  border-right: 1px solid var(--qbraid-border-subtle) !important; /* #1f1f1f - Subtle border */
   font-size: 13px !important;
   min-height: 36px !important;
+  transition: background var(--qbraid-transition-fast), color var(--qbraid-transition-fast);
 }
 
 .lm-DockPanel-tabBar .lm-TabBar-tab:hover,
 .lm-TabPanel-tabBar .lm-TabBar-tab:hover {
-  background: #2a2a30 !important;
-  color: #e8e8e8 !important;
+  background: #1a1a1a !important; /* qBraid: dark grey hover */
+  color: var(--qbraid-text-primary) !important; /* #ededed - Primary text */
 }
 
 /* Active tab */
 .lm-DockPanel-tabBar .lm-TabBar-tab.lm-mod-current,
 .lm-TabPanel-tabBar .lm-TabBar-tab.lm-mod-current {
-  background: #1a1a1f !important;
-  color: #e8e8e8 !important;
+  background: #1a1a1a !important; /* qBraid: dark grey active */
+  color: var(--qbraid-text-primary) !important; /* #ededed - Primary text */
   font-weight: 500 !important;
 }
 
@@ -658,14 +635,23 @@
   background: #a0a0a0 !important;
 }
 
+/* qBraid: Tab icons - orange for notebook/code files */
+.lm-TabBar-tabIcon svg {
+  fill: #f97316 !important; /* qBraid: orange for file icons */
+}
+
+.lm-TabBar-tab.lm-mod-current .lm-TabBar-tabIcon svg {
+  fill: #f97316 !important; /* qBraid: orange for active tab icons */
+}
+
 /* ============================================
    Notebook Toolbar
    bg-background (#1a1a1f), border-b
    ============================================ */
 
 .jp-NotebookPanel-toolbar {
-  background: #1a1a1f !important;
-  border-bottom: 1px solid #333338 !important;
+  background: #0a0a0a !important; /* qBraid: deepest background */
+  border-bottom: 1px solid var(--qbraid-border-subtle) !important; /* #1f1f1f - Subtle border */
   padding: 4px 8px !important;
   min-height: 40px !important;
 }
@@ -679,55 +665,179 @@
 .jp-ToolbarButton .jp-ToolbarButtonComponent {
   background: transparent !important;
   border-radius: 6px !important;
-  color: #a0a0a0 !important;
+  color: var(--qbraid-text-muted) !important; /* #a3a3a3 - Muted text */
+  transition: background var(--qbraid-transition-fast), color var(--qbraid-transition-fast);
 }
 
 .jp-ToolbarButton .jp-ToolbarButtonComponent:hover {
-  background: #333338 !important;
-  color: #e8e8e8 !important;
+  background: #1a1a1a !important; /* qBraid: dark grey hover */
+  color: var(--qbraid-text-primary) !important; /* #ededed - Primary text */
 }
 
-/* Run button - green accent */
+/* qBraid: Toolbar icons - white outlines (except run button which is green) */
+.jp-ToolbarButton .jp-ToolbarButtonComponent svg {
+  fill: var(--qbraid-text-secondary) !important; /* #d4d4d4 - White/grey outline */
+  stroke: var(--qbraid-text-secondary) !important;
+}
+
+.jp-ToolbarButton .jp-ToolbarButtonComponent:hover svg {
+  fill: var(--qbraid-text-primary) !important; /* #ededed - Brighter on hover */
+  stroke: var(--qbraid-text-primary) !important;
+}
+
+/* Run button - green outline */
 .jp-Toolbar-item[data-jp-item-name='run'] .jp-ToolbarButtonComponent,
 .jp-Toolbar-item[data-jp-item-name='runAll'] .jp-ToolbarButtonComponent {
-  color: #10b981 !important;
+  color: #10b981 !important; /* qBraid: green */
 }
 
 .jp-Toolbar-item[data-jp-item-name='run'] .jp-ToolbarButtonComponent:hover,
 .jp-Toolbar-item[data-jp-item-name='runAll'] .jp-ToolbarButtonComponent:hover {
-  background: rgba(16, 185, 129, 0.1) !important;
+  background: rgba(16, 185, 129, 0.1) !important; /* qBraid: green hover */
+  color: #10b981 !important;
 }
 
-/* Kernel selector pill */
+/* qBraid: Run button icon - green outline */
+.jp-Toolbar-item[data-jp-item-name='run'] .jp-ToolbarButtonComponent svg,
+.jp-Toolbar-item[data-jp-item-name='runAll'] .jp-ToolbarButtonComponent svg,
+.jp-Toolbar-item[data-jp-item-name='run'] .jp-ToolbarButtonComponent .jp-icon3,
+.jp-Toolbar-item[data-jp-item-name='runAll'] .jp-ToolbarButtonComponent .jp-icon3,
+.jp-Toolbar-item[data-jp-item-name='run'] svg,
+.jp-Toolbar-item[data-jp-item-name='runAll'] svg {
+  fill: #10b981 !important; /* qBraid: green */
+  stroke: #10b981 !important; /* qBraid: green outline */
+  color: #10b981 !important; /* qBraid: green */
+}
+
+/* qBraid: Override any white fill on run button */
+.jp-Toolbar-item[data-jp-item-name='run'] .jp-ToolbarButtonComponent svg[fill],
+.jp-Toolbar-item[data-jp-item-name='runAll'] .jp-ToolbarButtonComponent svg[fill] {
+  fill: #10b981 !important;
+}
+
+/* Kernel selector pill - qBraid: dark grey circle */
 .jp-Notebook-ExecutionIndicator {
-  background: #333338 !important;
-  border-radius: 9999px !important;
-  padding: 4px 12px !important;
-  color: #e8e8e8 !important;
-  font-size: 12px !important;
+  background: #262626 !important; /* qBraid: dark grey circle background */
+  border-radius: 50% !important; /* qBraid: perfect circle */
+  padding: 0 !important;
+  width: 16px !important; /* qBraid: fixed circle size */
+  height: 16px !important;
+  min-width: 16px !important;
+  min-height: 16px !important;
+  color: transparent !important; /* qBraid: hide text, show only circle */
+  font-size: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  position: relative !important;
+  border: 1px solid #333333 !important; /* qBraid: subtle border */
 }
 
-/* Kernel status indicator - green dot */
+/* qBraid: White dot inside kernel circle - base state (idle) */
 .jp-Notebook-ExecutionIndicator::before {
-  content: '';
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #10b981;
-  margin-right: 6px;
-  animation: pulse 2s infinite;
+  content: '' !important;
+  display: block !important;
+  width: 6px !important;
+  height: 6px !important;
+  border-radius: 50% !important;
+  background: rgba(255, 255, 255, 0.9) !important; /* qBraid: white dot */
+  position: absolute !important;
+  left: 50% !important;
+  top: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  z-index: 10 !important;
+  box-shadow: 0 0 3px rgba(255, 255, 255, 0.3) !important; /* qBraid: subtle white glow */
+  transition: all 0.3s ease !important;
 }
 
-@keyframes pulse {
-  0%,
-  100% {
-    opacity: 1;
-  }
+/* qBraid: Idle state - subtle pulse */
+.jp-Notebook-ExecutionIndicator[data-status='idle']::before {
+  background: rgba(255, 255, 255, 0.9) !important;
+  animation: kernel-idle-pulse 2s ease-in-out infinite !important;
+}
 
-  50% {
-    opacity: 0.5;
+@keyframes kernel-idle-pulse {
+  0%, 100% {
+    opacity: 0.9;
+    transform: translate(-50%, -50%) scale(1);
   }
+  50% {
+    opacity: 0.6;
+    transform: translate(-50%, -50%) scale(0.95);
+  }
+}
+
+/* qBraid: Connecting/Starting/Initializing - spinning ring */
+.jp-Notebook-ExecutionIndicator[data-status='connecting']::before,
+.jp-Notebook-ExecutionIndicator[data-status='starting']::before,
+.jp-Notebook-ExecutionIndicator[data-status='initializing']::before {
+  background: transparent !important;
+  border: 2px solid rgba(255, 255, 255, 0.6) !important;
+  border-top-color: rgba(255, 255, 255, 1) !important;
+  width: 8px !important;
+  height: 8px !important;
+  animation: kernel-connecting-spin 1s linear infinite !important;
+}
+
+@keyframes kernel-connecting-spin {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* qBraid: Running/Busy - pulsing white dot */
+.jp-Notebook-ExecutionIndicator[data-status='busy']::before,
+.jp-Notebook-ExecutionIndicator[data-status='running']::before {
+  background: rgba(255, 255, 255, 1) !important;
+  animation: kernel-running-pulse 1s ease-in-out infinite !important;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.6) !important;
+}
+
+@keyframes kernel-running-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    box-shadow: 0 0 6px rgba(255, 255, 255, 0.6);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translate(-50%, -50%) scale(1.2);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  }
+}
+
+/* qBraid: Terminating/Restarting - fading pulse */
+.jp-Notebook-ExecutionIndicator[data-status='terminating']::before,
+.jp-Notebook-ExecutionIndicator[data-status='restarting']::before {
+  background: rgba(255, 255, 255, 0.7) !important;
+  animation: kernel-terminating-pulse 0.8s ease-in-out infinite !important;
+}
+
+@keyframes kernel-terminating-pulse {
+  0%, 100% {
+    opacity: 0.7;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 0.3;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+}
+
+/* qBraid: Disconnected/Unknown - dimmed with cross */
+.jp-Notebook-ExecutionIndicator[data-status='disconnected']::before,
+.jp-Notebook-ExecutionIndicator[data-status='unknown']::before {
+  background: rgba(255, 255, 255, 0.3) !important;
+  opacity: 0.5 !important;
+}
+
+/* qBraid: Hide the SVG icon (lightning bolt/circle) - we use ::before dot instead */
+.jp-Notebook-ExecutionIndicator > svg,
+.jp-Notebook-ExecutionIndicator > div > svg {
+  display: none !important;
 }
 
 /* Code dropdown */
@@ -754,17 +864,26 @@
    Notebook Cells - Card Style
    ============================================ */
 
+/* Note: Cell background is set above in the "Cell container" section */
+
+/* Cell container - updated for off-white depth effect */
 .jp-Cell {
-  background: transparent !important;
-  margin: 0 0 12px !important;
+  background: #1a1a1a !important; /* Off-white for dark theme - subtle lighter shade */
+  position: relative !important; /* Required for ::before pseudo-element positioning */
+  box-shadow: 
+    0 1px 3px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05) !important; /* Depth effect */
 }
 
-/* Cell container */
 .jp-Cell > .jp-Cell-inputWrapper,
 .jp-Cell > .jp-Cell-outputWrapper {
-  background: #242428 !important;
-  border: 1px solid #333338 !important;
-  border-radius: 8px !important;
+  background: #1a1a1a !important; /* Off-white for dark theme */
+  border: 1px solid var(--qbraid-border-default) !important; /* #262626 */
+  border-left: 1px solid var(--qbraid-border-default) !important; /* Ensure no purple on left */
+  border-radius: var(--qbraid-radius-lg) !important; /* 12px */
+  box-shadow: 
+    0 1px 3px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05) !important; /* Depth effect */
 }
 
 .jp-Cell > .jp-Cell-inputWrapper {
@@ -783,13 +902,72 @@
   border-bottom: none !important;
 }
 
-/* Active/Selected cell - off-white border and accent */
-.jp-Cell.jp-mod-active > .jp-Cell-inputWrapper {
-  border-color: rgba(180, 180, 190, 0.5) !important;
+/* Active/Selected cell - off-white with enhanced depth */
+.jp-Cell.jp-mod-active,
+.jp-Notebook .jp-Cell.jp-mod-active,
+.jp-Notebook-cell.jp-mod-active {
+  background: #1f1f1f !important; /* Slightly lighter for active state */
+  border-left: none !important; /* Remove any left border first */
+  border-color: var(--qbraid-border-strong) !important; /* #333333 - Ensure no purple border */
+  outline: none !important; /* Remove any outline */
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important; /* More depth for active cell */
 }
 
-.jp-Cell.jp-mod-active > .jp-Cell-outputWrapper {
-  border-color: rgba(180, 180, 190, 0.5) !important;
+/* Thin off-white left accent bar for active cell */
+.jp-Cell.jp-mod-active::before,
+.jp-Notebook .jp-Cell.jp-mod-active::before,
+.jp-Notebook-cell.jp-mod-active::before {
+  content: '' !important;
+  display: block !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 8px !important;
+  bottom: 8px !important;
+  width: 3px !important; /* qBraid: doubled size */
+  background: rgba(255, 255, 255, 0.5) !important; /* Off-white accent */
+  border-radius: 0 !important;
+  z-index: 100 !important; /* Very high z-index to ensure visibility */
+  pointer-events: none !important; /* Don't interfere with clicks */
+}
+
+/* Remove any purple borders from active cell wrappers */
+.jp-Cell.jp-mod-active > .jp-Cell-inputWrapper::before,
+.jp-Cell.jp-mod-active > .jp-Cell-outputWrapper::before,
+.jp-Notebook .jp-Cell.jp-mod-active > .jp-Cell-inputWrapper::before,
+.jp-Notebook .jp-Cell.jp-mod-active > .jp-Cell-outputWrapper::before {
+  display: none !important; /* Remove any pseudo-elements on wrappers */
+}
+
+/* Remove any purple borders/outlines from wrappers */
+.jp-Cell.jp-mod-active > .jp-Cell-inputWrapper,
+.jp-Cell.jp-mod-active > .jp-Cell-outputWrapper,
+.jp-Notebook .jp-Cell.jp-mod-active > .jp-Cell-inputWrapper,
+.jp-Notebook .jp-Cell.jp-mod-active > .jp-Cell-outputWrapper {
+  border-left: none !important;
+  outline: none !important;
+  box-shadow: none !important; /* Remove any purple glow */
+}
+
+.jp-Cell.jp-mod-active > .jp-Cell-inputWrapper,
+.jp-Notebook .jp-Cell.jp-mod-active > .jp-Cell-inputWrapper {
+  background: #1f1f1f !important; /* Slightly lighter for active */
+  border-color: var(--qbraid-border-strong) !important; /* #333333 */
+  border-left: none !important; /* Remove left border - accent bar is on parent */
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important; /* More depth */
+}
+
+.jp-Cell.jp-mod-active > .jp-Cell-outputWrapper,
+.jp-Notebook .jp-Cell.jp-mod-active > .jp-Cell-outputWrapper {
+  background: #1f1f1f !important; /* Slightly lighter for active */
+  border-color: var(--qbraid-border-strong) !important; /* #333333 */
+  border-left: none !important; /* Remove left border - accent bar is on parent */
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important; /* More depth */
 }
 
 /* Override any green collapser/highlight */
@@ -808,98 +986,115 @@
   background: transparent !important;
 }
 
-.jp-Cell.jp-mod-active .jp-Collapser {
-  background: rgba(180, 180, 190, 0.8) !important;
+.jp-Cell.jp-mod-active .jp-Collapser,
+.jp-Notebook .jp-Cell.jp-mod-active .jp-Collapser {
+  background: rgba(255, 255, 255, 0.3) !important; /* Off-white accent */
+  opacity: 1 !important;
 }
 
-/* Cell prompt [n]: */
+/* Cell prompt [n]: - qBraid Design System */
 .jp-InputPrompt,
 .jp-OutputPrompt {
-  color: #707070 !important;
+  color: var(--qbraid-text-disabled) !important; /* #737373 - Disabled text */
   font-family: var(--jp-code-font-family) !important;
   font-size: 12px !important;
   min-width: 56px !important;
   padding: 12px 8px !important;
 }
 
-/* Code editor area */
+/* Code editor area - qBraid Design System */
 .jp-InputArea-editor {
-  background: #242428 !important;
+  background: transparent !important; /* Transparent - card has background */
   border: none !important;
-  border-radius: 0 8px 8px 0 !important;
+  border-radius: 0 var(--qbraid-radius-md) var(--qbraid-radius-md) 0 !important; /* 8px rounded right corners */
   padding: 8px !important;
 }
 
 .jp-Cell.jp-mod-active .jp-InputArea-editor {
-  background: #242428 !important;
+  background: transparent !important; /* Transparent - depth comes from cell background */
 }
 
-/* Output area */
+/* Output area - qBraid Design System - same styling as input */
 .jp-OutputArea {
-  background: #1f1f24 !important;
+  background: transparent !important; /* Transparent - card has background */
   padding: 12px !important;
-  border-top: 1px solid #333338 !important;
+  border-top: none !important; /* qBraid: no border, seamless with input */
 }
 
-/* Error output - red tinted background */
+/* Output wrapper - same depth effect as input */
+.jp-Cell-outputWrapper {
+  background: #1f1f1f !important; /* qBraid: same as active cell for cells with output */
+  position: relative !important;
+}
+
+/* Active cell with output - ensure output wrapper matches */
+.jp-Cell.jp-mod-active .jp-Cell-outputWrapper {
+  background: #1f1f1f !important; /* qBraid: same as active input */
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important; /* Same depth as input */
+}
+
+/* Error output - subtle red tint, thin left bar */
 .jp-OutputArea-output[data-mime-type='application/vnd.jupyter.stderr'],
 .jp-RenderedText[data-mime-type='application/vnd.jupyter.stderr'] {
-  background: rgba(239, 68, 68, 0.08) !important;
-  border-left: 3px solid #ef4444 !important;
+  background: rgba(239, 68, 68, 0.1) !important; /* qBraid: subtle red tint */
+  border-left: 0.5px solid rgba(239, 68, 68, 0.6) !important; /* qBraid: thin red bar */
   padding: 12px !important;
   border-radius: 0 !important;
+  margin-left: 0 !important;
 }
 
 .jp-OutputArea-output pre {
-  color: #e8e8e8 !important;
+  color: var(--qbraid-text-primary) !important; /* #ededed - Primary text */
 }
 
 /* Error text color */
 .jp-RenderedText[data-mime-type='application/vnd.jupyter.stderr'] pre {
-  color: #ef4444 !important;
+  color: var(--qbraid-error) !important; /* #ef4444 - Error color */
 }
 
 /* ============================================
-   Stack Panels (Left/Right sidebars content)
+   Stack Panels (Left/Right sidebars content) - qBraid Design System
    ============================================ */
 
 #jp-left-stack > .lm-Widget,
 #jp-right-stack > .lm-Widget {
-  background-color: #242428 !important;
+  background-color: #1a1a1a !important; /* qBraid: dark grey sidebar background */
 }
 
 #jp-left-stack {
-  border-right: 1px solid #333338 !important;
+  border-right: 1px solid var(--qbraid-border-subtle) !important; /* #1f1f1f - Subtle border */
 }
 
 #jp-right-stack {
-  border-left: 1px solid #333338 !important;
+  border-left: 1px solid var(--qbraid-border-subtle) !important; /* #1f1f1f - Subtle border */
 }
 
 /* ============================================
-   Status Bar
+   Status Bar - qBraid Design System
    ============================================ */
 
 .jp-mod-statusBar {
-  background: #242428 !important;
-  border-top: 1px solid #333338 !important;
-  color: #a0a0a0 !important;
+  background: var(--qbraid-bg-base) !important; /* #0a0a0a - Deepest background */
+  border-top: 1px solid var(--qbraid-border-subtle) !important; /* #1f1f1f - Subtle border */
+  color: var(--qbraid-text-disabled) !important; /* #737373 - Disabled text */
 }
 
 /* ============================================
-   Dialogs and Modals
+   Dialogs and Modals - qBraid Design System
    ============================================ */
 
 .jp-Dialog-content {
-  background: #242428 !important;
-  border: 1px solid #3a3a42 !important;
-  border-radius: 12px !important;
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5) !important;
+  background: var(--qbraid-bg-surface) !important; /* #141414 - Card background */
+  border: 1px solid var(--qbraid-border-default) !important; /* #262626 - Default border */
+  border-radius: var(--qbraid-radius-lg) !important; /* 12px - Large radius */
+  box-shadow: var(--qbraid-shadow-lg) !important; /* Deep shadow */
 }
 
 .jp-Dialog-header {
   background: transparent !important;
-  border-bottom: 1px solid #333338 !important;
+  border-bottom: 1px solid var(--qbraid-border-subtle) !important; /* #1f1f1f - Subtle border */
   padding: 16px 20px !important;
 }
 
@@ -910,41 +1105,43 @@
 
 .jp-Dialog-footer {
   background: transparent !important;
-  border-top: 1px solid #333338 !important;
+  border-top: 1px solid var(--qbraid-border-subtle) !important; /* #1f1f1f - Subtle border */
   padding: 16px 20px !important;
 }
 
-/* Dialog buttons */
+/* Dialog buttons - qBraid Design System */
 .jp-Dialog-button {
-  border-radius: 6px !important;
+  border-radius: var(--qbraid-radius-md) !important; /* 8px - Medium radius */
   padding: 8px 16px !important;
   font-weight: 500 !important;
+  transition: background-color var(--qbraid-transition-fast) !important;
 }
 
 .jp-Dialog-button.jp-mod-accept {
-  background: #10b981 !important;
-  color: #1a1a1f !important;
+  background: var(--qbraid-purple-500) !important; /* #a855f7 - Purple (more subtle) */
+  color: var(--qbraid-text-inverse) !important; /* White text */
 }
 
 .jp-Dialog-button.jp-mod-accept:hover {
-  background: #059669 !important;
+  background: var(--qbraid-purple-600) !important; /* #9333ea - Darker purple */
 }
 
 .jp-Dialog-button.jp-mod-reject {
-  background: #333338 !important;
-  color: #e8e8e8 !important;
+  background: transparent !important;
+  color: var(--qbraid-text-primary) !important; /* #ededed - Primary text */
+  border: 1px solid var(--qbraid-border-default) !important; /* #262626 - Default border */
 }
 
 .jp-Dialog-button.jp-mod-reject:hover {
-  background: #3a3a42 !important;
+  background: var(--qbraid-bg-hover) !important; /* #1a1a1a - Hover state */
 }
 
 /* ============================================
-   Launcher
+   Launcher - qBraid Design System
    ============================================ */
 
 .jp-Launcher {
-  background: #1a1a1f !important;
+  background: var(--qbraid-bg-base) !important; /* #0a0a0a - Deepest background */
   padding: 32px !important;
 }
 
@@ -953,7 +1150,7 @@
 }
 
 .jp-Launcher-sectionTitle {
-  color: #707070 !important;
+  color: var(--qbraid-text-disabled) !important; /* #737373 - Disabled text */
   font-size: 12px !important;
   font-weight: 500 !important;
   text-transform: uppercase !important;
@@ -962,21 +1159,21 @@
 }
 
 .jp-LauncherCard {
-  background: #242428 !important;
-  border: 1px solid #333338 !important;
-  border-radius: 12px !important;
+  background: var(--qbraid-bg-surface) !important; /* #141414 - Card background */
+  border: 1px solid var(--qbraid-border-default) !important; /* #262626 - Default border */
+  border-radius: var(--qbraid-radius-lg) !important; /* 12px - Large radius */
   transition: all 0.2s ease !important;
 }
 
 .jp-LauncherCard:hover {
-  background: #2a2a30 !important;
-  border-color: #10b981 !important;
+  background: var(--qbraid-bg-hover) !important; /* #1a1a1a - Hover state */
+  border-color: var(--qbraid-purple-400) !important; /* #c084fc - Purple (more subtle) */
   transform: translateY(-2px) !important;
-  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.15) !important;
+  box-shadow: var(--qbraid-shadow-md) !important; /* Subtle shadow */
 }
 
 .jp-LauncherCard-label {
-  color: #e8e8e8 !important;
+  color: var(--qbraid-text-primary) !important; /* #ededed - Primary text */
 }
 
 /* ============================================
@@ -985,19 +1182,25 @@
 
 .jp-Completer-item {
   padding: 6px 12px !important;
-  color: #e8e8e8 !important;
+  color: var(--qbraid-text-primary) !important; /* #ededed - Primary text */
+  transition: background-color var(--qbraid-transition-fast);
+}
+
+.jp-Completer-item:hover {
+  background: #262626 !important; /* qBraid: slightly lighter grey on hover */
 }
 
 .jp-Completer-item.jp-mod-active {
-  background: #333338 !important;
+  background: #262626 !important; /* qBraid: slightly lighter grey for active */
+  color: var(--qbraid-text-primary) !important; /* #ededed - Primary text */
 }
 
 /* ============================================
-   Terminal
+   Terminal - qBraid Design System
    ============================================ */
 
 .jp-Terminal {
-  background: #1a1a1f !important;
+  background: var(--qbraid-bg-base) !important; /* #0a0a0a - Deepest background */
 }
 
 /* ============================================
@@ -1009,7 +1212,7 @@
 }
 
 .cm-content {
-  caret-color: #e8e8e8 !important;
+  caret-color: var(--qbraid-text-primary) !important; /* #ededed - Primary text */
 }
 
 .cm-line {
@@ -1032,7 +1235,7 @@
 }
 
 .cm-lineNumbers .cm-gutterElement {
-  color: #505050 !important;
+  color: var(--qbraid-text-disabled) !important; /* #737373 - Disabled text */
 }
 
 /* Active line */
@@ -1056,6 +1259,61 @@
 }
 
 .cm-searchMatch.cm-searchMatch-selected {
-  background: #f59e0b !important;
-  color: #1a1a1f !important;
+  background: var(--qbraid-warning) !important; /* #f59e0b - Warning color */
+  color: var(--qbraid-text-inverse) !important; /* Dark text */
+}
+
+/* qBraid: Force ALL scrollbars to be 3px - maximum specificity override */
+*::-webkit-scrollbar,
+*::-webkit-scrollbar-corner {
+  width: 3px !important;
+  height: 3px !important;
+}
+
+/* qBraid: Force file browser scrollbar to be 3px - maximum specificity override */
+.jp-DirListing-content::-webkit-scrollbar,
+.jp-DirListing-content::-webkit-scrollbar-corner,
+.jp-DirListing ul::-webkit-scrollbar,
+.jp-DirListing ul::-webkit-scrollbar-corner,
+.jp-FileBrowser .jp-DirListing-content::-webkit-scrollbar,
+.jp-FileBrowser .jp-DirListing-content::-webkit-scrollbar-corner,
+.jp-SidePanel .jp-DirListing-content::-webkit-scrollbar,
+.jp-SidePanel .jp-DirListing-content::-webkit-scrollbar-corner,
+.jp-FileBrowser-listing .jp-DirListing-content::-webkit-scrollbar,
+.jp-FileBrowser-listing .jp-DirListing-content::-webkit-scrollbar-corner,
+.jp-WindowedPanel-outer::-webkit-scrollbar,
+.jp-WindowedPanel-outer::-webkit-scrollbar-corner,
+.jp-Notebook .jp-WindowedPanel-outer::-webkit-scrollbar,
+.jp-Notebook .jp-WindowedPanel-outer::-webkit-scrollbar-corner {
+  width: 3px !important;
+  height: 3px !important;
+  background: var(--jp-scrollbar-background-color) !important;
+}
+
+.jp-DirListing-content::-webkit-scrollbar-thumb,
+.jp-DirListing ul::-webkit-scrollbar-thumb,
+.jp-FileBrowser .jp-DirListing-content::-webkit-scrollbar-thumb,
+.jp-SidePanel .jp-DirListing-content::-webkit-scrollbar-thumb,
+.jp-FileBrowser-listing .jp-DirListing-content::-webkit-scrollbar-thumb,
+.jp-WindowedPanel-outer::-webkit-scrollbar-thumb,
+.jp-Notebook .jp-WindowedPanel-outer::-webkit-scrollbar-thumb {
+  border: 0px solid transparent !important;
+  background-clip: content-box;
+  background: rgb(var(--jp-scrollbar-thumb-color)) !important;
+  border-radius: var(--jp-scrollbar-thumb-radius) !important;
+}
+
+.jp-DirListing-content::-webkit-scrollbar-thumb:hover,
+.jp-DirListing ul::-webkit-scrollbar-thumb:hover,
+.jp-FileBrowser .jp-DirListing-content::-webkit-scrollbar-thumb:hover,
+.jp-SidePanel .jp-DirListing-content::-webkit-scrollbar-thumb:hover,
+.jp-FileBrowser-listing .jp-DirListing-content::-webkit-scrollbar-thumb:hover,
+.jp-WindowedPanel-outer::-webkit-scrollbar-thumb:hover,
+.jp-Notebook .jp-WindowedPanel-outer::-webkit-scrollbar-thumb:hover {
+  background: rgb(64, 64, 64) !important;
+}
+
+.jp-DirListing-content,
+.jp-WindowedPanel-outer {
+  scrollbar-width: thin !important;
 }

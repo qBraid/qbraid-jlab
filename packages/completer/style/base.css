@@ -11,10 +11,11 @@
 }
 
 .jp-Completer {
-  box-shadow: var(--jp-elevation-z6);
-  background: var(--jp-layout-color1);
-  color: var(--jp-content-font-color1);
-  border: var(--jp-border-width) solid var(--jp-border-color1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5) !important; /* qBraid: deep shadow */
+  background: #1a1a1a !important; /* qBraid: dark grey surface */
+  color: var(--qbraid-text-primary) !important; /* #ededed - Primary text */
+  border: 1px solid var(--qbraid-border-default) !important; /* #262626 - Default border */
+  border-radius: var(--qbraid-radius-md) !important; /* 8px - Medium radius */
   padding: 0;
   display: flex;
   flex-direction: row;
@@ -121,13 +122,13 @@
 }
 
 .jp-Completer-item:hover {
-  background: var(--jp-layout-color2);
-  opacity: 0.8;
+  background: #262626 !important; /* qBraid: slightly lighter grey on hover */
+  opacity: 1 !important;
 }
 
 .jp-Completer-item.jp-mod-active {
-  background: var(--jp-brand-color1);
-  color: white;
+  background: #262626 !important; /* qBraid: slightly lighter grey for active */
+  color: var(--qbraid-text-primary) !important; /* #ededed - Primary text */
 }
 
 .jp-Completer-item .jp-Completer-match mark {

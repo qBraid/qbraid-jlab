@@ -28,7 +28,7 @@
 
 /* Editor gets subtle background on focus */
 .jp-Cell.jp-mod-active .jp-InputArea-editor {
-  background: rgba(20, 184, 166, 0.05);
+  background: transparent; /* Transparent - depth comes from cell background */
 }
 
 .jp-InputPrompt {

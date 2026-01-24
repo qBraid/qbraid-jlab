@@ -17,25 +17,52 @@
 
 .jp-Cell {
   padding: 12px 16px; /* qBraid: card padding */
-  margin: 0 8px 12px; /* qBraid: spacing between cells */
-  border: 1px solid #262626; /* qBraid: visible card border */
-  border-radius: 12px; /* qBraid: rounded card */
+  margin: 0 8px 8px 8px; /* qBraid: 8px spacing between cells */
+  border: 1px solid var(--qbraid-border-default); /* #262626 - Default border */
+  border-radius: var(--qbraid-radius-lg); /* 12px - Large radius */
   outline: none;
-  background: #141414; /* qBraid: card background */
+  background: #1a1a1a; /* Off-white for dark theme - subtle lighter shade */
   position: relative;
+  /* Depth effect: subtle shadow for elevation */
+  box-shadow: 
+    0 1px 3px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05); /* Subtle inset highlight */
   transition:
-    border-color 0.15s ease,
-    box-shadow 0.15s ease;
+    border-color var(--qbraid-transition-fast),
+    box-shadow var(--qbraid-transition-fast),
+    background var(--qbraid-transition-fast);
 }
 
 .jp-Cell:hover {
-  border-color: #333; /* qBraid: slightly lighter on hover */
+  border-color: var(--qbraid-border-strong); /* #333333 - Stronger border on hover */
+  box-shadow: 
+    0 2px 6px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08); /* Enhanced depth on hover */
 }
 
-/* Active cell gets teal border */
+/* Active cell gets subtle border and left accent bar */
 .jp-Cell.jp-mod-active {
-  border-color: #14b8a6;
-  box-shadow: 0 0 0 1px rgba(20, 184, 166, 0.3);
+  border-color: var(--qbraid-border-strong); /* #333333 - Subtle active border */
+  border-left: none !important; /* Remove left border - accent bar via ::before */
+  background: #1f1f1f; /* Slightly lighter for active state */
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1); /* More depth for active cell */
+}
+
+/* qBraid: Thin off-white left accent bar for active cell */
+.jp-Cell.jp-mod-active::before {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 8px;
+  bottom: 8px;
+  width: 3px !important; /* qBraid: doubled size */
+  background: rgba(255, 255, 255, 0.5) !important; /* Off-white accent */
+  border-radius: 0;
+  z-index: 100; /* Very high z-index */
+  pointer-events: none;
 }
 
 /*-----------------------------------------------------------------------------

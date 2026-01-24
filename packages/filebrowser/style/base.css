@@ -21,10 +21,12 @@
 .jp-FileBrowser-toolbar.jp-Toolbar {
   border-bottom: none;
   height: auto;
-  margin: 8px 12px 0;
+  margin: 12px 12px 8px 12px; /* qBraid: consistent margins */
   box-shadow: none;
   padding: 0;
-  background: #0d0d0d; /* qBraid: match sidebar */
+  background: #1a1a1a !important; /* qBraid: dark grey sidebar background */
+  display: flex;
+  gap: 4px; /* qBraid: spacing between buttons */
 }
 
 .jp-FileBrowser-toolbar.jp-Toolbar::part(positioning-region) {
@@ -54,9 +56,10 @@
 
 .jp-BreadCrumbs {
   flex: 0 0 auto;
-  margin: 8px 12px;
-  color: #a3a3a3;
+  margin: 0 12px 8px 12px; /* qBraid: consistent margins */
+  color: var(--qbraid-text-muted); /* #a3a3a3 - Muted text */
   font-size: 12px;
+  padding: 8px 0; /* qBraid: vertical padding */
 }
 
 .jp-BreadCrumbs-item {
@@ -92,7 +95,35 @@
 }
 
 .jp-FileBrowser-toolbar > .jp-Toolbar-item .jp-ToolbarButtonComponent {
-  width: 28px;
+  width: 28px; /* qBraid: standard button size */
+  height: 28px; /* qBraid: standard button size */
+  border-radius: 6px; /* qBraid: rounded corners */
+  transition: background var(--qbraid-transition-fast), color var(--qbraid-transition-fast);
+}
+
+/* qBraid: Purple + button (first button - New File) - less prominent */
+.jp-FileBrowser-toolbar > .jp-Toolbar-item:first-child .jp-ToolbarButtonComponent {
+  background: transparent !important; /* qBraid: transparent background */
+  color: var(--qbraid-purple-400) !important; /* #c084fc - Lighter purple, less prominent */
+  border: 1px solid var(--qbraid-purple-500) !important; /* #a855f7 - Purple border */
+  border-radius: 6px !important;
+}
+
+.jp-FileBrowser-toolbar > .jp-Toolbar-item:first-child .jp-ToolbarButtonComponent:hover {
+  background: rgba(168, 85, 247, 0.1) !important; /* qBraid: subtle purple hover */
+  color: var(--qbraid-purple-400) !important;
+  border-color: var(--qbraid-purple-400) !important;
+}
+
+/* qBraid: Other toolbar buttons */
+.jp-FileBrowser-toolbar > .jp-Toolbar-item:not(:first-child) .jp-ToolbarButtonComponent {
+  background: transparent !important;
+  color: var(--qbraid-text-muted) !important; /* #a3a3a3 - Muted text */
+}
+
+.jp-FileBrowser-toolbar > .jp-Toolbar-item:not(:first-child) .jp-ToolbarButtonComponent:hover {
+  background: #262626 !important; /* qBraid: slightly lighter grey on hover */
+  color: var(--qbraid-text-primary) !important; /* #ededed - Primary text */
 }
 
 /*-----------------------------------------------------------------------------
@@ -113,10 +144,32 @@
 
 .jp-FileBrowser-filterToolbar > .jp-FileBrowser-filterBox {
   width: 100%;
+  margin: 0 12px 12px 12px; /* qBraid: consistent margins */
 }
 
 .jp-FileBrowser-filterBox > .jp-FilterBox {
   width: 100%;
+}
+
+/* qBraid: File browser search box styling */
+.jp-FileBrowser-filterBox .jp-FilterBox input {
+  background: #262626 !important; /* qBraid: dark grey input background */
+  border: 1px solid #333333 !important; /* qBraid: subtle border */
+  border-radius: 6px !important;
+  color: #ededed !important; /* qBraid: white text */
+  padding: 8px 12px !important;
+  font-size: 13px !important;
+  width: 100% !important;
+}
+
+.jp-FileBrowser-filterBox .jp-FilterBox input::placeholder {
+  color: #737373 !important; /* qBraid: muted placeholder */
+}
+
+.jp-FileBrowser-filterBox .jp-FilterBox input:focus {
+  border-color: #3b82f6 !important; /* qBraid: blue focus */
+  outline: none !important;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2) !important;
 }
 
 .jp-Open-Dialog > .jp-FileBrowser {
@@ -137,7 +190,8 @@
   flex-direction: column;
   outline: 0;
   overflow: hidden;
-  background: #0d0d0d; /* qBraid: very dark sidebar */
+  padding: 0 0 8px 0; /* qBraid: bottom padding */
+  background: #1a1a1a !important; /* qBraid: dark grey sidebar background */
 
   --jp-dirlisting-padding-width: 12px;
 }
@@ -149,17 +203,17 @@
   align-items: center;
   overflow: hidden;
   border-top: none;
-  border-bottom: 1px solid #1a1a1a;
+  border-bottom: 1px solid var(--qbraid-border-subtle); /* #1f1f1f - Subtle border */
   box-shadow: none;
   z-index: 2;
-  background: #0d0d0d;
+  background: #1a1a1a !important; /* qBraid: dark grey sidebar background */
   user-select: none;
-  padding: 6px 12px;
-  font-size: 11px;
+  padding: 8px 12px; /* qBraid: more padding */
+  font-size: 10px; /* qBraid: slightly smaller */
   text-transform: uppercase;
-  letter-spacing: 0.8px;
+  letter-spacing: 0.5px; /* qBraid: less letter spacing */
   font-weight: 600;
-  color: #737373;
+  color: var(--qbraid-text-disabled); /* #737373 - Disabled text */
 }
 
 .jp-DirListing-headerItem {
@@ -178,7 +232,7 @@
 }
 
 .jp-DirListing-headerItem:hover {
-  background: var(--jp-layout-color2);
+  background: var(--qbraid-bg-hover); /* #1a1a1a - Hover state */
 }
 
 .jp-DirListing-headerItem.jp-id-name:not([style*='width']) {
@@ -187,13 +241,31 @@
 }
 
 .jp-DirListing-headerItem.jp-id-modified:not([style*='width']) {
-  /* default width before user resizes this column */
-  flex: 1 0 70px;
+  /* default width before user resizes this column - expand to fill space left by hidden size column */
+  flex: 1 1 auto !important; /* qBraid: expand to fill available space */
 }
 
 .jp-DirListing-headerItem.jp-id-filesize:not([style*='width']) {
   /* default width before user resizes this column */
   flex: 0 0 75px;
+}
+
+/* qBraid: Hide file size column */
+.jp-DirListing-headerItem.jp-id-filesize {
+  display: none !important;
+  width: 0 !important; /* qBraid: ensure no width is allocated */
+}
+
+/* qBraid: Force modified column to expand - override inline styles from JavaScript */
+.jp-DirListing-headerItem.jp-id-modified {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+}
+
+/* qBraid: Override any inline width styles JavaScript sets */
+.jp-DirListing-headerItem.jp-id-modified[style] {
+  width: auto !important;
+  flex: 1 1 auto !important;
 }
 
 .jp-DirListing-headerItem.jp-id-modified,
@@ -279,8 +351,40 @@
   padding: 4px 0;
   list-style-type: none;
   overflow: auto;
-  background-color: #0d0d0d; /* qBraid: match sidebar dark */
+  background-color: #1a1a1a !important; /* qBraid: dark grey sidebar background */
   overflow-x: hidden;
+  scrollbar-width: thin !important; /* qBraid: thin scrollbar */
+}
+
+/* qBraid: Force file browser scrollbar to be 3px - multiple selectors for maximum coverage */
+.jp-DirListing-content::-webkit-scrollbar,
+.jp-DirListing-content::-webkit-scrollbar-corner,
+.jp-DirListing ul::-webkit-scrollbar,
+.jp-DirListing ul::-webkit-scrollbar-corner,
+.jp-FileBrowser .jp-DirListing-content::-webkit-scrollbar,
+.jp-FileBrowser .jp-DirListing-content::-webkit-scrollbar-corner,
+.jp-SidePanel .jp-DirListing-content::-webkit-scrollbar,
+.jp-SidePanel .jp-DirListing-content::-webkit-scrollbar-corner {
+  width: 3px !important;
+  height: 3px !important;
+  background: var(--jp-scrollbar-background-color) !important;
+}
+
+.jp-DirListing-content::-webkit-scrollbar-thumb,
+.jp-DirListing ul::-webkit-scrollbar-thumb,
+.jp-FileBrowser .jp-DirListing-content::-webkit-scrollbar-thumb,
+.jp-SidePanel .jp-DirListing-content::-webkit-scrollbar-thumb {
+  border: 0px solid transparent !important;
+  background-clip: content-box;
+  background: rgb(var(--jp-scrollbar-thumb-color)) !important;
+  border-radius: var(--jp-scrollbar-thumb-radius) !important;
+}
+
+.jp-DirListing-content::-webkit-scrollbar-thumb:hover,
+.jp-DirListing ul::-webkit-scrollbar-thumb:hover,
+.jp-FileBrowser .jp-DirListing-content::-webkit-scrollbar-thumb:hover,
+.jp-SidePanel .jp-DirListing-content::-webkit-scrollbar-thumb:hover {
+  background: rgb(64, 64, 64) !important;
 }
 
 .jp-DirListing-content mark {
@@ -302,7 +406,7 @@
 
 .jp-DirListing-item {
   align-items: center;
-  padding: 3px 12px;
+  padding: 4px 12px; /* qBraid: slightly more padding */
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -312,13 +416,15 @@
   width: 100%;
   box-sizing: border-box;
   grid-auto-flow: column;
+  /* qBraid: Ensure modified column expands when filesize is hidden - override inline styles */
+  grid-template-columns: auto auto 1fr !important;
   border-radius: 0; /* qBraid: no rounded corners like VS Code */
   margin: 0;
-  transition: background 0.08s ease;
+  transition: background var(--qbraid-transition-fast); /* qBraid: use token */
   font-size: 13px;
-  line-height: 22px;
+  line-height: 24px; /* qBraid: slightly taller line height */
   position: relative;
-  color: #d4d4d4;
+  color: var(--qbraid-text-secondary); /* #d4d4d4 - Secondary text */
 }
 
 .jp-DirListing-checkboxWrapper {
@@ -380,25 +486,49 @@
   opacity: 75%;
 }
 
-/* qBraid: VS Code-style selection - subtle blue highlight */
+/* qBraid: Selection with left accent bar */
 .jp-DirListing-item.jp-mod-selected {
-  color: #fff;
-  background: #264f78 !important; /* VS Code blue selection */
+  color: var(--qbraid-text-primary) !important; /* #ededed - Primary text */
+  background: #262626 !important; /* qBraid: slightly lighter grey for selected */
+  position: relative;
+}
+
+/* qBraid: Left accent bar for selected file browser item (off-white) */
+.jp-DirListing-item.jp-mod-selected::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 4px;
+  bottom: 4px;
+  width: 1px; /* Thin accent bar */
+  background: rgba(255, 255, 255, 0.4) !important; /* Off-white accent */
+  border-radius: 0 2px 2px 0;
 }
 
 .jp-DirListing-item.jp-mod-dropTarget {
-  background: rgba(16, 185, 129, 0.2) !important;
+  background: rgba(16, 185, 129, 0.2) !important; /* Teal drop target */
 }
 
 .jp-DirListing-item:hover:not(.jp-mod-selected) {
-  background: #1a1a1a;
+  background: #262626 !important; /* qBraid: slightly lighter grey on hover */
+  transition: background var(--qbraid-transition-fast);
 }
 
 /* qBraid: Running indicator styles are in the later selector */
 
 .jp-DirListing-itemIcon {
   flex: 0 0 20px;
-  margin-right: 4px;
+  margin-right: 8px; /* qBraid: more spacing between icon and text */
+  opacity: 0.8; /* qBraid: slightly muted icons */
+}
+
+/* qBraid: Icon color adjustments */
+.jp-DirListing-itemIcon svg {
+  fill: var(--qbraid-text-secondary); /* #d4d4d4 - Secondary text */
+}
+
+.jp-DirListing-item.jp-mod-selected .jp-DirListing-itemIcon svg {
+  fill: var(--qbraid-text-primary); /* #ededed - Primary text for selected */
 }
 
 .jp-DirListing-itemText,
@@ -407,6 +537,25 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+/* qBraid: Hide file size column content */
+.jp-DirListing-itemFileSize {
+  display: none !important;
+  width: 0 !important; /* qBraid: ensure no width is allocated */
+}
+
+/* qBraid: Force modified column item to expand - override inline styles from JavaScript */
+.jp-DirListing-itemModified {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+}
+
+/* qBraid: Override any inline width styles JavaScript sets */
+.jp-DirListing-itemModified[style] {
+  width: auto !important;
+  flex: 1 1 auto !important;
+  max-width: none !important;
 }
 
 .jp-DirListing-itemName:not([style*='width']) > .jp-DirListing-itemText {
@@ -432,10 +581,19 @@
 
 .jp-DirListing-itemModified {
   text-align: right;
+  color: var(--qbraid-text-disabled) !important; /* #737373 - Disabled text */
+  font-size: 11px !important; /* qBraid: slightly smaller */
+  flex: 1 1 auto !important; /* qBraid: expand to fill space left by hidden size column */
+  min-width: 0 !important; /* Allow flex shrinking */
+  /* qBraid: Override any inline width styles set by JavaScript */
+  width: auto !important;
+  max-width: none !important;
 }
 
 .jp-DirListing-itemFileSize {
   text-align: right;
+  color: var(--qbraid-text-disabled) !important; /* #737373 - Disabled text */
+  font-size: 11px !important; /* qBraid: slightly smaller */
 }
 
 .jp-DirListing-editor {
@@ -450,7 +608,7 @@
 }
 
 .jp-DirListing-item.jp-mod-running .jp-DirListing-itemIcon::before {
-  color: #10b981 !important;
+  color: var(--qbraid-blue-500) !important; /* #3b82f6 - Blue (more subtle) */
   content: '\25CF';
   font-size: 8px;
   position: absolute;

@@ -27,22 +27,22 @@
   flex-direction: column;
   margin-left: auto;
   margin-right: auto;
-  background: var(--jp-layout-color2); /* qBraid: elevated surface */
+  background: #1a1a1a !important; /* qBraid: dark grey surface */
   padding: 24px 24px 12px;
   min-width: 300px;
   min-height: 150px;
   max-width: 1000px;
   max-height: 500px;
   box-sizing: border-box;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5); /* qBraid: deep shadow */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7) !important; /* qBraid: deep shadow */
   word-wrap: break-word;
   border-radius: 12px; /* qBraid: rounded dialog */
-  border: 1px solid var(--jp-border-color1); /* qBraid: subtle border */
+  border: 1px solid var(--qbraid-border-default) !important; /* #262626 - Default border */
 
   /* This is needed so that all font sizing of children done in ems is
    * relative to this base size */
   font-size: var(--jp-ui-font-size1);
-  color: var(--jp-ui-font-color1);
+  color: var(--qbraid-text-primary) !important; /* #ededed - Primary text */
   resize: both;
   overflow: hidden;
 }
@@ -101,8 +101,8 @@ button.jp-Dialog-close-button {
   flex: 0 0 auto;
   padding-bottom: 12px;
   font-size: var(--jp-ui-font-size3);
-  font-weight: 400;
-  color: var(--jp-ui-font-color1);
+  font-weight: 500; /* qBraid: slightly bolder */
+  color: var(--qbraid-text-primary) !important; /* #ededed - Primary text */
 }
 
 .jp-Dialog-body {
@@ -110,8 +110,8 @@ button.jp-Dialog-close-button {
   flex-direction: column;
   flex: 1 1 auto;
   font-size: var(--jp-ui-font-size1);
-  background: var(--jp-layout-color1);
-  color: var(--jp-ui-font-color1);
+  background: #1a1a1a !important; /* qBraid: dark grey surface */
+  color: var(--qbraid-text-primary) !important; /* #ededed - Primary text */
   overflow: auto;
 }
 
@@ -121,10 +121,12 @@ button.jp-Dialog-close-button {
   justify-content: flex-end;
   align-items: start;
   flex: 0 0 auto;
-  gap: 5px;
+  gap: 8px; /* qBraid: more spacing */
   margin-left: -12px;
   margin-right: -12px;
   padding: 12px;
+  border-top: 1px solid var(--qbraid-border-subtle) !important; /* #1f1f1f - Subtle border */
+  background: #1a1a1a !important; /* qBraid: dark grey surface */
 }
 
 .jp-Dialog-footerButtons {

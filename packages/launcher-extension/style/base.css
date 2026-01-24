@@ -3,24 +3,33 @@
  * Distributed under the terms of the Modified BSD License.
  */
 
+/* qBraid: Red outline + button */
 .jp-FileBrowser-toolbar
   .jp-ToolbarButtonComponent[data-command='launcher:create'] {
-  width: 72px;
-  background: var(--jp-accept-color-normal, var(--jp-brand-color1));
+  width: 28px !important; /* qBraid: standard button size, not 72px */
+  height: 28px !important; /* qBraid: standard button size */
+  background: transparent !important; /* qBraid: transparent background */
+  color: #ef4444 !important; /* qBraid: red icon */
+  border: 1px solid #ef4444 !important; /* qBraid: red border */
+  border-radius: 6px !important;
 }
 
 .jp-FileBrowser-toolbar
   .jp-ToolbarButtonComponent[data-command='launcher:create']:hover {
-  background-color: var(--jp-accept-color-hover);
+  background: rgba(239, 68, 68, 0.1) !important; /* qBraid: subtle red hover */
+  color: #ef4444 !important;
+  border-color: #ef4444 !important;
 }
 
 .jp-FileBrowser-toolbar
   .jp-ToolbarButtonComponent[data-command='launcher:create']:focus-visible {
-  background-color: var(--jp-accept-color-active, var(--jp-brand-color0));
+  background: rgba(239, 68, 68, 0.15) !important; /* qBraid: slightly more visible on focus */
+  color: #ef4444 !important;
+  border-color: #ef4444 !important;
 }
 
 .jp-FileBrowser-toolbar
   .jp-ToolbarButtonComponent[data-command='launcher:create']
   .jp-icon3 {
-  fill: var(--jp-layout-color1);
+  fill: #ef4444 !important; /* qBraid: red icon */
 }
