@@ -88,7 +88,7 @@
 
 /* qBraid: Visual change indicator - Update chars when making CSS changes */
 #jp-top-panel::after {
-  content: 'C3H';
+  content: 'C5A';
   position: fixed;
   top: 4px;
   right: 8px;

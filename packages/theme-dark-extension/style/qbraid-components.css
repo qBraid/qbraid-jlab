@@ -3,7 +3,7 @@
 | All component-specific styles for the qBraid JupyterLab theme
 | Centralized from variables.css for better maintainability
 |
-| CSS Architecture Version: C4A
+| CSS Architecture Version: C5A
 |----------------------------------------------------------------------------*/
 
 /* =============================================================================
@@ -1060,7 +1060,7 @@
 
 /* CSS version indicator - Update when making changes */
 #jp-top-panel::after {
-  content: 'C4A';
+  content: 'C5A';
   position: fixed;
   top: 4px;
   right: 8px;
