@@ -36,7 +36,6 @@
   margin-right: 0 !important;
 }
 
-
 #jp-main-dock-panel[data-mode='single-document'] {
   padding: 0;
 }
@@ -47,7 +46,7 @@
 
 #jp-top-panel {
   border-bottom: none; /* qBraid: no border */
-  background: #000000 !important; /* qBraid: solid black background */
+  background: #000 !important; /* qBraid: solid black background */
   display: flex !important;
   flex-direction: row !important; /* qBraid: horizontal layout */
   align-items: center !important; /* qBraid: center items vertically */
@@ -73,14 +72,23 @@
 }
 
 /* qBraid: Remove all margins/padding from other top panel children */
-#jp-top-panel > *:not(#jp-MainLogo):not(#jp-MainMenu):not(.lm-MenuBar) {
+#jp-top-panel
+  > *:not(#jp-MainLogo):not(#jp-MainMenu):not(.lm-MenuBar):not(
+    #topbar-actions
+  ) {
   margin-left: 0 !important;
   padding-left: 0 !important;
 }
 
+/* qBraid: Push topbar actions to the right */
+#jp-top-panel > #topbar-actions {
+  margin-left: auto !important;
+  margin-right: 8px;
+}
+
 /* qBraid: Visual change indicator - Update chars when making CSS changes */
 #jp-top-panel::after {
-  content: 'X6Y';
+  content: 'C3H';
   position: fixed;
   top: 4px;
   right: 8px;
