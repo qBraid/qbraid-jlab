@@ -4,6 +4,7 @@
 |----------------------------------------------------------------------------*/
 
 @import './variables.css';
+@import './qbraid-components.css';
 
 /* Set the default typography for monospace elements */
 .jp-ThemedContainer tt,
