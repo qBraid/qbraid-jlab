@@ -1044,7 +1044,7 @@
 
 /* CSS version indicator - Update when making changes */
 #jp-top-panel::after {
-  content: 'C5F';
+  content: 'C5G';
   position: fixed;
   top: 4px;
   right: 8px;
