@@ -9,19 +9,18 @@
   display: flex !important;
   align-items: center !important;
   gap: 0 !important; /* qBraid: no gap - logo and text should feel integrated */
-  padding: 0 0 10px 0 !important; /* qBraid: more bottom padding for better spacing below text */
-  margin-right: 0px !important; /* qBraid: no spacing - menu flows directly after */
+  padding: 0 !important; /* qBraid: no padding - align with menu items */
+  margin-right: 0 !important; /* qBraid: no spacing - menu flows directly after */
   margin-left: -18px !important; /* qBraid: perfect negative margin to align logo to left edge */
   position: relative !important;
   overflow: visible !important; /* qBraid: prevent logo truncation */
-  height: auto !important; /* qBraid: allow logo to display fully */
+  height: var(
+    --jp-private-menubar-height
+  ) !important; /* qBraid: match menu bar height */
+
   flex-shrink: 0 !important; /* qBraid: prevent logo from shrinking */
   order: 0 !important; /* qBraid: ensure logo comes first */
-}
-
-/* qBraid: Style the SVG logo container - no red background */
-#jp-MainLogo {
-  background: transparent !important; /* qBraid: no background on logo container */
+  background: transparent !important; /* qBraid: no red background on logo container */
 }
 
 /* qBraid: Replace Jupyter logo with qBraid logo */
@@ -59,7 +58,7 @@
 /* qBraid: qBraid Lab text after logo */
 #jp-MainLogo::after {
   content: 'qBraid Lab';
-  color: #ffffff !important; /* qBraid: white text */
+  color: #fff !important; /* qBraid: white text */
   font-size: 14px !important;
   font-weight: 500 !important;
   margin-left: 0 !important; /* qBraid: no margin - small gap from logo margin-right */

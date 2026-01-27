@@ -269,14 +269,14 @@
 
 .lm-DockPanel-tabBar,
 .lm-TabPanel-tabBar {
-  background: var(--qbraid-bg-base) !important;
+  background: var(--qbraid-bg-hover) !important;
   border-bottom: 1px solid var(--qbraid-border-subtle) !important;
   min-height: 36px !important;
 }
 
 .lm-DockPanel-tabBar .lm-TabBar-tab,
 .lm-TabPanel-tabBar .lm-TabBar-tab {
-  background: var(--qbraid-bg-base) !important;
+  background: var(--qbraid-bg-hover) !important;
   border: none !important;
   border-radius: 0 !important;
   color: var(--qbraid-text-muted) !important;
@@ -948,62 +948,44 @@
 }
 
 /* =============================================================================
-   Scrollbars - Thin 3px Style
+   Scrollbars - Auto-hide, Thin Style
    ============================================================================= */
 
-/* Force ALL scrollbars to be 3px */
-*::-webkit-scrollbar,
+/* Base scrollbar - hidden by default */
+*::-webkit-scrollbar {
+  width: 6px !important;
+  height: 6px !important;
+  background: transparent !important;
+}
+
 *::-webkit-scrollbar-corner {
-  width: 3px !important;
-  height: 3px !important;
+  background: transparent !important;
 }
 
-/* File browser scrollbar */
-.jp-DirListing-content::-webkit-scrollbar,
-.jp-DirListing-content::-webkit-scrollbar-corner,
-.jp-DirListing ul::-webkit-scrollbar,
-.jp-DirListing ul::-webkit-scrollbar-corner,
-.jp-FileBrowser .jp-DirListing-content::-webkit-scrollbar,
-.jp-FileBrowser .jp-DirListing-content::-webkit-scrollbar-corner,
-.jp-SidePanel .jp-DirListing-content::-webkit-scrollbar,
-.jp-SidePanel .jp-DirListing-content::-webkit-scrollbar-corner,
-.jp-FileBrowser-listing .jp-DirListing-content::-webkit-scrollbar,
-.jp-FileBrowser-listing .jp-DirListing-content::-webkit-scrollbar-corner,
-.jp-WindowedPanel-outer::-webkit-scrollbar,
-.jp-WindowedPanel-outer::-webkit-scrollbar-corner,
-.jp-Notebook .jp-WindowedPanel-outer::-webkit-scrollbar,
-.jp-Notebook .jp-WindowedPanel-outer::-webkit-scrollbar-corner {
-  width: 3px !important;
-  height: 3px !important;
-  background: var(--jp-scrollbar-background-color) !important;
+/* Scrollbar thumb - transparent by default, visible on hover/scroll */
+*::-webkit-scrollbar-thumb {
+  background: transparent !important;
+  border-radius: 3px !important;
+  transition: background 0.2s ease !important;
 }
 
-.jp-DirListing-content::-webkit-scrollbar-thumb,
-.jp-DirListing ul::-webkit-scrollbar-thumb,
-.jp-FileBrowser .jp-DirListing-content::-webkit-scrollbar-thumb,
-.jp-SidePanel .jp-DirListing-content::-webkit-scrollbar-thumb,
-.jp-FileBrowser-listing .jp-DirListing-content::-webkit-scrollbar-thumb,
-.jp-WindowedPanel-outer::-webkit-scrollbar-thumb,
-.jp-Notebook .jp-WindowedPanel-outer::-webkit-scrollbar-thumb {
-  border: 0 solid transparent !important;
-  background: rgb(var(--jp-scrollbar-thumb-color)) !important;
-  background-clip: content-box !important;
-  border-radius: var(--jp-scrollbar-thumb-radius) !important;
+/* Show scrollbar thumb on container hover */
+*:hover::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15) !important;
 }
 
-.jp-DirListing-content::-webkit-scrollbar-thumb:hover,
-.jp-DirListing ul::-webkit-scrollbar-thumb:hover,
-.jp-FileBrowser .jp-DirListing-content::-webkit-scrollbar-thumb:hover,
-.jp-SidePanel .jp-DirListing-content::-webkit-scrollbar-thumb:hover,
-.jp-FileBrowser-listing .jp-DirListing-content::-webkit-scrollbar-thumb:hover,
-.jp-WindowedPanel-outer::-webkit-scrollbar-thumb:hover,
-.jp-Notebook .jp-WindowedPanel-outer::-webkit-scrollbar-thumb:hover {
-  background: rgb(64, 64, 64) !important;
+*:hover::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25) !important;
 }
 
-.jp-DirListing-content,
-.jp-WindowedPanel-outer {
-  scrollbar-width: thin !important;
+/* Firefox - thin scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+
+*:hover {
+  scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
 }
 
 /* =============================================================================
@@ -1021,17 +1003,19 @@
 
 #jp-top-panel {
   border-bottom: none;
-  background: #000 !important; /* Solid black background */
+  background: var(
+    --qbraid-bg-hover
+  ) !important; /* Match file browser #1a1a1a */
+
   display: flex !important;
   flex-direction: row !important;
   align-items: center !important;
   justify-content: flex-start !important;
   gap: 0 !important;
-  min-height: var(--jp-private-menubar-height);
-  height: auto !important;
+  height: 36px !important; /* Fixed height for consistent spacing */
   overflow: visible !important;
   position: relative;
-  padding: 4px 12px 4px 0 !important;
+  padding: 0 12px 0 0 !important; /* No vertical padding - use fixed height */
   margin-left: 0 !important;
   contain: style !important;
 }
@@ -1060,7 +1044,7 @@
 
 /* CSS version indicator - Update when making changes */
 #jp-top-panel::after {
-  content: 'C5A';
+  content: 'C5F';
   position: fixed;
   top: 4px;
   right: 8px;

@@ -46,7 +46,10 @@
 
 #jp-top-panel {
   border-bottom: none; /* qBraid: no border */
-  background: #000 !important; /* qBraid: solid black background */
+  background: var(
+    --qbraid-bg-hover
+  ) !important; /* qBraid: match file browser #1a1a1a */
+
   display: flex !important;
   flex-direction: row !important; /* qBraid: horizontal layout */
   align-items: center !important; /* qBraid: center items vertically */
