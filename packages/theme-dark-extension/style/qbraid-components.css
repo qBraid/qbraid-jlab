@@ -13,7 +13,7 @@
 .jp-Completer {
   --jp-completer-type-background0: transparent;
   --jp-completer-type-background1: #3b82f6;
-  --jp-completer-type-background2: #f97316;
+  --jp-completer-type-background2: var(--qbraid-orange-500);
   --jp-completer-type-background3: #10b981;
   --jp-completer-type-background4: #ef4444;
   --jp-completer-type-background5: #8b5cf6;
@@ -148,7 +148,7 @@
 .jp-FileBrowser-toolbar
   .jp-ToolbarButton:first-child
   .jp-ToolbarButtonComponent {
-  color: #ef6950 !important;
+  color: var(--qbraid-coral-500) !important;
 }
 
 .jp-FileBrowser-toolbar
@@ -328,11 +328,11 @@
 
 /* Tab icons - orange for notebook/code files */
 .lm-TabBar-tabIcon svg {
-  fill: #f97316 !important;
+  fill: var(--qbraid-orange-500) !important;
 }
 
 .lm-TabBar-tab.lm-mod-current .lm-TabBar-tabIcon svg {
-  fill: #f97316 !important;
+  fill: var(--qbraid-orange-500) !important;
 }
 
 /* =============================================================================

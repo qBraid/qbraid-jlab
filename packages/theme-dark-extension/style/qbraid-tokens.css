@@ -11,7 +11,7 @@
 
   /* Backgrounds */
   --qbraid-bg-base: #0a0a0a; /* Deepest background */
-  --qbraid-bg-elevated: #111111; /* Sidebar, panels */
+  --qbraid-bg-elevated: #111; /* Sidebar, panels */
   --qbraid-bg-surface: #141414; /* Cards, cells */
   --qbraid-bg-hover: #1a1a1a; /* Hover states */
   --qbraid-bg-active: #1f1f1f; /* Active/pressed states */
@@ -20,7 +20,7 @@
   /* Borders */
   --qbraid-border-default: #262626;
   --qbraid-border-subtle: #1f1f1f;
-  --qbraid-border-strong: #333333;
+  --qbraid-border-strong: #333;
   --qbraid-border-focus: #3b82f6; /* Blue focus ring */
 
   /* Text */
@@ -58,6 +58,16 @@
   --qbraid-emerald-400: #34d399;
   --qbraid-emerald-500: #10b981; /* Primary green */
   --qbraid-emerald-600: #059669;
+
+  /* Accent - Coral (qBraid brand accent) */
+  --qbraid-coral-400: #f77e63;
+  --qbraid-coral-500: #ef6950; /* Primary coral */
+  --qbraid-coral-600: #dc5940;
+
+  /* Accent - Orange (file/notebook icons) */
+  --qbraid-orange-400: #fb923c;
+  --qbraid-orange-500: #f97316; /* Primary orange */
+  --qbraid-orange-600: #ea580c;
 
   /* ==========================================================================
      Semantic Colors
