@@ -32,7 +32,7 @@
 }
 
 #jp-main-dock-panel {
-  padding: 8px !important;
+  padding: 0 8px 4px !important; /* qBraid: no top padding */
 }
 
 #jp-main-dock-panel[data-mode='single-document'] {

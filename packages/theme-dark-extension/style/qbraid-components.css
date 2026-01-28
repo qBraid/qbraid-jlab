@@ -1093,12 +1093,18 @@
   border-top: none; /* No red dev mode bar */
 }
 
+/* Shell background - consistent dark theme */
+.jp-LabShell {
+  background: var(--qbraid-bg-hover, #1a1a1a) !important;
+}
+
 #jp-main-dock-panel {
   padding: 0 8px 4px !important; /* No top padding, minimal bottom */
+  margin-top: -8px !important; /* Pull up to close gap */
 }
 
 #jp-top-panel {
-  border-bottom: 1px solid var(--qbraid-border-default) !important;
+  border-bottom: none !important; /* Removed gap */
   background: var(
     --qbraid-bg-surface
   ) !important; /* Card background - redesign */
@@ -1142,7 +1148,7 @@
 
 /* CSS version indicator - Update when making changes */
 #jp-top-panel::after {
-  content: 'C6V';
+  content: 'C7B';
   position: fixed;
   top: 4px;
   right: 8px;
