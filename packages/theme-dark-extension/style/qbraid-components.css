@@ -3,8 +3,16 @@
 | All component-specific styles for the qBraid JupyterLab theme
 | Centralized from variables.css for better maintainability
 |
-| CSS Architecture Version: C5A
+| CSS Architecture Version: C5P
 |----------------------------------------------------------------------------*/
+
+/* =============================================================================
+   Global Variable Overrides
+   ============================================================================= */
+
+:root {
+  --jp-private-menubar-height: 48px; /* Override default 28px for redesign */
+}
 
 /* =============================================================================
    Completer / Autocomplete
@@ -45,36 +53,46 @@
 }
 
 /* =============================================================================
-   Menu Bar (Header)
+   Menu Bar (Header) - Redesign 2026
    ============================================================================= */
 
 .lm-MenuBar {
-  background: var(--qbraid-bg-hover) !important;
-  border-bottom: 1px solid var(--qbraid-border-strong) !important;
-  color: var(--qbraid-text-secondary) !important;
-  height: 40px !important;
-  line-height: 40px !important;
-  padding: 0 12px !important;
+  background: transparent !important; /* Transparent - top panel has bg */
+  border-bottom: none !important;
+  color: var(--qbraid-text-muted) !important;
+  height: 48px !important;
+  min-height: 48px !important;
+  display: flex !important;
+  align-items: center !important;
+  padding: 0 !important;
+  gap: 2px !important;
+  box-sizing: border-box !important;
 }
 
 .lm-MenuBar-item {
-  padding: 0 12px !important;
-  border-radius: 0 !important;
+  padding: 8px 12px !important; /* More vertical padding for centering */
+  border-radius: 6px !important;
   margin: 0 !important;
-  height: 40px !important;
-  line-height: 40px !important;
-  color: var(--qbraid-text-secondary) !important;
-  font-size: 13px !important;
+  height: 32px !important; /* Fixed height for items */
+  line-height: 16px !important; /* Line height for 12px text */
+  color: var(--qbraid-text-muted) !important; /* Muted gray text */
+  font-size: 12px !important;
   font-weight: 400 !important;
+  transition:
+    color 0.15s ease,
+    background 0.15s ease !important;
+  display: flex !important;
+  align-items: center !important;
+  box-sizing: border-box !important;
 }
 
 .lm-MenuBar-item:hover {
-  background: var(--qbraid-border-strong) !important;
-  color: var(--qbraid-text-primary) !important;
+  background: transparent !important;
+  color: var(--qbraid-text-primary) !important; /* White on hover */
 }
 
 .lm-MenuBar-item.lm-mod-active {
-  background: var(--qbraid-border-strong) !important;
+  background: var(--qbraid-bg-muted) !important;
   color: var(--qbraid-text-primary) !important;
 }
 
@@ -339,10 +357,23 @@
    Notebook Toolbar
    ============================================================================= */
 
+/* Notebook/MainArea panel - rounded corners on the content area */
+
+/* Target the stacked panel content directly */
+
+/* Notebook panel styling */
+
+/* Notebook panel styling */
+.jp-NotebookPanel {
+  border-radius: 12px !important;
+  overflow: hidden !important;
+}
+
+/* Toolbar - matches content area */
 .jp-NotebookPanel-toolbar {
-  background: var(--qbraid-bg-base) !important;
+  background: var(--qbraid-bg-hover) !important; /* Same as notebook content */
+  border: none !important;
   border-bottom: 1px solid var(--qbraid-border-subtle) !important;
-  padding: 4px 8px !important;
   min-height: 40px !important;
 }
 
@@ -366,15 +397,19 @@
   color: var(--qbraid-text-primary) !important;
 }
 
-/* Toolbar icons - white outlines */
+/* Toolbar icons - bright white with pop */
 .jp-ToolbarButton .jp-ToolbarButtonComponent svg {
-  fill: var(--qbraid-text-secondary) !important;
-  stroke: var(--qbraid-text-secondary) !important;
+  fill: #fff !important;
+  stroke: #fff !important;
+  opacity: 0.9 !important;
+  filter: brightness(1.1) !important;
 }
 
 .jp-ToolbarButton .jp-ToolbarButtonComponent:hover svg {
-  fill: var(--qbraid-text-primary) !important;
-  stroke: var(--qbraid-text-primary) !important;
+  fill: #fff !important;
+  stroke: #fff !important;
+  opacity: 1 !important;
+  filter: brightness(1.2) drop-shadow(0 0 2px rgba(255, 255, 255, 0.4)) !important;
 }
 
 /* Run button - green */
@@ -563,6 +598,7 @@
 .jp-Notebook {
   background: var(--qbraid-bg-hover) !important;
   padding: 16px !important;
+  border-radius: 0 0 10px 10px !important; /* Bottom corners - toolbar has top corners */
 }
 
 /* =============================================================================
@@ -762,8 +798,17 @@
    ============================================================================= */
 
 #jp-left-stack > .lm-Widget,
-#jp-right-stack > .lm-Widget {
-  background-color: var(--qbraid-bg-hover) !important;
+/* Right sidebar - consistent background, no visible gap */
+#jp-right-stack,
+#jp-right-stack > .lm-Widget,
+#jp-right-stack .lm-StackedPanel,
+#jp-right-stack .jp-SidePanel {
+  background-color: #1a1a1a !important;
+}
+
+/* Right sidebar icon bar - same background */
+.jp-SideBar.lm-TabBar.jp-mod-right {
+  background-color: #1a1a1a !important;
 }
 
 #jp-left-stack {
@@ -772,6 +817,16 @@
 
 #jp-right-stack {
   border-left: 1px solid var(--qbraid-border-subtle) !important;
+}
+
+/* Scrollbar in right sidebar */
+#jp-right-stack ::-webkit-scrollbar {
+  width: 6px !important;
+  background: #1a1a1a !important;
+}
+
+#jp-right-stack ::-webkit-scrollbar-track {
+  background: #1a1a1a !important;
 }
 
 /* =============================================================================
@@ -997,33 +1052,34 @@
 }
 
 #jp-main-dock-panel {
-  padding: 8px 0 8px 8px !important; /* No right padding - scrollbar flush to edge */
-  margin-right: 0 !important;
+  padding: 8px !important;
 }
 
 #jp-top-panel {
-  border-bottom: none;
+  border-bottom: 1px solid var(--qbraid-border-default) !important;
   background: var(
-    --qbraid-bg-hover
-  ) !important; /* Match file browser #1a1a1a */
+    --qbraid-bg-surface
+  ) !important; /* Card background - redesign */
 
   display: flex !important;
   flex-direction: row !important;
   align-items: center !important;
   justify-content: flex-start !important;
   gap: 0 !important;
-  height: 36px !important; /* Fixed height for consistent spacing */
+  min-height: 48px !important; /* Redesign: 48px header height */
+  height: 48px !important;
   overflow: visible !important;
   position: relative;
-  padding: 0 12px 0 0 !important; /* No vertical padding - use fixed height */
-  margin-left: 0 !important;
+  padding: 0 12px !important; /* Horizontal padding only */
+  margin: 0 !important;
   contain: style !important;
+  box-sizing: border-box !important;
 }
 
-/* Menu bar flows after logo */
+/* Menu bar flows after logo with gap */
 #jp-top-panel > #jp-MainLogo + #jp-MainMenu,
 #jp-top-panel > #jp-MainLogo + .lm-MenuBar {
-  margin-left: 4px !important;
+  margin-left: 32px !important; /* Gap between logo and menu */
   padding-left: 0 !important;
 }
 
@@ -1044,7 +1100,7 @@
 
 /* CSS version indicator - Update when making changes */
 #jp-top-panel::after {
-  content: 'C5G';
+  content: 'C6B';
   position: fixed;
   top: 4px;
   right: 8px;
@@ -1138,66 +1194,6 @@
   color: var(--qbraid-text-primary);
 }
 
-/* =============================================================================
-   Menu Bar Overrides (Top Panel)
-   These override the general menu bar styles above when in the top panel
-   ============================================================================= */
-
 /* stylelint-disable no-duplicate-selectors */
 
-.lm-MenuBar,
-#jp-MainMenu {
-  background: transparent !important; /* Transparent - parent has black bg */
-  color: var(--qbraid-text-primary) !important;
-  font-size: var(--jp-ui-font-size1);
-  overflow: visible !important;
-  border-bottom: none;
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-  flex-shrink: 0 !important;
-  display: flex !important;
-  visibility: visible !important;
-  order: 1 !important;
-}
-
-#jp-top-panel > #jp-MainMenu,
-#jp-top-panel > .lm-MenuBar#jp-MainMenu {
-  margin-left: 4px !important;
-  padding-left: 0 !important;
-}
-
-.lm-MenuBar-item {
-  padding: 0 4px !important;
-  border: none;
-  border-radius: 0;
-  margin: 0 !important;
-  transition:
-    background var(--qbraid-transition-fast),
-    color var(--qbraid-transition-fast);
-  color: var(--qbraid-text-primary) !important;
-}
-
-.lm-MenuBar-item:hover {
-  background: rgba(255, 255, 255, 0.1) !important;
-  color: var(--qbraid-text-primary) !important;
-}
-
-.lm-MenuBar-item:active,
-.lm-MenuBar-item[aria-expanded='true'] {
-  background: rgba(255, 255, 255, 0.15) !important;
-  color: var(--qbraid-text-primary) !important;
-}
-
-.lm-MenuBar-item.lm-mod-active {
-  background: rgba(255, 255, 255, 0.1) !important;
-}
-
-.lm-MenuBar.lm-mod-active .lm-MenuBar-item.lm-mod-active {
-  z-index: 10001;
-  background: rgba(255, 255, 255, 0.15) !important;
-  color: var(--qbraid-text-primary) !important;
-  border: none !important;
-  box-shadow: none !important;
-}
+/* Duplicate menu bar styles removed - see Menu Bar section at top of file */

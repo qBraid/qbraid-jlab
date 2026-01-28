@@ -105,7 +105,9 @@
 .jp-SideBar .lm-TabBar-tab:not(.lm-mod-current),
 #jp-down-stack .lm-TabBar-tab:not(.lm-mod-current) {
   background: #1a1a1a !important; /* qBraid: dark grey sidebar background */
-  transition: background var(--qbraid-transition-fast), color var(--qbraid-transition-fast);
+  transition:
+    background var(--qbraid-transition-fast),
+    color var(--qbraid-transition-fast);
   opacity: 0.7; /* qBraid: slightly muted inactive tabs */
 }
 
@@ -247,6 +249,11 @@
 
 /* Stack panels - qBraid dark sidebar */
 
+#jp-left-stack,
+#jp-right-stack {
+  background-color: #1a1a1a !important; /* qBraid: consistent background */
+}
+
 #jp-left-stack > .lm-Widget,
 #jp-right-stack > .lm-Widget {
   min-width: var(--jp-sidebar-min-width);
@@ -255,6 +262,12 @@
 
 #jp-right-stack {
   border-left: 1px solid var(--qbraid-border-subtle) !important; /* #1f1f1f - Subtle border */
+}
+
+/* qBraid: Ensure right stack children have consistent background */
+#jp-right-stack .lm-StackedPanel,
+#jp-right-stack .jp-SidePanel {
+  background-color: #1a1a1a !important;
 }
 
 #jp-left-stack {
