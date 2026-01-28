@@ -35,7 +35,9 @@ input.jp-mod-styled {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  transition: border-color var(--qbraid-transition-fast), box-shadow var(--qbraid-transition-fast);
+  transition:
+    border-color var(--qbraid-transition-fast),
+    box-shadow var(--qbraid-transition-fast);
 }
 
 input.jp-mod-styled:hover {
@@ -62,7 +64,8 @@ input[type='checkbox'].jp-mod-styled:focus-visible {
 .jp-select-wrapper {
   display: flex;
   position: relative;
-  flex-direction: column;
+  flex-direction: row; /* qBraid: row for caret alignment */
+  align-items: center; /* qBraid: vertically center */
   padding: 1px;
   background-color: var(--jp-layout-color1);
   box-sizing: border-box;
@@ -70,20 +73,24 @@ input[type='checkbox'].jp-mod-styled:focus-visible {
 }
 
 .jp-select-wrapper:not(.multiple) {
-  height: 28px;
+  height: 44px; /* qBraid: taller for better UX */
+}
+
+/* qBraid: position the caret icon - use flexbox centering */
+.jp-select-wrapper > span {
+  position: absolute;
+  right: 12px;
+  top: 7px;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
 }
 
 .jp-select-wrapper.jp-mod-focused select.jp-mod-styled {
   border: var(--jp-border-width) solid var(--jp-input-active-border-color);
   box-shadow: var(--jp-input-box-shadow);
   background-color: var(--jp-input-active-background);
-}
-
-select.jp-mod-styled:hover {
-  cursor: pointer;
-  color: var(--jp-ui-font-color0);
-  background-color: var(--jp-input-hover-background);
-  box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.5);
 }
 
 select.jp-mod-styled {
@@ -99,10 +106,13 @@ select.jp-mod-styled {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  transition: border-color var(--qbraid-transition-fast), background-color var(--qbraid-transition-fast);
+  transition:
+    border-color var(--qbraid-transition-fast),
+    background-color var(--qbraid-transition-fast);
 }
 
 select.jp-mod-styled:hover {
+  cursor: pointer;
   background-color: var(--qbraid-bg-hover); /* #1a1a1a - Hover state */
   border-color: var(--qbraid-border-strong); /* #333333 - Stronger border */
 }

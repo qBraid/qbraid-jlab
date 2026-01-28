@@ -119,19 +119,20 @@ button.jp-Dialog-close-button {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  align-items: start;
+  align-items: center; /* qBraid: center align */
   flex: 0 0 auto;
-  gap: 8px; /* qBraid: more spacing */
+  gap: 12px; /* qBraid: more spacing */
   margin-left: -12px;
   margin-right: -12px;
-  padding: 12px;
+  padding: 16px 12px;
   border-top: 1px solid var(--qbraid-border-subtle) !important; /* #1f1f1f - Subtle border */
   background: #1a1a1a !important; /* qBraid: dark grey surface */
 }
 
 .jp-Dialog-footerButtons {
-  width: 100%;
-  text-align: end;
+  display: flex;
+  justify-content: center; /* qBraid: center buttons */
+  gap: 12px;
 }
 
 .jp-Dialog-checkbox {

@@ -3,7 +3,7 @@
 | All component-specific styles for the qBraid JupyterLab theme
 | Centralized from variables.css for better maintainability
 |
-| CSS Architecture Version: C5P
+| CSS Architecture Version: C8A
 |----------------------------------------------------------------------------*/
 
 /* =============================================================================
@@ -920,33 +920,134 @@ svg[data-icon='ui-components:new-folder'] path {
   background: transparent !important;
   border-top: 1px solid var(--qbraid-border-subtle) !important;
   padding: 16px 20px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  width: 100% !important;
+}
+
+/* Hide the spacer */
+.jp-Dialog-footer .jp-Dialog-spacer {
+  display: none !important;
+}
+
+/* Center the checkbox label */
+.jp-Dialog-footer .jp-Dialog-checkbox,
+.jp-Dialog-footer > label {
+  display: flex !important;
+  justify-content: center !important;
+  width: 100% !important;
+  text-align: center !important;
+}
+
+/* Center the footer buttons */
+.jp-Dialog-footer .jp-Dialog-footerButtons {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 12px !important;
+  width: 100% !important;
+}
+
+/* Dialog dropdown/select styling */
+.jp-Dialog-body .jp-select-wrapper {
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  height: 44px !important;
+}
+
+.jp-Dialog-body .jp-select-wrapper select.jp-mod-styled {
+  padding: 10px 44px 10px 14px !important;
+  height: 44px !important;
+  border-radius: var(--qbraid-radius-md) !important;
+  line-height: 1.4 !important;
+}
+
+/* Center the caret icon in select wrapper - use flexbox centering */
+.jp-Dialog-body .jp-select-wrapper > span,
+.jp-select-wrapper > span[class] {
+  position: absolute !important;
+  right: 14px !important;
+  top: 7px !important;
+  bottom: 0 !important;
+  transform: none !important;
+  pointer-events: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
 /* Dialog buttons */
 .jp-Dialog-button {
   border-radius: var(--qbraid-radius-md) !important;
-  padding: 8px 16px !important;
+  padding: 8px 20px !important;
   font-weight: 500 !important;
-  transition: background-color var(--qbraid-transition-fast) !important;
+  font-size: 13px !important;
+  min-height: 36px !important;
+  border: none !important;
+  outline: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition:
+    background-color var(--qbraid-transition-fast),
+    box-shadow var(--qbraid-transition-fast) !important;
 }
 
+/* Hide empty button icon divs and center the label */
+.jp-Dialog-button .jp-Dialog-buttonIcon:empty {
+  display: none !important;
+}
+
+.jp-Dialog-button .jp-Dialog-buttonLabel {
+  text-align: center !important;
+}
+
+/* Primary action button (Select, OK, etc.) */
 .jp-Dialog-button.jp-mod-accept {
   background: var(--qbraid-purple-500) !important;
   color: var(--qbraid-text-inverse) !important;
+  border: none !important;
 }
 
 .jp-Dialog-button.jp-mod-accept:hover {
   background: var(--qbraid-purple-600) !important;
 }
 
+.jp-Dialog-button.jp-mod-accept:focus,
+.jp-Dialog-button.jp-mod-accept:focus-visible {
+  outline: none !important;
+  box-shadow:
+    0 0 0 2px var(--qbraid-bg-surface),
+    0 0 0 4px var(--qbraid-purple-500) !important;
+}
+
+/* Secondary action button (Cancel, etc.) */
 .jp-Dialog-button.jp-mod-reject {
-  background: transparent !important;
+  background: var(--qbraid-bg-muted) !important;
   color: var(--qbraid-text-primary) !important;
-  border: 1px solid var(--qbraid-border-default) !important;
+  border: none !important;
 }
 
 .jp-Dialog-button.jp-mod-reject:hover {
   background: var(--qbraid-bg-hover) !important;
+}
+
+.jp-Dialog-button.jp-mod-reject:focus,
+.jp-Dialog-button.jp-mod-reject:focus-visible {
+  outline: none !important;
+  box-shadow:
+    0 0 0 2px var(--qbraid-bg-surface),
+    0 0 0 4px var(--qbraid-border-strong) !important;
+}
+
+/* Remove default focus outlines from dialog buttons */
+button.jp-Dialog-button:focus,
+button.jp-Dialog-button:focus-visible,
+button.jp-Dialog-button.jp-mod-styled:focus,
+button.jp-Dialog-button.jp-mod-styled:focus-visible {
+  outline: none !important;
+  outline-offset: 0 !important;
 }
 
 /* =============================================================================
@@ -1178,7 +1279,7 @@ svg[data-icon='ui-components:new-folder'] path {
 
 /* CSS version indicator - Update when making changes */
 #jp-top-panel::after {
-  content: 'C7N';
+  content: 'C8H';
   position: fixed;
   top: 4px;
   right: 8px;
