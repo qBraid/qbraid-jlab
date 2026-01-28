@@ -357,26 +357,61 @@
    Notebook Toolbar
    ============================================================================= */
 
-/* Notebook/MainArea panel - rounded corners on the content area */
-
-/* Target the stacked panel content directly */
-
-/* Notebook panel styling */
-
 /* Notebook panel styling */
 .jp-NotebookPanel {
   border-radius: 12px !important;
   overflow: hidden !important;
 }
 
-/* Toolbar - matches content area */
-.jp-NotebookPanel-toolbar {
-  background: var(--qbraid-bg-hover) !important; /* Same as notebook content */
+/* Notebook toolbar - background matches content area for floating effect */
+.jp-NotebookPanel-toolbar.jp-Toolbar {
+  background: var(
+    --qbraid-bg-hover,
+    #1a1a1a
+  ) !important; /* Matches content area */
+
   border: none !important;
-  border-bottom: 1px solid var(--qbraid-border-subtle) !important;
-  min-height: 40px !important;
+  border-bottom: none !important;
+  min-height: 56px !important;
+  padding: 10px 4% !important; /* Match pill margins so icons align */
+  display: flex !important;
+  align-items: center !important;
+  position: relative !important;
 }
 
+/* Dark floating pill - width with margins */
+.jp-NotebookPanel-toolbar.jp-Toolbar::before {
+  content: '' !important;
+  position: absolute !important;
+  left: 4% !important;
+  right: 4% !important; /* 3% narrower */
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  height: 40px !important;
+  background: var(--qbraid-bg-base, #0a0a0a) !important;
+  border-radius: 10px !important;
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.4),
+    0 2px 4px rgba(0, 0, 0, 0.3) !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Toolbar items need to be above the pill */
+.jp-NotebookPanel-toolbar.jp-Toolbar > .jp-Toolbar-item {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* Kernel status - add right padding so not flush with edge */
+.jp-NotebookPanel-toolbar .jp-Notebook-ExecutionIndicator,
+.jp-NotebookPanel-toolbar .jp-KernelStatus,
+.jp-NotebookPanel-toolbar [data-jp-item-name='kernelStatus'],
+.jp-NotebookPanel-toolbar [data-jp-item-name='kernelName'] {
+  margin-right: 8px !important;
+}
+
+/* General toolbar reset */
 .jp-Toolbar {
   background: transparent !important;
   border: none !important;
@@ -393,7 +428,7 @@
 }
 
 .jp-ToolbarButton .jp-ToolbarButtonComponent:hover {
-  background: var(--qbraid-bg-hover) !important;
+  background: rgba(255, 255, 255, 0.1) !important;
   color: var(--qbraid-text-primary) !important;
 }
 
@@ -1100,7 +1135,7 @@
 
 /* CSS version indicator - Update when making changes */
 #jp-top-panel::after {
-  content: 'C6B';
+  content: 'C6N';
   position: fixed;
   top: 4px;
   right: 8px;

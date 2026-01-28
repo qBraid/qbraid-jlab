@@ -19,9 +19,9 @@
   --toolbar-item-gap: 0;
 
   color: var(--jp-ui-font-color1);
-  border-bottom: 1px solid var(--qbraid-border-subtle) !important; /* #1f1f1f - Subtle border */
-  box-shadow: none !important; /* qBraid: no shadow */
-  background: #0a0a0a !important; /* qBraid: deepest background */
+  border-bottom: none; /* qBraid: handled per-context */
+  box-shadow: none; /* qBraid: no shadow */
+  background: transparent; /* qBraid: let context control background */
   min-height: var(--jp-toolbar-micro-height);
   padding: 0 8px; /* qBraid: more padding */
   z-index: 8;
@@ -133,7 +133,9 @@ button.jp-ToolbarButtonComponent {
   min-width: unset;
   min-height: unset;
   color: var(--qbraid-text-muted); /* #a3a3a3 - Muted text */
-  transition: background-color var(--qbraid-transition-fast), color var(--qbraid-transition-fast);
+  transition:
+    background-color var(--qbraid-transition-fast),
+    color var(--qbraid-transition-fast);
 }
 
 button.jp-ToolbarButtonComponent:hover:not(:disabled) {
