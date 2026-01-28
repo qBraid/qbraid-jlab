@@ -15,6 +15,19 @@
 }
 
 /* =============================================================================
+   Folder Icon - Outlined Style
+   ============================================================================= */
+
+/* Force folder icons to be outlined (not filled) */
+svg[data-icon='ui-components:folder'] path,
+svg[data-icon='ui-components:folder-favorite'] path,
+svg[data-icon='ui-components:new-folder'] path {
+  fill: none !important;
+  stroke: var(--qbraid-text-muted) !important;
+  stroke-width: 1.5px !important;
+}
+
+/* =============================================================================
    Completer / Autocomplete
    ============================================================================= */
 
@@ -1165,7 +1178,7 @@
 
 /* CSS version indicator - Update when making changes */
 #jp-top-panel::after {
-  content: 'C7I';
+  content: 'C7N';
   position: fixed;
   top: 4px;
   right: 8px;
