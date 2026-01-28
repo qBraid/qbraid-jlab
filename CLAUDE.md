@@ -10,21 +10,21 @@ Forked JupyterLab with qBraid UI styling and integrated extensions via git submo
 **JupyterLab version:** 4.6.0-alpha.2 (Rspack bundler)
 **Python venv:** `/Users/kanav/qBraid_repositories/python_environments/jlab-source/bin`
 
-## Architecture: Git Submodules
+## Architecture: Git Submodules + Federated Extensions
 
-Extensions are now managed as git submodules in `packages/external/`:
-
+**Submodules** (bundled with JupyterLab):
 ```
 packages/external/
-├── jupyterlab-git/   → https://github.com/jupyterlab/jupyterlab-git.git
 └── qbraid-lab/       → https://github.com/qBraid/qbraid-lab-extensions.git
 ```
 
+**Federated Extensions** (installed via pip):
+- `jupyterlab-git` - Git integration (pip install jupyterlab-git)
+
 **Benefits:**
-- Single build artifact (all extensions bundled together)
-- Full control over extension source code
-- Easier version management and updates
-- Simplified pip install for end users
+- qbraid-lab bundled for full control and customization
+- jupyterlab-git as standard pip package (no maintenance needed)
+- Single build artifact for core + qbraid extensions
 
 ---
 
@@ -40,9 +40,11 @@ git submodule update --init --recursive
 # Install dependencies
 yarn install
 
-# Build submodules
-cd packages/external/jupyterlab-git && jlpm install && jlpm build:lib && cd ../../..
+# Build qbraid-lab submodule
 cd packages/external/qbraid-lab && yarn install && yarn build:lib && cd ../../..
+
+# Install jupyterlab-git (federated extension)
+pip install jupyterlab-git
 
 # Build JupyterLab
 cd dev_mode && npm run build && cd ..
@@ -55,12 +57,11 @@ jupyter lab --dev-mode --extensions-in-dev-mode --watch --no-browser
 
 ## Submodule Management
 
-### Update submodules to latest
+### Update qbraid-lab submodule to latest
 ```bash
 cd packages/external/qbraid-lab && git pull origin main && cd ../../..
-cd packages/external/jupyterlab-git && git pull origin main && cd ../../..
-git add packages/external/qbraid-lab packages/external/jupyterlab-git
-git commit -m "chore: update submodules"
+git add packages/external/qbraid-lab
+git commit -m "chore: update qbraid-lab submodule"
 ```
 
 ### After cloning the repo
@@ -106,13 +107,13 @@ git submodule update --init --recursive
 
 ## Python Server Extensions
 
-Both extensions have Python server components that must be installed:
+Extensions with Python backends must be pip installed:
 
 ```bash
-# Install from PyPI (pre-built)
+# Install jupyterlab-git (federated extension with server component)
 pip install jupyterlab-git
 
-# Install qbraid-lab from submodule
+# Install qbraid-lab server extension from submodule
 pip install packages/external/qbraid-lab
 ```
 
@@ -212,9 +213,10 @@ See `packages/external/qbraid-lab/CLAUDE.md` for:
 
 ---
 
-## jupyterlab-git Submodule
+## jupyterlab-git (Federated Extension)
 
-Standard JupyterLab Git extension. No CLAUDE.md - refer to official docs:
+Installed via pip, not bundled. Standard JupyterLab Git extension.
+- Install: `pip install jupyterlab-git`
 - GitHub: https://github.com/jupyterlab/jupyterlab-git
 - Provides: Git panel in left sidebar, diff viewer, commit UI
 
