@@ -884,6 +884,38 @@ svg[data-icon='ui-components:new-folder'] path {
   background: #1a1a1a !important;
 }
 
+/* qBraid sidebar widgets - fix scroll */
+.qbraid-jobs-widget,
+.qbraid-devices-widget,
+.qbraid-environments-widget {
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.qbraid-jobs-widget > .jlab-shadcn,
+.qbraid-devices-widget > .jlab-shadcn,
+.qbraid-environments-widget > .jlab-shadcn {
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+}
+
+.qbraid-jobs-widget .quantum-jobs-sidebar,
+.qbraid-devices-widget .quantum-devices-sidebar {
+  height: 100% !important;
+  overflow: hidden !important;
+}
+
+/* The main content area that should scroll */
+.qbraid-jobs-widget .tw-overflow-auto,
+.qbraid-devices-widget .tw-overflow-auto {
+  flex: 1 !important;
+  min-height: 0 !important;
+  overflow-y: auto !important;
+}
+
 /* =============================================================================
    Status Bar
    ============================================================================= */
@@ -1279,7 +1311,7 @@ button.jp-Dialog-button.jp-mod-styled:focus-visible {
 
 /* CSS version indicator - Update when making changes */
 #jp-top-panel::after {
-  content: 'C8H';
+  content: 'C8J';
   position: fixed;
   top: 4px;
   right: 8px;
