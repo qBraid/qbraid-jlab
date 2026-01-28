@@ -8,6 +8,7 @@
     "examples/*",
     "examples/federated/*",
     "packages/*",
+    "packages/external/*",
     "packages/services/examples/node",
     "packages/services/examples/browser",
     "packages/services/examples/typescript-browser-with-output",
