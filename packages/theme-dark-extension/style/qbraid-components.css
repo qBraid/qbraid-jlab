@@ -288,24 +288,28 @@
 .lm-DockPanel-tabBar,
 .lm-TabPanel-tabBar {
   background: var(--qbraid-bg-hover) !important;
-  border-bottom: 1px solid var(--qbraid-border-subtle) !important;
+  border-bottom: none !important; /* Remove line */
   min-height: 36px !important;
 }
 
 .lm-DockPanel-tabBar .lm-TabBar-tab,
 .lm-TabPanel-tabBar .lm-TabBar-tab {
-  background: var(--qbraid-bg-hover) !important;
+  background: var(--qbraid-bg-surface, #141414) !important;
   border: none !important;
-  border-radius: 0 !important;
+  border-radius: 6px 6px 0 0 !important;
   color: var(--qbraid-text-muted) !important;
   padding: 8px 16px !important;
-  margin: 0 !important;
-  border-right: 1px solid var(--qbraid-border-subtle) !important;
+  margin: 0 2px !important;
+  border-right: none !important;
   font-size: 13px !important;
   min-height: 36px !important;
+  box-shadow:
+    0 8px 28px rgba(0, 0, 0, 0.85),
+    0 4px 12px rgba(0, 0, 0, 0.6) !important;
   transition:
     background var(--qbraid-transition-fast),
-    color var(--qbraid-transition-fast);
+    color var(--qbraid-transition-fast),
+    box-shadow var(--qbraid-transition-fast);
 }
 
 .lm-DockPanel-tabBar .lm-TabBar-tab:hover,
@@ -317,9 +321,12 @@
 /* Active tab */
 .lm-DockPanel-tabBar .lm-TabBar-tab.lm-mod-current,
 .lm-TabPanel-tabBar .lm-TabBar-tab.lm-mod-current {
-  background: var(--qbraid-bg-hover) !important;
+  background: var(--qbraid-bg-surface, #141414) !important;
   color: var(--qbraid-text-primary) !important;
   font-weight: 500 !important;
+  box-shadow:
+    0 8px 28px rgba(0, 0, 0, 0.85),
+    0 4px 12px rgba(0, 0, 0, 0.6) !important;
 }
 
 /* Tab close button */
@@ -372,8 +379,8 @@
 
   border: none !important;
   border-bottom: none !important;
-  min-height: 56px !important;
-  padding: 10px 4% !important; /* Match pill margins so icons align */
+  min-height: 48px !important; /* Reduced height */
+  padding: 6px 4% !important; /* Reduced vertical padding */
   display: flex !important;
   align-items: center !important;
   position: relative !important;
@@ -387,9 +394,9 @@
   right: 4% !important; /* 3% narrower */
   top: 50% !important;
   transform: translateY(-50%) !important;
-  height: 40px !important;
+  height: 36px !important; /* Reduced to match smaller toolbar */
   background: var(--qbraid-bg-base, #0a0a0a) !important;
-  border-radius: 10px !important;
+  border-radius: 8px !important;
   box-shadow:
     0 4px 12px rgba(0, 0, 0, 0.4),
     0 2px 4px rgba(0, 0, 0, 0.3) !important;
@@ -1087,7 +1094,7 @@
 }
 
 #jp-main-dock-panel {
-  padding: 8px !important;
+  padding: 0 8px 4px !important; /* No top padding, minimal bottom */
 }
 
 #jp-top-panel {
@@ -1135,7 +1142,7 @@
 
 /* CSS version indicator - Update when making changes */
 #jp-top-panel::after {
-  content: 'C6N';
+  content: 'C6V';
   position: fixed;
   top: 4px;
   right: 8px;
