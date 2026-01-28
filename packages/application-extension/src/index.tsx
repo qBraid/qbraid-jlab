@@ -45,6 +45,7 @@ import {
 import {
   buildIcon,
   ContextMenuSvg,
+  gridIcon,
   jupyterIcon,
   RankedMenu,
   Switch
@@ -1487,6 +1488,40 @@ const jupyterLogo: JupyterFrontEndPlugin<void> = {
 };
 
 /**
+ * The qBraid dashboard panel in the left sidebar.
+ */
+const qbraidDashboard: JupyterFrontEndPlugin<void> = {
+  id: '@jupyterlab/application-extension:qbraid-dashboard',
+  description: 'Adds the qBraid dashboard panel to the left sidebar.',
+  autoStart: true,
+  requires: [ILabShell, ITranslator],
+  activate: (
+    app: JupyterFrontEnd,
+    shell: ILabShell,
+    translator: ITranslator
+  ) => {
+    const trans = translator.load('jupyterlab');
+    const widget = new Widget();
+    widget.id = 'qbraid-dashboard';
+    widget.title.icon = gridIcon;
+    widget.title.caption = trans.__('qBraid Dashboard');
+
+    // Add placeholder content
+    widget.node.innerHTML = `
+      <div style="padding: 16px; color: var(--jp-ui-font-color1);">
+        <h3 style="margin: 0 0 8px 0;">qBraid Dashboard</h3>
+        <p style="margin: 0; font-size: 12px; color: var(--jp-ui-font-color2);">
+          Dashboard functionality coming soon.
+        </p>
+      </div>
+    `;
+
+    // rank: 0 puts it at the top of the left sidebar
+    shell.add(widget, 'left', { rank: 0 });
+  }
+};
+
+/**
  * The simple interface mode switch in the status bar.
  */
 const modeSwitchPlugin: JupyterFrontEndPlugin<void> = {
@@ -1584,7 +1619,8 @@ const plugins: JupyterFrontEndPlugin<any>[] = [
   paths,
   propertyInspector,
   jupyterLogo,
-  topbar
+  topbar,
+  qbraidDashboard
 ];
 
 export default plugins;

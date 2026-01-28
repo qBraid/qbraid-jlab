@@ -63,6 +63,7 @@ import filterListSvgstr from '../../style/icons/toolbar/filter-list.svg';
 import filterSvgstr from '../../style/icons/search/filter.svg';
 import folderFavoriteSvgstr from '../../style/icons/filetype/folder-favorite.svg';
 import folderSvgstr from '../../style/icons/filetype/folder.svg';
+import gridSvgstr from '../../style/icons/sidebar/grid.svg';
 import historySvgstr from '../../style/icons/history.svg';
 import homeSvgstr from '../../style/icons/filetype/home.svg';
 import html5Svgstr from '../../style/icons/filetype/html5.svg';
@@ -188,6 +189,7 @@ export const filterIcon = new LabIcon({ name: 'ui-components:filter', svgstr: fi
 export const filterListIcon = new LabIcon({ name: 'ui-components:filter-list', svgstr: filterListSvgstr });
 export const folderFavoriteIcon = new LabIcon({ name: 'ui-components:folder-favorite', svgstr: folderFavoriteSvgstr });
 export const folderIcon = new LabIcon({ name: 'ui-components:folder', svgstr: folderSvgstr });
+export const gridIcon = new LabIcon({ name: 'ui-components:grid', svgstr: gridSvgstr });
 export const historyIcon = new LabIcon({ name: 'ui-components:history', svgstr: historySvgstr });
 export const homeIcon = new LabIcon({ name: 'ui-components:home', svgstr: homeSvgstr });
 export const html5Icon = new LabIcon({ name: 'ui-components:html5', svgstr: html5Svgstr });

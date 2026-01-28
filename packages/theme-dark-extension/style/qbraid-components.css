@@ -1309,9 +1309,19 @@ button.jp-Dialog-button.jp-mod-styled:focus-visible {
   margin-right: 8px;
 }
 
+/* Hide unwanted sidebar icons (TOC, Debugger, Property Inspector) */
+#tab-jp-property-inspector,
+#tab-jp-debugger-sidebar,
+#tab-table-of-contents,
+li[data-id='jp-property-inspector'],
+li[data-id='jp-debugger-sidebar'],
+li[data-id='table-of-contents'] {
+  display: none !important;
+}
+
 /* CSS version indicator - Update when making changes */
 #jp-top-panel::after {
-  content: 'C8J';
+  content: 'C9H';
   position: fixed;
   top: 4px;
   right: 8px;
