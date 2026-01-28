@@ -941,8 +941,20 @@
    ============================================================================= */
 
 .jp-Launcher {
-  background: var(--qbraid-bg-base) !important;
+  background: var(
+    --qbraid-bg-hover,
+    #1a1a1a
+  ) !important; /* Match notebook background */
+
   padding: 32px !important;
+}
+
+.jp-Launcher-body {
+  background: var(--qbraid-bg-hover, #1a1a1a) !important;
+}
+
+.jp-Launcher-content {
+  background: var(--qbraid-bg-hover, #1a1a1a) !important;
 }
 
 .jp-Launcher-section {
@@ -981,7 +993,12 @@
    ============================================================================= */
 
 .jp-Terminal {
-  background: var(--qbraid-bg-base) !important;
+  background: #000 !important; /* Match xterm canvas */
+}
+
+.jp-Terminal-body {
+  background: #000 !important;
+  padding: 0 !important; /* Remove padding to eliminate the line */
 }
 
 /* =============================================================================
@@ -1148,7 +1165,7 @@
 
 /* CSS version indicator - Update when making changes */
 #jp-top-panel::after {
-  content: 'C7B';
+  content: 'C7I';
   position: fixed;
   top: 4px;
   right: 8px;

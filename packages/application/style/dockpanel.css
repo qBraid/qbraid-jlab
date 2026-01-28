@@ -13,7 +13,11 @@
 
 .lm-DockPanel-widget,
 .lm-TabPanel-stackedPanel {
-  background: var(--qbraid-bg-base);
+  background: var(
+    --qbraid-bg-hover,
+    #1a1a1a
+  ); /* Match notebook/launcher background */
+
   border-left: var(--jp-border-width) solid var(--qbraid-border-subtle);
   border-bottom: var(--jp-border-width) solid var(--qbraid-border-subtle);
 }
