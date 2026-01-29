@@ -1319,9 +1319,28 @@ li[data-id='table-of-contents'] {
   display: none !important;
 }
 
+/* =============================================================================
+   Right Sidebar Gap Fix
+   Lumino BoxPanel reserves space for the hidden right sidebar tab bar.
+   This CSS makes the main split panel stretch to fill that gap.
+   ============================================================================= */
+
+/* Hide the right sidebar tab bar completely */
+.jp-SideBar.jp-mod-right {
+  display: none !important;
+  width: 0 !important;
+  min-width: 0 !important;
+}
+
+/* Override Lumino's inline width on the main split panel */
+#jp-main-vsplit-panel {
+  width: auto !important;
+  right: 0 !important;
+}
+
 /* CSS version indicator - Update when making changes */
 #jp-top-panel::after {
-  content: 'C9H';
+  content: 'C9P';
   position: fixed;
   top: 4px;
   right: 8px;
