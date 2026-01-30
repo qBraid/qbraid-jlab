@@ -47,4 +47,3 @@ import '@jupyterlab/ui-components-extension/style/index.js';
 import '@jupyterlab/vega5-extension/style/index.js';
 import '@jupyterlab/video-extension/style/index.js';
 import '@jupyterlab/workspaces-extension/style/index.js';
-import '@qbraid/lab/style/index.js';

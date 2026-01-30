@@ -202,8 +202,7 @@
     "@jupyterlab/ui-components-extension": "~4.6.0-alpha.2",
     "@jupyterlab/vega5-extension": "~4.6.0-alpha.2",
     "@jupyterlab/video-extension": "~4.6.0-alpha.2",
-    "@jupyterlab/workspaces-extension": "~4.6.0-alpha.2",
-    "@qbraid/lab": "file:../packages/external/qbraid-lab"
+    "@jupyterlab/workspaces-extension": "~4.6.0-alpha.2"
   },
   "devDependencies": {
     "@jupyterlab/builder": "^4.6.0-alpha.2",
@@ -288,8 +287,7 @@
       "@jupyterlab/translation-extension": "",
       "@jupyterlab/ui-components-extension": "",
       "@jupyterlab/video-extension": "",
-      "@jupyterlab/workspaces-extension": "",
-      "@qbraid/lab": ""
+      "@jupyterlab/workspaces-extension": ""
     },
     "mimeExtensions": {
       "@jupyterlab/javascript-extension": "",
