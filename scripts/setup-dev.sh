@@ -29,6 +29,19 @@ REPO_ROOT="$(dirname "$SCRIPT_DIR")"
 VENV_PATH="${1:-$REPO_ROOT/venv}"
 PYTHON_CMD="${2:-}"
 
+# Track if we modified workspaces (for cleanup on error)
+WORKSPACES_MODIFIED=false
+PACKAGE_JSON="$REPO_ROOT/package.json"
+
+# Cleanup function to restore workspaces on error
+cleanup() {
+    if [ "$WORKSPACES_MODIFIED" = true ] && [ -f "$PACKAGE_JSON" ]; then
+        echo -e "\n${YELLOW}Restoring package.json due to error...${NC}"
+        git checkout -- "$PACKAGE_JSON" 2>/dev/null || true
+    fi
+}
+trap cleanup EXIT
+
 echo -e "${BLUE}========================================${NC}"
 echo -e "${BLUE}qBraid JupyterLab Development Setup${NC}"
 echo -e "${BLUE}========================================${NC}"
@@ -36,7 +49,7 @@ echo ""
 
 # Function to print step headers
 step() {
-    echo -e "\n${GREEN}[$1/11] $2${NC}"
+    echo -e "\n${GREEN}[$1/12] $2${NC}"
 }
 
 # Function to print warnings
@@ -152,7 +165,6 @@ fi
 step 3 "Installing JavaScript dependencies"
 
 # Check if packages/external/* is in workspaces and temporarily remove it
-PACKAGE_JSON="$REPO_ROOT/package.json"
 if grep -q '"packages/external/\*"' "$PACKAGE_JSON"; then
     echo "  Temporarily removing packages/external/* from workspaces (geist conflict)..."
     # Use node to safely modify JSON
@@ -186,55 +198,105 @@ echo "  ✓ Extension TypeScript built"
 
 cd "$REPO_ROOT"
 
-# Step 5: Install Python build tools (needed for yarn build)
-step 5 "Installing Python build tools"
+# Step 5: Build jupyterlab-git extension
+step 5 "Building jupyterlab-git extension"
+cd "$REPO_ROOT/packages/external/jupyterlab-git"
+
+# Install extension dependencies
+yarn install
+echo "  ✓ jupyterlab-git dependencies installed"
+
+# Build TypeScript
+yarn build
+echo "  ✓ jupyterlab-git TypeScript built"
+
+cd "$REPO_ROOT"
+
+# Step 6: Install Python build tools (needed for yarn build)
+step 6 "Installing Python build tools"
 pip install -q editables hatchling hatch-jupyter-builder
 echo "  ✓ Python build tools installed"
 
-# Step 6: Build JupyterLab core
-step 6 "Building JupyterLab core (this may take a few minutes)"
+# Step 7: Build JupyterLab core
+step 7 "Building JupyterLab core (this may take a few minutes)"
 yarn build
 echo "  ✓ JupyterLab core built"
 
-# Step 7: Install JupyterLab Python package
-step 7 "Installing JupyterLab Python package"
-pip install --no-build-isolation -e . -q
-echo "  ✓ JupyterLab Python package installed"
+# Step 8: Install JupyterLab Python package
+step 8 "Installing JupyterLab Python package"
+# Don't use -q flag so we can see errors
+if ! pip install --no-build-isolation -e .; then
+    error "Failed to install JupyterLab Python package. Check the output above."
+fi
 
-# Step 8: Build federated extension (JS only)
-step 8 "Building federated extension"
+# Verify JupyterLab was installed
+if ! "$VENV_PATH/bin/python" -c "import jupyterlab; print(f'JupyterLab {jupyterlab.__version__}')" 2>/dev/null; then
+    error "JupyterLab installation verification failed"
+fi
+echo "  ✓ JupyterLab Python package installed and verified"
+
+# Step 9: Build and install federated extensions
+step 9 "Building and installing federated extensions"
+
+# Build qbraid-lab federated extension
 cd "$REPO_ROOT/packages/external/qbraid-lab"
-jupyter labextension build .
-cd "$REPO_ROOT"
-echo "  ✓ Federated extension built"
-echo "  Note: Python handlers are included in main qbraid-lab package"
+"$VENV_PATH/bin/jupyter" labextension build .
+echo "  ✓ qbraid-lab federated extension built"
 
-# Step 9: Install additional Python dependencies
-step 9 "Installing additional Python dependencies"
+# Install qbraid-lab Python package (server handlers)
+# Note: This has the same package name as qbraid-jlab, but we need it for server handlers
+# The labextension's jupyter-config will enable the server extension
+cd "$REPO_ROOT"
+
+# Build jupyterlab-git federated extension (if not already built)
+cd "$REPO_ROOT/packages/external/jupyterlab-git"
+pip install -e . -q
+echo "  ✓ jupyterlab-git installed"
+
+cd "$REPO_ROOT"
+
+# Step 10: Install additional Python dependencies
+step 10 "Installing additional Python dependencies"
 pip install -q zstandard "qbraid-core>=0.2.0a9"
 echo "  ✓ Additional dependencies installed"
 
-# Step 10: Restore workspaces if modified
-step 10 "Restoring package.json"
+# Step 11: Restore workspaces
+step 11 "Restoring package.json"
 if [ "$WORKSPACES_MODIFIED" = true ]; then
     git checkout -- "$PACKAGE_JSON"
+    WORKSPACES_MODIFIED=false  # Prevent cleanup trap from running
     echo "  ✓ package.json restored"
 else
     echo "  ✓ No restoration needed"
 fi
 
-# Step 11: Verify installation
-step 11 "Verifying installation"
+# Step 12: Verify installation
+step 12 "Verifying installation"
 echo ""
+
+# Check JupyterLab version
+echo "JupyterLab version:"
+"$VENV_PATH/bin/python" -c "import jupyterlab; print(f'  {jupyterlab.__version__}')"
+echo ""
+
 echo "Extension list:"
 "$VENV_PATH/bin/jupyter" labextension list 2>&1 | head -20
 
-# Check for errors
-if "$VENV_PATH/bin/jupyter" labextension list 2>&1 | grep -q "enabled.*OK"; then
-    echo ""
-    echo -e "${GREEN}✓ Extensions verified successfully${NC}"
+echo ""
+echo "Server extensions:"
+"$VENV_PATH/bin/jupyter" server extension list 2>&1 | grep -E "(enabled|qbraid)" | head -10
+
+# Check for critical extensions
+MISSING_EXTENSIONS=""
+if ! "$VENV_PATH/bin/jupyter" labextension list 2>&1 | grep -q "@qbraid/lab"; then
+    MISSING_EXTENSIONS="$MISSING_EXTENSIONS @qbraid/lab"
+fi
+
+if [ -n "$MISSING_EXTENSIONS" ]; then
+    warn "Some extensions may be missing:$MISSING_EXTENSIONS"
+    echo "  Try rebuilding with: ./scripts/build-all.sh --ext-only"
 else
-    warn "Some extensions may have issues - check the output above"
+    echo -e "${GREEN}✓ All extensions verified successfully${NC}"
 fi
 
 echo ""
@@ -247,7 +309,11 @@ echo ""
 echo "  1. Activate the virtual environment:"
 echo -e "     ${BLUE}source $VENV_PATH/bin/activate${NC}"
 echo ""
-echo "  2. Run JupyterLab in dev mode:"
+echo "  2. Run JupyterLab in dev mode (REQUIRED for this fork):"
+echo -e "     ${BLUE}cd $REPO_ROOT${NC}"
 echo -e "     ${BLUE}jupyter lab --dev-mode --extensions-in-dev-mode --no-browser${NC}"
+echo ""
+echo -e "${YELLOW}Note: This fork must be run with --dev-mode flag.${NC}"
+echo -e "${YELLOW}Regular 'jupyter lab' will not work without building static assets.${NC}"
 echo ""
 echo "For more information, see CLAUDE.md"
