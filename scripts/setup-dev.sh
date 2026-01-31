@@ -238,14 +238,16 @@ echo "  ✓ JupyterLab Python package installed and verified"
 # Step 9: Build and install federated extensions
 step 9 "Building and installing federated extensions"
 
-# Build qbraid-lab federated extension
+# Build and install qbraid-lab extension
 cd "$REPO_ROOT/packages/external/qbraid-lab"
 "$VENV_PATH/bin/jupyter" labextension build .
 echo "  ✓ qbraid-lab federated extension built"
 
-# Install qbraid-lab Python package (server handlers)
-# Note: This has the same package name as qbraid-jlab, but we need it for server handlers
-# The labextension's jupyter-config will enable the server extension
+# Install qbraid-lab-extensions Python package (includes server handlers)
+# Note: Package is named "qbraid-lab-extensions" to avoid conflict with "qbraid-lab" (JupyterLab fork)
+pip install -e . -q
+echo "  ✓ qbraid-lab-extensions installed"
+
 cd "$REPO_ROOT"
 
 # Build jupyterlab-git federated extension (if not already built)
