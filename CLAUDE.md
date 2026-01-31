@@ -4,11 +4,87 @@
 
 Forked JupyterLab with qBraid UI styling. The qbraid-lab extension is loaded as a **federated extension** (not bundled).
 
-## Current State (2026-01-30)
+## Current State (2026-01-31)
 
 **Working branch:** `feature/federated-qbraid-lab`
 **JupyterLab version:** 4.6.0-alpha.2 (Rspack bundler)
 **Architecture:** qbraid-lab as federated extension (separate from JupyterLab build)
+
+---
+
+## Automated Setup (Recommended)
+
+Use the provided scripts for quick setup:
+
+### Quick Start - Development Environment
+
+```bash
+# Clone the repo (if not already done)
+git clone https://github.com/qBraid/qbraid-jlab.git
+cd qbraid-jlab
+git checkout feature/federated-qbraid-lab
+git submodule update --init --recursive
+
+# Run automated setup (creates venv at ./venv by default)
+./scripts/setup-dev.sh
+
+# Or specify a custom venv path
+./scripts/setup-dev.sh /path/to/your/venv
+
+# Or specify both venv path and Python executable
+./scripts/setup-dev.sh /path/to/venv /opt/homebrew/bin/python3.12
+```
+
+The script will:
+1. Auto-detect Python 3.10+ (or use specified path)
+2. Create virtual environment
+3. Handle the `geist` package workspace conflict automatically
+4. Build all TypeScript and extensions
+5. Install all Python packages
+6. Verify the installation
+
+After setup, activate and run:
+```bash
+source ./venv/bin/activate
+jupyter lab --dev-mode --extensions-in-dev-mode --no-browser
+```
+
+### Build Scripts
+
+```bash
+# Quick rebuild after extension changes (fastest)
+./scripts/build-all.sh --ext-only
+
+# Rebuild JupyterLab core only
+./scripts/build-all.sh --core-only
+
+# Full rebuild (extension + core)
+./scripts/build-all.sh
+
+# Build distributable wheel
+./scripts/build-all.sh --wheel
+
+# Clean and rebuild everything
+./scripts/build-all.sh --clean
+```
+
+### Building a Distributable Wheel
+
+```bash
+# Activate your dev environment
+source ./venv/bin/activate
+
+# Build the wheel (handles asset copying automatically)
+./scripts/build-all.sh --wheel
+
+# Test in a fresh environment
+python3 -m venv /tmp/test-wheel
+source /tmp/test-wheel/bin/activate
+pip install dist/qbraid_lab-*.whl
+jupyter lab
+```
+
+---
 
 ## Architecture: Federated Extensions
 
@@ -27,7 +103,7 @@ packages/external/
 
 ---
 
-## Fresh Setup (Complete Instructions)
+## Manual Setup (Step-by-Step)
 
 ### Prerequisites
 - Python 3.12
@@ -157,24 +233,28 @@ jupyter lab --dev-mode --extensions-in-dev-mode --no-browser
 When you modify qbraid-lab source code:
 
 ```bash
-# 1. Rebuild TypeScript
+# Option 1: Use the build script (recommended)
+./scripts/build-all.sh --ext-only
+# Then restart JupyterLab
+
+# Option 2: Manual rebuild
 cd packages/external/qbraid-lab
 yarn build:lib
-
-# 2. Rebuild federated extension
 jupyter labextension build .
-
-# 3. Restart JupyterLab
 cd ../../..
-pkill -f "jupyter lab"
-jupyter lab --dev-mode --extensions-in-dev-mode --no-browser
+# Restart JupyterLab
 ```
 
 ---
 
 ## Building the Wheel (`pip install qbraid-lab`)
 
-To create a distributable wheel:
+**Recommended:** Use the build script:
+```bash
+./scripts/build-all.sh --wheel
+```
+
+**Manual steps** (if needed):
 
 ```bash
 # 1. Ensure dev environment works first
