@@ -172,6 +172,38 @@ jupyter lab --dev-mode --extensions-in-dev-mode --no-browser
 
 ---
 
+## Building the Wheel (`pip install qbraid-lab`)
+
+To create a distributable wheel:
+
+```bash
+# 1. Ensure dev environment works first
+source /path/to/your/venv/bin/activate
+jupyter lab --dev-mode --extensions-in-dev-mode --no-browser
+# Verify the UI loads correctly, then stop the server
+
+# 2. Build dev_mode assets (uses local packages with qBraid theme)
+yarn build
+
+# 3. Copy dev_mode assets to jupyterlab/static
+cp -r dev_mode/static jupyterlab/static
+
+# 4. Build the wheel (skips JS build, uses pre-built assets)
+python -m build --wheel --no-isolation
+
+# 5. Test the wheel in a fresh environment
+python -m venv /tmp/test-qbraid
+source /tmp/test-qbraid/bin/activate
+pip install dist/qbraid_lab-*.whl
+jupyter lab
+```
+
+**IMPORTANT:** The wheel MUST use `dev_mode/static` assets, NOT `jupyterlab/staging` build. The staging build pulls from npm and doesn't include local qBraid theme modifications.
+
+See `ARCHITECTURE.md` for detailed packaging strategy.
+
+---
+
 ## Common Issues
 
 | Problem | Solution |

@@ -6,26 +6,27 @@ requires = ["hatchling>=1.21.1"]
 build-backend = "hatchling.build"
 
 [project]
-name = "jupyterlab"
-description = "JupyterLab computational environment"
+name = "qbraid-lab"
+description = "qBraid Lab - Customized JupyterLab with qBraid extensions"
 readme = "README.md"
 license = { file = "LICENSE" }
 requires-python = ">=3.10"
 authors = [
-    { name = "Jupyter Development Team", email = "jupyter@googlegroups.com" },
+    { name = "qBraid Development Team", email = "contact@qbraid.com" },
 ]
 keywords = [
-    "ipython",
     "jupyter",
+    "jupyterlab",
+    "quantum",
+    "qbraid",
 ]
 classifiers = [
-    "Development Status :: 5 - Production/Stable",
+    "Development Status :: 4 - Beta",
     "Framework :: Jupyter",
     "Framework :: Jupyter :: JupyterLab",
     "Framework :: Jupyter :: JupyterLab :: 4",
     "Intended Audience :: Developers",
     "Intended Audience :: Science/Research",
-    "Intended Audience :: System Administrators",
     "License :: OSI Approved :: BSD License",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3.10",
@@ -35,6 +36,7 @@ classifiers = [
     "Programming Language :: Python :: 3.14",
 ]
 dependencies = [
+    # JupyterLab core dependencies
     "async_lru>=1.0.0",
     "httpx>=0.25.0,<1",
     "ipykernel>=6.5.0,!=6.30.0",
@@ -49,6 +51,9 @@ dependencies = [
     "tomli>=1.2.2;python_version<\"3.11\"",
     "tornado>=6.2.0",
     "traitlets",
+    # qBraid extension dependencies
+    "qbraid-core>=0.2.0a9",
+    "zstandard",
 ]
 dynamic = [
     "version",
@@ -65,13 +70,10 @@ readonly = "jupyterlab.extensions:get_readonly_manager"
 pypi = "jupyterlab.extensions:get_pypi_manager"
 
 [project.urls]
-Homepage = "https://jupyter.org"
-Changelog = "https://jupyterlab.readthedocs.io/en/stable/getting_started/changelog.html"
-Documentation = "https://jupyterlab.readthedocs.io"
-Source = "https://github.com/jupyterlab/jupyterlab"
-Issues = "https://github.com/jupyterlab/jupyterlab/issues/new/choose"
-Zulip = "https://jupyter.zulipchat.com/#narrow/channel/469762-jupyterlab"
-Pypi = "https://pypi.org/project/jupyterlab"
+Homepage = "https://qbraid.com"
+Documentation = "https://docs.qbraid.com"
+Source = "https://github.com/qBraid/qbraid-jlab"
+Issues = "https://github.com/qBraid/qbraid-jlab/issues"
 
 [project.optional-dependencies]
 docs = [
@@ -140,6 +142,9 @@ source = "code"
 "jupyter-config" = "etc/jupyter"
 "jupyterlab.svg" = "share/icons/hicolor/scalable/apps/jupyterlab.svg"
 "jupyterlab.desktop" = "share/applications/jupyterlab.desktop"
+# qBraid extension
+"packages/external/qbraid-lab/qbraid_lab/labextension" = "share/jupyter/labextensions/@qbraid/lab"
+"packages/external/qbraid-lab/jupyter-config/server-config" = "etc/jupyter/jupyter_server_config.d"
 
 [tool.hatch.build]
 ignore-vcs = true
@@ -193,6 +198,9 @@ exclude = [
     "node_modules"
 ]
 
+[tool.hatch.build.targets.wheel.force-include]
+"packages/external/qbraid-lab/qbraid_lab" = "qbraid_lab"
+
 [tool.hatch.build.hooks.jupyter-builder]
 dependencies = ["hatch-jupyter-builder>=0.3.2"]
 build-function = "buildapi.builder"
@@ -201,6 +209,7 @@ ensured-targets = [
     "jupyterlab/schemas/@jupyterlab/shortcuts-extension/shortcuts.json",
     "jupyterlab/themes/@jupyterlab/theme-light-extension/index.css"
 ]
+skip-if-exists = ["jupyterlab/static/package.json"]
 install-pre-commit-hook = true
 
 [tool.hatch.build.hooks.jupyter-builder.editable-build-kwargs]
@@ -210,11 +219,10 @@ build_dir = "dev_mode/static"
 npm = ["node", "jupyterlab/staging/yarn.js"]
 
 [tool.hatch.build.hooks.jupyter-builder.build-kwargs]
-build_cmd = "build:prod:minimize"
-path = "jupyterlab/staging"
-source_dir = "jupyterlab/staging"
+build_cmd = "build:dev:prod"
+source_dir = "packages"
 build_dir = "jupyterlab/static"
-npm = ["node", "yarn.js"]
+npm = ["node", "jupyterlab/staging/yarn.js"]
 
 [tool.pytest.ini_options]
 testpaths = "jupyterlab/tests"
