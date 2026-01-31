@@ -2,136 +2,197 @@
 
 ## Overview
 
-Forked JupyterLab with qBraid UI styling and integrated extensions via git submodules.
+Forked JupyterLab with qBraid UI styling. The qbraid-lab extension is loaded as a **federated extension** (not bundled).
 
-## Current State (2026-01-28)
+## Current State (2026-01-30)
 
-**Working branch:** `feature/extension-submodules` (new architecture with submodules)
+**Working branch:** `feature/federated-qbraid-lab`
 **JupyterLab version:** 4.6.0-alpha.2 (Rspack bundler)
-**Python venv:** `/Users/kanav/qBraid_repositories/python_environments/jlab-source/bin`
+**Architecture:** qbraid-lab as federated extension (separate from JupyterLab build)
 
-## Architecture: Git Submodules + Federated Extensions
+## Architecture: Federated Extensions
 
-**Submodules** (bundled with JupyterLab):
+Extensions are git submodules built and installed **separately** as federated extensions:
+
 ```
 packages/external/
-└── qbraid-lab/       → https://github.com/qBraid/qbraid-lab-extensions.git
+├── qbraid-lab/       → https://github.com/qBraid/qbraid-lab-extensions.git
+└── jupyterlab-git/   → https://github.com/jupyterlab/jupyterlab-git.git
 ```
 
-**Federated Extensions** (installed via pip):
-- `jupyterlab-git` - Git integration (pip install jupyterlab-git)
-
-**Benefits:**
-- qbraid-lab bundled for full control and customization
-- jupyterlab-git as standard pip package (no maintenance needed)
-- Single build artifact for core + qbraid extensions
+**Why federated (not bundled)?**
+- Rspack ES module timing issues caused `module.default` to be undefined when bundled
+- Federated extensions load after JupyterLab core, avoiding timing issues
+- Cleaner separation between JupyterLab core and extensions
 
 ---
 
-## Quick Start
+## Fresh Setup (Complete Instructions)
+
+### Prerequisites
+- Python 3.12
+- Node.js 20+
+- yarn
+
+### Step 1: Create Python Virtual Environment
+```bash
+python3.12 -m venv /path/to/your/venv
+source /path/to/your/venv/bin/activate
+pip install --upgrade pip
+```
+
+### Step 2: Clone and Initialize Repository
+```bash
+git clone https://github.com/qBraid/qbraid-jlab.git
+cd qbraid-jlab
+git checkout feature/federated-qbraid-lab
+git submodule update --init --recursive
+```
+
+### Step 3: Install JavaScript Dependencies
+```bash
+yarn install
+```
+
+### Step 4: Build Extension TypeScript (lib only, not extensions yet)
+```bash
+# Build qbraid-lab
+cd packages/external/qbraid-lab
+yarn install
+yarn build:lib
+cd ../../..
+
+# Build jupyterlab-git
+cd packages/external/jupyterlab-git
+yarn install
+yarn build
+cd ../../..
+```
+
+### Step 5: Temporarily Remove External Packages from Workspaces
+
+**IMPORTANT:** The `geist` package in qbraid-lab causes build conflicts. Temporarily edit `package.json`:
+
+```bash
+# In root package.json, remove "packages/external/*" from workspaces array
+# Change this:
+#   "packages/*",
+#   "packages/external/*",
+# To this:
+#   "packages/*",
+```
+
+Then reinstall:
+```bash
+yarn install
+```
+
+### Step 6: Build JupyterLab Core
+```bash
+# Ensure venv is activated for hatchling
+source /path/to/your/venv/bin/activate
+yarn build
+```
+
+### Step 7: Install JupyterLab Python Package
+```bash
+pip install editables
+pip install --no-build-isolation -e .
+```
+
+### Step 8: Build and Install Federated Extensions
+```bash
+# Install qbraid-lab
+cd packages/external/qbraid-lab
+jupyter labextension build .
+pip install -e .
+cd ../../..
+
+# Install jupyterlab-git
+cd packages/external/jupyterlab-git
+pip install -e .
+cd ../../..
+```
+
+### Step 9: Install Missing Python Dependencies
+```bash
+pip install zstandard qbraid-core>=0.2.0a9
+```
+
+### Step 10: Restore Workspaces (Optional)
+```bash
+# Add "packages/external/*" back to workspaces in package.json
+```
+
+### Step 11: Verify Extensions
+```bash
+jupyter labextension list
+# Should show:
+#   @qbraid/lab v0.1.0 enabled OK
+#   @jupyterlab/git v0.51.4 enabled OK
+```
+
+### Step 12: Run JupyterLab
+```bash
+jupyter lab --dev-mode --extensions-in-dev-mode --no-browser
+```
+
+---
+
+## Quick Start (After Initial Setup)
 
 ```bash
 # Activate environment
-export PATH="/Users/kanav/qBraid_repositories/python_environments/jlab-source/bin:$PATH"
+source /path/to/your/venv/bin/activate
 
-# Initialize submodules (first time only)
-git submodule update --init --recursive
-
-# Install dependencies
-yarn install
-
-# Build qbraid-lab submodule
-cd packages/external/qbraid-lab && yarn install && yarn build:lib && cd ../../..
-
-# Install jupyterlab-git (federated extension)
-pip install jupyterlab-git
-
-# Build JupyterLab
-cd dev_mode && npm run build && cd ..
-
-# Run
-jupyter lab --dev-mode --extensions-in-dev-mode --watch --no-browser
+# Run JupyterLab
+cd /path/to/qbraid-jlab
+jupyter lab --dev-mode --extensions-in-dev-mode --no-browser
 ```
 
 ---
 
-## Submodule Management
+## Rebuilding After qbraid-lab Changes
 
-### Update qbraid-lab submodule to latest
+When you modify qbraid-lab source code:
+
 ```bash
-cd packages/external/qbraid-lab && git pull origin main && cd ../../..
-git add packages/external/qbraid-lab
-git commit -m "chore: update qbraid-lab submodule"
-```
+# 1. Rebuild TypeScript
+cd packages/external/qbraid-lab
+yarn build:lib
 
-### After cloning the repo
-```bash
-git submodule update --init --recursive
-```
+# 2. Rebuild federated extension
+jupyter labextension build .
 
-### Making changes to submodules
-1. Make changes in `packages/external/<submodule>/`
-2. Rebuild: `yarn build:lib` (in submodule directory)
-3. Rebuild dev_mode: `cd dev_mode && npm run build`
-4. Commit submodule changes in the submodule repo
-5. Update submodule reference in main repo
-
----
-
-## Extension Configuration
-
-**Configured in `dev_mode/package.json`:**
-```json
-"dependencies": {
-  "@jupyterlab/git": "file:../packages/external/jupyterlab-git",
-  "@qbraid/lab": "file:../packages/external/qbraid-lab"
-},
-"jupyterlab": {
-  "extensions": {
-    "@jupyterlab/git": "",
-    "@qbraid/lab": ""
-  }
-}
-```
-
-**Workspaces in root `package.json`:**
-```json
-"workspaces": [
-  "packages/*",
-  "packages/external/*",  // Required for submodules
-  ...
-]
+# 3. Restart JupyterLab
+cd ../../..
+pkill -f "jupyter lab"
+jupyter lab --dev-mode --extensions-in-dev-mode --no-browser
 ```
 
 ---
 
-## Python Server Extensions
+## Common Issues
 
-Extensions with Python backends must be pip installed:
-
-```bash
-# Install jupyterlab-git (federated extension with server component)
-pip install jupyterlab-git
-
-# Install qbraid-lab server extension from submodule
-pip install packages/external/qbraid-lab
-```
-
-**Verify server extensions:**
-```bash
-jupyter server extension list
-# Should show: jupyterlab_git, qbraid_lab
-```
+| Problem | Solution |
+|---------|----------|
+| `geist` package error during build | Remove `packages/external/*` from workspaces temporarily |
+| `No module named 'editables'` | `pip install editables` |
+| `No module named 'zstandard'` | `pip install zstandard` |
+| `hatchling: command not found` | Activate Python venv before building |
+| `jupyter-labextension not found` | Install jupyterlab first: `pip install --no-build-isolation -e .` |
+| Extension not showing | Run `jupyter labextension list` to verify, rebuild if needed |
+| Server extension error | `pip install -e packages/external/qbraid-lab` |
 
 ---
 
-## Branch Structure
+## Key Files
 
-| Branch | JupyterLab | Bundler | Status |
-|--------|------------|---------|--------|
-| `feature/extension-submodules` | 4.6.0-alpha2 | Rspack | **Current - submodule architecture** |
-| `main` | 4.6.0-alpha2 | Rspack | Previous (file: references) |
-| `fix/jlab-4.5.3` | 4.5.3 | Webpack | Stable fallback |
+| File | Purpose |
+|------|---------|
+| `package.json` | Root workspaces config - may need `packages/external/*` removed during build |
+| `dev_mode/package.json` | Dev mode config - qbraid-lab NOT listed here (it's federated) |
+| `packages/external/qbraid-lab/` | qbraid-lab extension source |
 
 ---
 
@@ -147,59 +208,29 @@ JupyterLab theme has a CSS version indicator in the top panel:
 - File: `packages/theme-dark-extension/style/qbraid-components.css`
 - Look for: `content: 'C9H'` (update letter/number when making CSS changes)
 
-### Watch Mode Limitations
-- Watch mode doesn't pick up NEW files - needs manual rebuild
-- Watch mode compiles on first start (can take 1-2 minutes)
-- Changes to package.json require full rebuild
+---
 
-### Rebuilding After Submodule Changes
-```bash
-# 1. Rebuild submodule
-cd packages/external/qbraid-lab && yarn build:lib && cd ../../..
+## Why This Architecture?
 
-# 2. Rebuild dev_mode
-cd dev_mode && npm run build && cd ..
+The previous approach tried to bundle qbraid-lab directly into JupyterLab's dev_mode build. This failed due to:
 
-# 3. Restart JupyterLab
-pkill -f jupyter && jupyter lab --dev-mode --extensions-in-dev-mode --watch --no-browser
-```
+1. **Rspack ES module timing**: When bundled, `module.default` was undefined at load time
+2. **geist package conflicts**: The `geist` font package doesn't export properly, breaking the monorepo build
+
+The federated extension approach solves both issues:
+- qbraid-lab builds independently with its own webpack config
+- Loads after JupyterLab core is fully initialized
+- No conflicts with the main build process
 
 ---
 
-## Common Issues
+## Branch History
 
-| Problem | Solution |
-|---------|----------|
-| Extension not loading | Check version match, run `yarn install` from root |
-| Changes not picked up | Rebuild submodule, then rebuild dev_mode |
-| Server extension missing | `pip install <extension>` for Python components |
-| Watch mode hung | Kill rspack processes: `pkill -f rspack` |
-| 500 Internal Server Error | Rebuild: `cd dev_mode && npm run build` |
-| Submodule not initialized | `git submodule update --init --recursive` |
-| "resolving fallback" error | Add `packages/external/*` to workspaces in package.json |
-
----
-
-## CSS Files
-
-| File | Purpose |
-|------|---------|
-| `packages/theme-dark-extension/style/variables.css` | JupyterLab variable overrides |
-| `packages/theme-dark-extension/style/qbraid-tokens.css` | qBraid design tokens |
-| `packages/theme-dark-extension/style/qbraid-components.css` | Component-specific overrides |
-| `packages/application/style/core.css` | Top panel, branding |
-
----
-
-## Disabled Extensions
-
-The following extensions are disabled in `dev_mode/package.json`:
-- TOC (Table of Contents)
-- Debugger
-- Property Inspector
-- Running Terminals
-- Light theme
-- Dark high-contrast theme
+| Branch | Status | Notes |
+|--------|--------|-------|
+| `feature/federated-qbraid-lab` | **Current** | qbraid-lab as federated extension |
+| `feature/extension-submodules` | Deprecated | Attempted bundled approach (had issues) |
+| `main` | Stable | Base JupyterLab without qbraid-lab |
 
 ---
 
@@ -210,31 +241,3 @@ See `packages/external/qbraid-lab/CLAUDE.md` for:
 - Redux patterns
 - Python handlers
 - CSS/styling guidelines
-
----
-
-## jupyterlab-git (Federated Extension)
-
-Installed via pip, not bundled. Standard JupyterLab Git extension.
-- Install: `pip install jupyterlab-git`
-- GitHub: https://github.com/jupyterlab/jupyterlab-git
-- Provides: Git panel in left sidebar, diff viewer, commit UI
-
----
-
-## Module Federation Notes
-
-**sharedPackages Config (in extension package.json):**
-```json
-"sharedPackages": {
-  "react": { "bundled": false, "singleton": true },
-  "react-dom": { "bundled": false, "singleton": true }
-}
-```
-
-- `bundled: false` → Use JupyterLab's React (correct for dev mode)
-- `bundled: true` → Bundle own React (use for standalone extensions)
-
-**Version Matching:**
-Extension `@jupyterlab/*` deps should match JupyterLab version:
-- JupyterLab 4.6.0 → extensions use `@jupyterlab/*: ^4.6.0`

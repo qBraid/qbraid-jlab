@@ -1,3 +1,6 @@
 [submodule "packages/external/qbraid-lab"]
 	path = packages/external/qbraid-lab
 	url = https://github.com/qBraid/qbraid-lab-extensions.git
+[submodule "packages/external/jupyterlab-git"]
+	path = packages/external/jupyterlab-git
+	url = https://github.com/jupyterlab/jupyterlab-git.git
