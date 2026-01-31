@@ -247,6 +247,100 @@ cd ../../..
 
 ---
 
+## Advanced Development Setup
+
+### Understanding dev_mode vs Production
+
+| Mode | Command | Assets From | Use Case |
+|------|---------|-------------|----------|
+| **dev_mode** | `jupyter lab --dev-mode` | `dev_mode/static/` | Development with qBraid theme |
+| **Production** | `jupyter lab` | Installed wheel | End-user deployment |
+
+The `--dev-mode` flag tells JupyterLab to serve assets from the `dev_mode/` directory instead of the installed package. The `--extensions-in-dev-mode` flag loads federated extensions from the local build.
+
+### Watch Mode (Auto-rebuild)
+
+**For JupyterLab core changes** (theme, core packages):
+```bash
+# Terminal 1: Watch and rebuild on changes
+yarn watch
+
+# Terminal 2: Run JupyterLab (refresh browser after rebuild)
+jupyter lab --dev-mode --extensions-in-dev-mode
+```
+
+Alternative with built-in watch:
+```bash
+jupyter lab --dev-mode --watch
+```
+
+**For qbraid-lab extension changes:**
+```bash
+# Terminal 1: Watch extension (rebuilds TypeScript + labextension)
+cd packages/external/qbraid-lab
+yarn watch
+
+# Terminal 2: Run JupyterLab (refresh browser after rebuild)
+cd /path/to/qbraid-jlab
+jupyter lab --dev-mode --extensions-in-dev-mode
+```
+
+The extension's `yarn watch` runs both:
+- `tsc -w` - TypeScript compilation watch
+- `jupyter labextension watch .` - Federated extension rebuild watch
+
+**For both simultaneously** (full stack watch):
+```bash
+# Terminal 1: Extension watch
+cd packages/external/qbraid-lab && yarn watch
+
+# Terminal 2: Core watch
+cd /path/to/qbraid-jlab && yarn watch
+
+# Terminal 3: JupyterLab server
+jupyter lab --dev-mode --extensions-in-dev-mode
+```
+
+### Symlink for Rapid Extension Development
+
+If you have qbraid-lab-extensions cloned separately, symlink for instant changes:
+
+```bash
+# Clone extension repo separately
+git clone https://github.com/qBraid/qbraid-lab-extensions.git ~/projects/qbraid-lab-extensions
+
+# Replace submodule with symlink
+cd ~/projects/qbraid-jlab/packages/external
+rm -rf qbraid-lab
+ln -s ~/projects/qbraid-lab-extensions qbraid-lab
+
+# Now edits in ~/projects/qbraid-lab-extensions are instantly available
+# Just rebuild:
+./scripts/build-all.sh --ext-only
+```
+
+**Note:** Restore submodule before committing:
+```bash
+rm packages/external/qbraid-lab
+git submodule update --init packages/external/qbraid-lab
+```
+
+### Recommended Dual-Repo Workflow
+
+```
+~/projects/
+├── qbraid-lab-extensions/     # Main development (full git repo)
+└── qbraid-jlab/               # Integration testing
+    └── packages/external/
+        └── qbraid-lab/        # Submodule OR symlink
+```
+
+1. **Develop** in `qbraid-lab-extensions` (commit, push, branch freely)
+2. **Test integration** in `qbraid-jlab` by updating submodule or using symlink
+3. **Release** by updating submodule pointer to specific commit/tag
+
+---
+
 ## Building the Wheel (`pip install qbraid-lab`)
 
 **Recommended:** Use the build script:
